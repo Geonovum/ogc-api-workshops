@@ -1,4 +1,9 @@
-# Verkennen van OGC vector tiles en features datasets
+# Verkennen van OGC vector tiles
+
+Deze oefening richt zich op het verkennen van de vector tiles van de BAG en BGT.
+We maken gebruik van de landing pages en Swagger UI van PDOK. Als extra
+hulpmiddel verwijzen we naar de vector tiles viewer van PDOK voor verdere
+verkenning.
 
 ## BAG Vector Tiles
 
