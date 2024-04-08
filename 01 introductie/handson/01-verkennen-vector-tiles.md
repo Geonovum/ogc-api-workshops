@@ -24,8 +24,6 @@ kun je zien aan welke standaarden de API voldoet.
 Klik op de landing page op Conformance en ga naar
 <https://api.pdok.nl/lv/bag/ogc/v1_0/conformance>
 
-Vragen:
-
 -   Welke versie van de OGC Vector Tiles-specificaties wordt toegepast?
 
 -   Welke specificatie voor vector tiles-encoding wordt gebruikt?
