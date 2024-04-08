@@ -26,9 +26,9 @@ Klik op de landing page op Conformance en ga naar
 
 Vragen:
 
-1.  Welke versie van de OGC Vector Tiles-specificaties wordt toegepast?
+-   Welke versie van de OGC Vector Tiles-specificaties wordt toegepast?
 
-2.  Welke specificatie voor vector tiles-encoding wordt gebruikt?
+-   Welke specificatie voor vector tiles-encoding wordt gebruikt?
 
 ### Tiles
 
@@ -45,31 +45,31 @@ Klik op de landing page op Tiles en ga naar
 Aan de linkerkant zie je de TileMatrixSet die je bekijkt, en aan de rechterkant
 een voorbeeldtegel van de BAG. Bekijk de URL-template.
 
-1.  Wat vertegenwoordigen {z}, {x} en {y} in de URL?
+-   Wat vertegenwoordigen {z}, {x} en {y} in de URL?
 
 Kopieer en plak de voorbeeld-URL in je browser. Een binair vector tiles-bestand
 wordt nu gedownload.
 
-1.  Hoe groot is het bestand in kilobytes?
+-   Hoe groot is het bestand in kilobytes?
 
 Open het bestand in een teksteditor zoals Kladblok, Notepad++ of VS Code.
 
-1.  Welke elementen herken je in het bestand?
+-   Welke elementen herken je in het bestand?
 
 Bekijk de metadata van de verschillende Tile Matrix Sets.
 
-1.  Op welk zoomniveau is de TileMatrixSet WebMercatorQuad beschikbaar?
+-   Op welk zoomniveau is de TileMatrixSet WebMercatorQuad beschikbaar?
 
-2.  Welke dimensies heeft de TileMatrixSet WebMercatorQuad?
+-   Welke dimensies heeft de TileMatrixSet WebMercatorQuad?
 
 Hetzelfde geldt voor EuropeanETRS89_LAEAQuad.
 
-1.  Waarom verschillen deze zoomniveaus en dimensies?
+-   Waarom verschillen deze zoomniveaus en dimensies?
 
 Bekijk de metadata van de NetherlandsRDNewQuad Tile Matrix Set.
 <https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/NetherlandsRDNewQuad>.
 
-1.  Waar bevindt zich ongeveer het oorsprongs- of referentiepunt van deze Tile
+-   Waar bevindt zich ongeveer het oorsprongs- of referentiepunt van deze Tile
     Matrix Set?
 
 *Hint: Het referentiepunt is zichtbaar in RD-coördinaten. Zoek een reversed
@@ -84,9 +84,9 @@ pagina is beschikbaar in zowel HTML als JSON-indeling.
 Kies op de landing page Styles en ga naar
 <https://api.pdok.nl/lv/bag/ogc/v1_0/styles>.
 
-1.  Hoeveel stijlen zijn beschikbaar voor de BAG?
+-   Hoeveel stijlen zijn beschikbaar voor de BAG?
 
-2.  Wat merk je op wanneer je schakelt tussen de standaardvisualisatie van BAG
+-   Wat merk je op wanneer je schakelt tussen de standaardvisualisatie van BAG
     voor NetherlandsRDNEwQuad en EuropeanETRS89_LAEAQuad?
 
 ### Tile Matrix Sets
@@ -99,12 +99,12 @@ ondersteund. De pagina is zowel in HTML als JSON beschikbaar.
 Kies op de landing page Tile Matrix Sets en ga naar
 <https://api.pdok.nl/lv/bag/ogc/v1_0/tileMatrixSets>
 
-1.  Hoeveel tile matrixsets zijn beschikbaar voor de BAG?
+-   Hoeveel tile matrixsets zijn beschikbaar voor de BAG?
 
-2.  Uit hoeveel tegels bestaat de Tile Matrix Set op zoomniveau 17 van
+-   Uit hoeveel tegels bestaat de Tile Matrix Set op zoomniveau 17 van
     WebMercatorQuad?
 
-3.  Waar bevindt zich ongeveer het referentiepunt van de NetherlandsRDNewQuad
+-   Waar bevindt zich ongeveer het referentiepunt van de NetherlandsRDNewQuad
     Tile Matrix Set?
 
 ### OpenAPI-specificatie
@@ -124,14 +124,14 @@ uitproberen en de respons bekijken.
 *Hint: Via 'Try Out' kun je de invoervelden aanpassen. Druk vervolgens op de
 knop 'Execute'.*
 
-1.  Wat is het end-point van de BAG API?
+-   Wat is het end-point van de BAG API?
 
-2.  Met welk GET-verzoek kun je alle beschikbare stijlen opvragen?
+-   Met welk GET-verzoek kun je alle beschikbare stijlen opvragen?
 
 Haal de tegel op die wordt weergegeven in de HTML van de /tiles-landingspagina
 die je via de Swagger UI kunt opvragen.
 
-1.  Wat zijn de {z}, {x} en {y} van deze vector tegel, en hoe groot in kB is
+-   Wat zijn de {z}, {x} en {y} van deze vector tegel, en hoe groot in kB is
     deze tegel als je ‘m download?
 
 ![Afbeelding met tekst, schermopname, lijn, Lettertype Automatisch gegenereerde
@@ -153,25 +153,26 @@ Navigeer naar de BGT Vector Tiles op PDOK via de volgende link:
 landingspagina van de BGT Vector Tiles API. Verken de beschikbare
 functionaliteiten en informatie aan de hand van de volgende vragen:
 
-1\. Conformance: Welke OGC-standaarden implementeert deze API? Bekijk de
-beschikbare conformance-pagina zowel in HTML als JSON-formaat.
+-   Conformance: Welke OGC-standaarden implementeert deze API? Bekijk de
+    beschikbare conformance-pagina zowel in HTML als JSON-formaat.
 
-2\. Tiles: Hoe wordt de dataset gepresenteerd als vector tiles? Hoeveel
-verschillende projecties zijn beschikbaar? Bekijk de URL-template en begrijp de
-betekenis van {z}, {x} en {y} in de URL. Probeer een voorbeeldtegel op te vragen
-en bekijk het gedownloade bestand.
+-   Tiles: Hoe wordt de dataset gepresenteerd als vector tiles? Hoeveel
+    verschillende projecties zijn beschikbaar? Bekijk de URL-template en begrijp
+    de betekenis van {z}, {x} en {y} in de URL. Probeer een voorbeeldtegel op te
+    vragen en bekijk het gedownloade bestand.
 
-3\. Styles: Hoeveel officiële stijlen worden er aangeboden voor de BGT? Wat is
-het formaat van deze stijlen?
+-   Styles: Hoeveel officiële stijlen worden er aangeboden voor de BGT? Wat is
+    het formaat van deze stijlen?
 
-4\. Tile Matrix Sets: Hoeveel matrixsets zijn er beschikbaar voor de BGT? Wat
-zijn de dimensies en zoomniveaus van de verschillende Tile Matrix Sets?
+-   Tile Matrix Sets: Hoeveel matrixsets zijn er beschikbaar voor de BGT? Wat
+    zijn de dimensies en zoomniveaus van de verschillende Tile Matrix Sets?
 
-5\. OpenAPI-specificaties: Wat is het endpoint van de BGT API? Welk GET-verzoek
-kun je gebruiken om alle beschikbare stijlen op te vragen? Probeer de tegel op
-te halen die wordt weergegeven in de HTML van de /tiles-landingspagina via de
-Swagger UI. Gebruik hiervoor de voorbeeld-URL en vul de juiste waarden van {z},
-{x} en {y} in de gebruikersinterface in om de tegel op te vragen.
+-   OpenAPI-specificaties: Wat is het endpoint van de BGT API? Welk GET-verzoek
+    kun je gebruiken om alle beschikbare stijlen op te vragen? Probeer de tegel
+    op te halen die wordt weergegeven in de HTML van de /tiles-landingspagina
+    via de Swagger UI. Gebruik hiervoor de voorbeeld-URL en vul de juiste
+    waarden van {z}, {x} en {y} in de gebruikersinterface in om de tegel op te
+    vragen.
 
 ## Tip: Ontdek de Vector Tiles Viewer!
 
