@@ -2,6 +2,8 @@
 
 In deze oefening gaan we dieper in op het gebruik van vector tiles van de BAG in MapLibre. Hieronder volgen de stappen om deze vector tiles toe te voegen aan een MapLibre-kaart en enkele interactieve functies toe te passen.
 
+Je hebt een tekst-editor nodig, bijvoorbeeld Kladblok, Notepad++ of VS Code. Je kunt het HTML-bestand lokaal opslaan en vervolgens openen in een browser bijvoorbeeld Google Chrome.
+
 #### Stap 1: Initialiseer een lege MapLibre-kaart
 
 Initialiseer een lege MapLibre-kaart en pas eventueel het centrale punt van de kaart aan naar een andere locatie.
@@ -32,7 +34,10 @@ const map = new maplibregl.Map({
 });
 
 map.on('load', () => {
-    // Voeg de vector tiles bronnen en lagen toe
+    // Voeg hier de vector tiles bronnen en lagen toe
+    // Voeg hier het filter op gesloopte panden toe
+    // Voeg hier het tonen van gegevens van een feature in een popup toe
+    // Voeg hier het kleuren van de BAG Panden op bouwjaar
 });
 </script>
 </body>
@@ -42,6 +47,7 @@ map.on('load', () => {
 #### Stap 2: Voeg de BAG Vector Tiles Panden toe als databron
 
 Voeg de BAG Vector Tiles als databron toe aan het <script> element na het initialiseren van een nieuwe MapLibre-kaart. Kies de laag 'pand' om aan de kaart toe te voegen en pas indien nodig de kleur van de panden aan.
+Let op: plaats de javascript binnen de map.on('load') functie.
 
 ```javascript
  // Voeg de vector tiles bronnen en lagen toe
@@ -96,7 +102,7 @@ Let op: plaats de javascript binnen de map.on('load') functie.
     });
 ```
 
-#### Stap 5: Kleur de BAG Panden op bouwjaar
+#### Stap 5: Kleuren van de BAG Panden op bouwjaar
 
 Vervang de hexadecimale kleur in het script door een kleur-interpolatiefunctie op basis van het bouwjaar van de panden. Hierdoor worden de panden gekleurd op basis van hun bouwjaar.
 Let op: plaats de javascript binnen de map.on('load') functie.
@@ -107,10 +113,11 @@ Let op: plaats de javascript binnen de map.on('load') functie.
         'interpolate',
         ['linear'],
         ['get', 'bouwjaar'], 
-        1500, '#00ff00', 
-        2025, '#0000ff'
+        1500, '#00ff00', //groen
+        2025, '#0000ff' //blauw
     ]);
 ```
+Experimenteer met het aanpassen van het interval van bouwjaren en verschillende kleuren.
 * Welke kleur krijgen de panden op basis van hun bouwjaar, volgens de kleur-interpolatiefunctie?
 
 
