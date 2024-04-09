@@ -100,52 +100,77 @@ debugopties.
 3.  Klik met de rechtermuisknop op een GET-verzoek en selecteer 'URL openen'.
     Herhaal dit voor zowel de BAG- als de BGT-vector tiles.
 
+## 
+
+## 
+
 ## BGT API Features in QGIS
 
-We gaan nu de BGT API Features laden in QGIS
+In deze oefening gaan we aan de slag met het laden van BGT API Features in QGIS.
+Volg de onderstaande stappen om deze features toe te voegen aan je kaart en om
+verschillende handelingen uit te voeren, zoals het opvragen van attributen en
+het filteren van gegevens.
 
-### Toevoegen BGT API Features
+### Toevoegen van BGT API Features
 
-Ga in QGIS in het paneel Browser naar WFS/ OGC API Features en selecteer Nieuwe
-verbinding toevoegen…
+1\. Ga in QGIS naar het paneel Browser en selecteer WFS/OGC API Features.
 
-Voer als URL in: <https://api.pdok.nl/lv/bgt/ogc/v1_0-demo/>.
+2\. Klik op Nieuwe verbinding toevoegen...
 
-Open de volgende feature collecties:
+3\. Voer als URL in: https://api.pdok.nl/lv/bgt/ogc/v1_0-demo/.
 
--   Wegdeel,
+4\. Open de volgende feature collecties:
 
--   OndersteunendWegdeel
+\- Wegdeel
 
--   BegroeidTerreindeel
+\- OndersteunendWegdeel
 
--   OnbegroeidTerreindeel
+\- BegroeidTerreindeel
 
--   Waterdeel
+\- OnbegroeidTerreindeel
 
--   OndersteunendWaterdeel
+\- Waterdeel
 
--   Pand
+\- OndersteunendWaterdeel
 
--   OverigBouwwerk
+\- Pand
 
-### Opvragen van attributen
+\- OverigBouwwerk
 
-Vergelijkbaar met hoe je met je vector tiles attributtgegevens kunt opvragen,
-kun je ook met. Probeer dit voor een aantal objecten.
+5\. Geef de lagen eventueel een andere kleur door rechts te klikken op de
+kaartlaag in het paneel Lagen en vervolgens Eigenschappen » Symbologie te
+selecteren.
 
-### Filteren op attributen
+### Opvragen van Attributen
 
-Dupliceer een laag, bijvoorbeeld de laag met BegroeidTerreindeel.
+1\. Vergelijkbaar met het opvragen van attribuutgegevens van vector tiles, kun je
+in QGIS attribuutgegevens opvragen van features met CTRL+SHIFT+I of de
+ObjectIdentificatie-knop. Probeer dit voor een aantal objecten.
 
-Klik met de rechtermuisknop op de gedupliceerde laag en kies Filteren.
+### Filteren op Attributen
 
-### Filteren op peildatum
+1\. Dupliceer een laag, bijvoorbeeld de laag met BegroeidTerreindeel of Wegdeel.
 
-Met het filteren op peildatum kun je de situatie van een bepaalde tijd geleden
-weer reconstrueren. Voor het filteren op peildatum gebruik je hetzelfde
-mechanisme als filteren op attributen, maar nu op attribuut ‘peildatum’.
+2\. Klik met de rechtermuisknop op de gedupliceerde laag en kies Filteren.
 
-"creation_date" = '2020-01-01T00:00:00.001Z'
+3\. Gebruik de Querybouwer om te filteren op specifieke attribuutwaarden.
+Bijvoorbeeld, filter de begroeide terreindelen op fysiek-voorkomen
+'groenvoorziening' om alle gemeenteplantsoenen in het gebied te selecteren.
 
-Hint: Zorg dat je
+4\. Vul de volgende filter-expressie in: "fysiek_voorkomen" = 'groenvoorziening'
+en klik op Test en daarna op OK.
+
+![Afbeelding met tekst, schermopname, scherm, software Automatisch gegenereerde
+beschrijving](media/3eaa7663ac6493f33e04361f5161819b.png)
+
+### Filteren op Peildatum
+
+1\. Om de situatie op 1 januari 2020 te bekijken, gebruik je hetzelfde mechanisme
+als bij het filteren op attributen, maar nu op het datumtijd-attribuut
+creation_date.
+
+2\. Vul de volgende filter-expressie in: "creation_date" =
+'2020-01-01T00:00:00.001Z' om de situatie op 1 januari 2020 te zien.
+
+3\. Haal de situaties terug van verschillende peildata, bijvoorbeeld 1 januari
+2018, 1 januari 2020 en 1 januari 2022.
