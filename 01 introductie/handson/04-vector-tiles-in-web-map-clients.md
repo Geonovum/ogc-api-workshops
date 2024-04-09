@@ -95,6 +95,8 @@ Let op: plaats de javascript binnen de map.on('load') functie.
         }
     });
 ```
+Pas nu zelf de HTML van het popup verder aan binnen .setHTML. Voeg bijvoorbeeld de status of het gebruiksdoel toe.
+Tip! Door de regel console.log(features) kun je met F12 in het Console de properties van het feature bekijken.
 
 #### Stap 5: Kleur de BAG Panden op bouwjaar
 
