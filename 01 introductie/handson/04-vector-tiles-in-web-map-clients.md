@@ -115,4 +115,4 @@ Let op: plaats de javascript binnen de map.on('load') functie.
 
 
 Je hebt nu een eigen interactieve BAG Vector Tiles Viewer met MapLibre gebouwd!
-Bekijk het volledige script hier: 
+Bekijk het volledige script hier: https://github.com/Geonovum/ogc-api-workshops/blob/main/01%20introductie/handson/bag-vector-tiles-in-maplibre.html
