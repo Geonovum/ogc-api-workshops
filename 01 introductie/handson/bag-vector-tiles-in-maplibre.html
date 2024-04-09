@@ -50,7 +50,7 @@ map.on('load', () => {
             console.log(features); 
             var popup = new maplibregl.Popup() 
                 .setLngLat(e.lngLat)
-                .setHTML('<h3>' + features[0].properties.id + '</h3><p>' + features[0].properties.bouwjaar + '</p>')
+                .setHTML('<h3>' + features[0].properties.identificatie + '</h3><p>' + features[0].properties.bouwjaar + '</p>')
                 .addTo(map); 
         }
     });
