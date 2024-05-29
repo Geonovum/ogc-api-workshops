@@ -7,7 +7,7 @@ ontwikkelen voor het navigeren en filteren van geografische data.
 ## BGT OGC API Features
 
 Ga naar de demo van PDOK die sinds 11 maart 2024 beschikbaar is:
-<https://api.pdok.nl/lv/bgt/ogc/v1_0-demo/>. Je komt de terecht op de landing
+<https://api.pdok.nl/lv/bgt/ogc/v1_0/>. Je komt de terecht op de landing
 page.
 
 ![Afbeelding met tekst, schermopname, Website, Webpagina Automatisch
@@ -23,7 +23,7 @@ Ga naar de Conformance sectie.
 ### Collecties
 
 Bekijk de beschikbare feature collecties onder het kopje "Collecties" op de
-landing page: <https://api.pdok.nl/lv/bgt/ogc/v1_0-demo/collections> .
+landing page: <https://api.pdok.nl/lv/bgt/ogc/v1_0/collections> .
 
 -   Tot welke datum zijn deze feature collecties bijgewerkt?
 
