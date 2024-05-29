@@ -117,7 +117,7 @@ het filteren van gegevens.
 
 2\. Klik op Nieuwe verbinding toevoegen...
 
-3\. Voer als URL in: https://api.pdok.nl/lv/bgt/ogc/v1_0-demo/.
+3\. Voer als URL in: https://api.pdok.nl/lv/bgt/ogc/v1_0/.
 
 4\. Open de volgende feature collecties:
 
