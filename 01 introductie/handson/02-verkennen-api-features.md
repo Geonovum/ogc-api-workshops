@@ -23,7 +23,7 @@ Ga naar de Conformance sectie.
 ### Collecties
 
 Bekijk de beschikbare feature collecties onder het kopje "Collecties" op de
-landing page: <https://api.pdok.nl/lv/bgt/ogc/v1_0/collections> .
+landing page: <https://api.pdok.nl/lv/bgt/ogc/v1/collections> .
 
 -   Tot welke datum zijn deze feature collecties bijgewerkt?
 
