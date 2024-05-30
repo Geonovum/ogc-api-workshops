@@ -27,7 +27,7 @@ landing page: <https://api.pdok.nl/lv/bgt/ogc/v1/collections> .
 
 -   Tot welke datum zijn deze feature collecties bijgewerkt?
 
-Open de collectie "Bakken" en bekijk de beschikbare informatie.
+Open de collectie "Bak" en bekijk de beschikbare informatie.
 
 ![Afbeelding met tekst, schermopname, kaart, software Automatisch gegenereerde
 beschrijving](media/0e469c9e1a4c87d242cd8a9e95e62146.png)
@@ -49,10 +49,10 @@ Leer hoe features gefilterd kunnen worden op datum en ID.
 -   Op welke datum werd het feature met LokaalID
     G0518.08d6e6ee5822653ae0502a0a313c2ff8 in de LV opgenomen?
 
-Vind de begindatum van het oudste "Bakken" feature door terug te gaan in de
+Vind de begindatum van het oudste "Bak" feature door terug te gaan in de
 tijd.
 
--   Wat is het begindatum van het ‘oudste’ Bakken feature?
+-   Wat is het begindatum van het ‘oudste’ Bak feature?
 
 *Hint! Ga zo’n 16 jaar terug in de tijd.*
 
