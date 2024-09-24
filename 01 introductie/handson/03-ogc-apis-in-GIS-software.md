@@ -50,10 +50,10 @@ beschrijving](media/af682fbcccafa9cc9d006e379183b316.png)
 8\. Herhaal de bovenstaande stappen met de BGT Vector Tiles:
 
 \- URL:
-[https://api.pdok.nl/lv/bgt/ogc/v1_0/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt](https://api.pdok.nl/lv/bgt/ogc/v1_0/tiles/WebMercatorQuad/%7bz%7d/%7by%7d/%7bx%7d?f=mvt)
+[https://api.pdok.nl/lv/bgt/ogc/v1/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt](https://api.pdok.nl/lv/bgt/ogc/v1/tiles/WebMercatorQuad/%7bz%7d/%7by%7d/%7bx%7d?f=mvt)
 
 \- Experimenteer met de verschillende stijlen op:
-<https://api.pdok.nl/lv/bgt/ogc/v1_0/styles>
+<https://api.pdok.nl/lv/bgt/ogc/v1/styles>
 
 *Hint: Let op het zoomniveau tijdens het verkennen.*
 
@@ -117,7 +117,7 @@ het filteren van gegevens.
 
 2\. Klik op Nieuwe verbinding toevoegen...
 
-3\. Voer als URL in: https://api.pdok.nl/lv/bgt/ogc/v1_0/.
+3\. Voer als URL in: https://api.pdok.nl/lv/bgt/ogc/v1/.
 
 4\. Open de volgende feature collecties:
 

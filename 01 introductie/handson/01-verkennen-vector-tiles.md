@@ -147,7 +147,7 @@ Conformance, Tiles, Styles, Tile Matrix Sets en OpenAPI-specificaties, zoals we
 gedaan hebben bij de BAG Vector Tiles.
 
 Navigeer naar de BGT Vector Tiles op PDOK via de volgende link:
-<https://api.pdok.nl/lv/bgt/ogc/v1_0>. Op het scherm verschijnt de
+<https://api.pdok.nl/lv/bgt/ogc/v1>. Op het scherm verschijnt de
 landingspagina van de BGT Vector Tiles API. Verken de beschikbare
 functionaliteiten en informatie aan de hand van de volgende vragen:
 
