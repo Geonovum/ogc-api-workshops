@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BAG Vector Tiles in MapLibre</title>
+    <meta property="og:description" content="Add a vector source to a map." />
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl/dist/maplibre-gl.css' />
+    <script src='https://unpkg.com/maplibre-gl/dist/maplibre-gl.js'></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+const map = new maplibregl.Map({
+    container: 'map',			
+    style: {version: 8,sources: {},layers: []},
+    zoom: 17,
+    center: [4.1626292, 51.901662] // Voeg hier jouw locatie toe
+});
+
+map.on('load', () => {
+    map.addSource('bag', {
+        type: 'vector',
+        url: 'https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/WebMercatorQuad?f=tilejson'
+    });
+
+    map.addLayer({
+        'id': 'bag-pand',
+        'type': 'fill',
+        'source': 'bag',
+        'source-layer': 'pand',
+        'paint': {
+            'fill-color': '#0080ff',
+            'fill-opacity': 0.5
+        }
+    });
+    // Voeg hier de vector tiles bronnen en lagen toe
+    // Voeg hier het filter op gesloopte panden toe
+    // Voeg hier het tonen van gegevens van een feature in een popup toe
+    // Voeg hier het kleuren van de BAG Panden op bouwjaar
+});
+</script>
+</body>
+</html>

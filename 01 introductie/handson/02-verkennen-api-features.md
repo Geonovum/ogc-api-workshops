@@ -32,17 +32,16 @@ Open de collectie "Bak" en bekijk de beschikbare informatie.
 ![Afbeelding met tekst, schermopname, kaart, software Automatisch gegenereerde
 beschrijving](media/0e469c9e1a4c87d242cd8a9e95e62146.png)
 
--   In hoeveel coördinatenreferentiesystemen zijn de features van Bakken
-    beschikbaar?
+-   In hoeveel coördinatenreferentiesystemen zijn de features van de collectie Bak beschikbaar?
 
 -   In welke formaten worden de features beschikbaar gesteld?
 
-Klik op "Blader door Features" binnen de "Bakken" collectie.
+Klik op "Blader door Features" binnen de "Bak" collectie.
 
 -   Hoeveel objectversies zijn er van het eerste object dat voorkomt in de
     lijst?
 
--   Wat is het type van feature van item 3092?
+-   Wat is het type van feature van het eerste item?
 
 Leer hoe features gefilterd kunnen worden op datum en ID.
 

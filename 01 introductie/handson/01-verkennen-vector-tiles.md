@@ -175,6 +175,6 @@ functionaliteiten en informatie aan de hand van de volgende vragen:
 ## Tip: Ontdek de Vector Tiles Viewer!
 
 Als je meer vector tiles wilt zien, ga dan naar
-<https://app.pdok.nl/vectortile-viewer/nl>. Hier vind je een interactieve kaart
+<https://app.pdok.nl/vectortile-viewer>. Hier vind je een interactieve kaart
 met verschillende datasets in vector tiles formaat, waar je kunt inzoomen op een
-gebied naar keuze en direct gegevens kunt bekijken.
+gebied naar keuze en direct gegevens kunt bekijken. **Let op**: je ziet meer als je inzoomt.

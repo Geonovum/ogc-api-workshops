@@ -12,31 +12,34 @@ selecteer 'OGC API Vector Tiles'.
 
 4\. Voer de URL in: Voer de URL in van de OGC Vector Tiles-service die je wilt
 gebruiken. Deze URL wordt meestal verstrekt door de aanbieder van de service.
+Bij PDOK heet het de "URL template" vb: "https://api.pdok.nl/lv/bag/ogc/v1/tiles/NetherlandsRDNewQuad/{z}/{y}/{x}?f=mvt"
 
-5\. Authenticatie instellen (optioneel):
+5\. Stel het minimale en maximale zoomniveau in. Deze is te vinden onder landingpage/tileMatrixSets.
+
+6\. Authenticatie instellen (optioneel):
 
 Als de service authenticatie vereist, configureer dan de juiste
 authenticatie-instellingen, zoals gebruikersnaam en wachtwoord.
 
-6\. Klik op 'Verbinden':
+7\. Klik op 'Verbinden':
 
 Nadat je de URL hebt ingevoerd en eventuele authenticatie-instellingen hebt
 geconfigureerd, klik je op 'Verbinden' om verbinding te maken met de service.
 
-7\. Kies de tegelset en stijl:
+8\. Kies de tegelset en stijl:
 
 Als de verbinding succesvol is, zou je een lijst met beschikbare tegelsets en
 stijlen moeten zien. Kies de tegelset en stijl die je wilt toevoegen aan je
 kaart.
 
-8\. Pas eventuele aanvullende instellingen toe:
+9\. Pas eventuele aanvullende instellingen toe:
 
 Afhankelijk van de specifieke service kunnen er aanvullende instellingen zijn
 die je kunt configureren, zoals attributen om op te halen of filters die moeten
 worden toegepast. Deze instellingen kunnen variëren afhankelijk van de OGC
 Vector Tiles-implementatie die je gebruikt.
 
-9\. Voeg de laag toe aan je kaart:
+10\. Voeg de laag toe aan je kaart:
 
 Nadat je alle instellingen hebt geconfigureerd, klik je op 'Toevoegen' of 'OK'
 om de laag toe te voegen aan je kaart.
