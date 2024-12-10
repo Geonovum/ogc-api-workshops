@@ -26,7 +26,7 @@ Deze workshop richt zich op het inrichten van processen voor een dataspace op de
 <li>Contract Negotiation - data-aanbiedingen accepteren door te onderhandelen over het gebruiksbeleid.</li>
 <li>Exchanging Data - data uitwisselen tussen dataspace deelnemers.</li></ol>
 
-##leerdoelen
+##Leerdoelen
 
 Na het voltooien van deze workshop: 
 <ul><li>Is er kennis over de concepten en bouwblokken van een dataspace</li> 
