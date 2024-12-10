@@ -18,6 +18,7 @@ Geonovum heeft samen met Sogelink (voorheen bekend als Geodan) een experiment ui
 <li><a href='https://docs.geostandaarden.nl/eu/VerkenningDataspaces/' target='blank'>Verkenning dataspaces</a> </li>
 <li><a href='https://docs.internationaldataspaces.org/ids-knowledgebase/ids-ram-4' target='blank'>IDS Knowledge Base: IDS Reference Architecture Model (IDS-RAM)</a></li></ul>
 </br>
+
 # Over deze workshop
 
 Deze workshop richt zich op het inrichten van processen voor een dataspace op de trainingsomgeving. Als eerste worden een aantal onderwerpen behandeld die met zelfstudie verder onderzocht kunnen worden. Daarna worden de onderstaande processen stap voor stap doorlopen:
