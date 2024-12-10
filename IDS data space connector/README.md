@@ -42,6 +42,7 @@ Voor het doorlopen van de workshop zijn de volgende software en hardware nodig:
 <li>Browser</li></ul>
 Software
 <ul><li>..</li></ul> 
-
+</br>
+</br>
 Ga door naar de <a href='Background.md'>achtergrond informatie over dataspaces</a>.</br>
 Of ga eventueel direct door naar het <a href='PracticalPart.md'>praktijk gedeelde van deze workhop</a>
