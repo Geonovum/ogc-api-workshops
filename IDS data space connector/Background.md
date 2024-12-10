@@ -4,9 +4,8 @@
 
 Het Dataspace Protocol is een specificatie die veilige en interoperabele datadeling tussen autonome entiteiten mogelijk maakt binnen een dataspace. Het protocol richt zich op het faciliteren van gegevensoverdracht, catalogus en gebruikscontrole en het onderhandelen van overeenkomsten tussen entiteiten via goed gedefinieerde protocollen. 
 
-<b>Verder lezen</b>
-
-<a href='https://docs.internationaldataspaces.org/ids-knowledgebase/dataspace-protocol' target='blank'>IDS Knowledge Base: Dataspace Protocol 2024-1</a>
+<b>Verder lezen</b></br>
+<a href='https://docs.internationaldataspaces.org/ids-knowledgebase/dataspace-protocol' target='blank'>IDS Knowledge Base: Dataspace Protocol 2024-1</a></br>
 
 ## Minimal Viable Data Space
 
@@ -22,9 +21,8 @@ De MVDS biedt een startpunt voor het creëren van een functionele dataspace die 
 In het experiment dat Geonovum en Sogelink hebben uitgevoerd is ook toegewerkt naar een MVDS.  
 <img src='media/image4.png' alt='Minimum Viable Data Space' style='width: 100%;'></img>
 
-<b>Verder lezen</b>
-
-<a href='https://docs.internationaldataspaces.org/ids-knowledgebase/ids-reference-testbed/minimum-viable-data-space/mvds' target='blank'>IDS Knowledge Base: What is a Minimum Viable Data Space?</a>
+<b>Verder lezen</b></br>
+<a href='https://docs.internationaldataspaces.org/ids-knowledgebase/ids-reference-testbed/minimum-viable-data-space/mvds' target='blank'>IDS Knowledge Base: What is a Minimum Viable Data Space?</a></br>
 
 ## TNO Security Gateway (TSG) 
 
@@ -34,8 +32,7 @@ De TNO Security Gateway (TSG) is een open-source IDS-connector implementatie. De
 <li>HTTP Data Plane: een basis implementatie die het mogelijk maakt om HTTP-gebaseerde applicaties (zowel servers als clients) te ontsluiten.</li> 
 <li>Wallet: een SSI-portemonnee die verifieerbare credentials kan uitgeven en opslaan, en presentaties kan aanmaken om te gebruiken binnen dataspaces.</li></ul>
 
-<b>Verder lezen</b> 
-
-<a href='https://tsg.dataspac.es/' target='blank'>TNO Security Gateway</a> 
+<b>Verder lezen</b></br>
+<a href='https://tsg.dataspac.es/' target='blank'>TNO Security Gateway</a></br>
 
 Ga door naar het <a href='PracticalPart.md'>praktijk gedeelde van deze workhop</a>
