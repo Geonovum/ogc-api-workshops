@@ -6,7 +6,8 @@ Het Dataspace Protocol is een specificatie die veilige en interoperabele datadel
 
 <b>Verder lezen</b></br>
 <a href='https://docs.internationaldataspaces.org/ids-knowledgebase/dataspace-protocol' target='blank'>IDS Knowledge Base: Dataspace Protocol 2024-1</a></br>
-
+</br>
+</br>
 ## Minimal Viable Data Space
 
 De International Data Spaces Association (IDSA) specificeert een Minimum Viable Data Space (MVDS) als een combinatie van componenten die een dataspace mogelijk maken met net genoeg functies om bruikbaar te zijn voor veilige en soevereine gegevensuitwisseling. 
@@ -18,12 +19,13 @@ Een MVDS bestaat uit:
 
 De MVDS biedt een startpunt voor het creëren van een functionele dataspace die daarna kan worden aangepast en uitgebreid om aan specifieke vereisten te voldoen. 
 
-In het experiment dat Geonovum en Sogelink hebben uitgevoerd is ook toegewerkt naar een MVDS.  
+In het experiment dat Geonovum en Sogelink hebben uitgevoerd is ook toegewerkt naar een MVDS. </br> 
 <img src='media/image4.png' alt='Minimum Viable Data Space' style='width: 100%;'></img>
 
 <b>Verder lezen</b></br>
 <a href='https://docs.internationaldataspaces.org/ids-knowledgebase/ids-reference-testbed/minimum-viable-data-space/mvds' target='blank'>IDS Knowledge Base: What is a Minimum Viable Data Space?</a></br>
-
+</br>
+</br>
 ## TNO Security Gateway (TSG) 
 
 De TNO Security Gateway (TSG) is een open-source IDS-connector implementatie. De TSG bestaat uit de onderdelen: 
@@ -34,5 +36,6 @@ De TNO Security Gateway (TSG) is een open-source IDS-connector implementatie. De
 
 <b>Verder lezen</b></br>
 <a href='https://tsg.dataspac.es/' target='blank'>TNO Security Gateway</a></br>
-
+</br>
+</br>
 Ga door naar het <a href='PracticalPart.md'>praktijk gedeelde van deze workhop</a>
