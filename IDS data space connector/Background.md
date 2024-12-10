@@ -6,7 +6,7 @@ Het Dataspace Protocol is een specificatie die veilige en interoperabele datadel
 
 <b>Verder lezen</b>
 
-<a href='https://docs.internationaldataspaces.org/ids-knowledgebase/dataspace-protocol' target='_blank'>IDS Knowledge Base: Dataspace Protocol 2024-1</a>
+<a href='https://docs.internationaldataspaces.org/ids-knowledgebase/dataspace-protocol' target='blank'>IDS Knowledge Base: Dataspace Protocol 2024-1</a>
 
 ## Minimal Viable Data Space
 
@@ -24,7 +24,7 @@ In het experiment dat Geonovum en Sogelink hebben uitgevoerd is ook toegewerkt n
 
 <b>Verder lezen</b>
 
-<a href='https://docs.internationaldataspaces.org/ids-knowledgebase/ids-reference-testbed/minimum-viable-data-space/mvds' target='_blank'>IDS Knowledge Base: What is a Minimum Viable Data Space?</a>
+<a href='https://docs.internationaldataspaces.org/ids-knowledgebase/ids-reference-testbed/minimum-viable-data-space/mvds' target='blank'>IDS Knowledge Base: What is a Minimum Viable Data Space?</a>
 
 ## TNO Security Gateway (TSG) 
 
@@ -36,4 +36,6 @@ De TNO Security Gateway (TSG) is een open-source IDS-connector implementatie. De
 
 <b>Verder lezen</b> 
 
-a href='https://tsg.dataspac.es/' target='_blank'>TNO Security Gateway</a> 
+<a href='https://tsg.dataspac.es/' target='blank'>TNO Security Gateway</a> 
+
+Ga door naar het <a href='PracticalPart.md'>praktijk gedeelde van deze workhop</a>
