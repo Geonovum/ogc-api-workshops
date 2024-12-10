@@ -17,7 +17,7 @@ Geonovum heeft samen met Sogelink (voorheen bekend als Geodan) een experiment ui
 <li><a href='https://geonovum.github.io/eu-DataspaceProtocolconnectorexperiment/' target='blank'> Dataspace Protocol connector experiment</a></li>
 <li><a href='https://docs.geostandaarden.nl/eu/VerkenningDataspaces/' target='blank'>Verkenning dataspaces</a> </li>
 <li><a href='https://docs.internationaldataspaces.org/ids-knowledgebase/ids-ram-4' target='blank'>IDS Knowledge Base: IDS Reference Architecture Model (IDS-RAM)</a></li></ul>
-
+</br>
 # Over deze workshop
 
 Deze workshop richt zich op het inrichten van processen voor een dataspace op de trainingsomgeving. Als eerste worden een aantal onderwerpen behandeld die met zelfstudie verder onderzocht kunnen worden. Daarna worden de onderstaande processen stap voor stap doorlopen:
@@ -26,14 +26,14 @@ Deze workshop richt zich op het inrichten van processen voor een dataspace op de
 <li>Contract Negotiation - data-aanbiedingen accepteren door te onderhandelen over het gebruiksbeleid.</li>
 <li>Exchanging Data - data uitwisselen tussen dataspace deelnemers.</li></ol>
 
-##Leerdoelen
+## Leerdoelen
 
 Na het voltooien van deze workshop: 
 <ul><li>Is er kennis over de concepten en bouwblokken van een dataspace</li> 
 <li>Is er kennis over de verschillende processtappen voor het inrichten van een (minima viable)  dataspace</li>
 <li>Is er kennis over het dataspace protocol</li></ul>
 
-##Benodigdheden
+## Benodigdheden
 
 Voor het doorlopen van de workshop zijn de volgende software en hardware nodig: 
 <ul><li>Laptop</li>
@@ -42,5 +42,5 @@ Voor het doorlopen van de workshop zijn de volgende software en hardware nodig:
 Software
 <ul><li>..</li></ul> 
 
-Ga door naar de <a href='Background.md'>achtergrond informatie over dataspaces</a>.
+Ga door naar de <a href='Background.md'>achtergrond informatie over dataspaces</a>.</br>
 Of ga eventueel direct door naar het <a href='PracticalPart.md'>praktijk gedeelde van deze workhop</a>
