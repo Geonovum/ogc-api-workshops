@@ -21,10 +21,10 @@ Geonovum heeft samen met Sogelink (voorheen bekend als Geodan) een experiment ui
 
 # Over deze workshop
 
-Deze workshop richt zich op het inrichten van processen voor een dataspace op de trainingsomgeving. Als eerste worden een aantal onderwerpen behandeld die met zelfstudie verder onderzocht kunnen worden. Daarna worden de onderstaande processen stap voor stap doorlopen:
+Deze workshop richt zich op het begrijpen van het hoe en waarom van een dataspace, inclusief de mogelijkheden, concepten en bouwstenen. Dit zorgt ervoor dat deelnemers de basis goed begrijpen. Daarna zullen we de deelnemers laten zien hoe een eenvoudige implementatie van een Minimal viable dataspace (MVDS) eruit ziet aan de hand van de use case Circulaire Grondstromen waarbij we aandacht besteden aan:
 <ol><li>Onboarding - wat je moet doen om als Data Provider of Data Consumer toegang te krijgen tot dataspaces.</li>
 <li>Data Offering - data aanbieden of zoeken naar geschikte data.</li>
-<li>Contract Negotiation - data-aanbiedingen accepteren door te onderhandelen over het gebruiksbeleid.</li>
+<li>Contract Negotiation - de vertaling van een data licentie naar een contract waarover negotiation plaats vindt.</li>
 <li>Exchanging Data - data uitwisselen tussen dataspace deelnemers.</li></ol>
 
 ## Leerdoelen
