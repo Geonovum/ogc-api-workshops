@@ -74,12 +74,12 @@ https://api.pdok.nl/brt/top10nl/ogc/v1/tiles/NetherlandsRDNewQuad/{z}/{y}/{x}?f=
 1.  Voeg de bijbehorende styling toe:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-https://api.pdok.nl/brt/top10nl/ogc/v1/styles/brt_top10nl__netherlandsrdnewquad
+https://api.pdok.nl/brt/top10nl/ogc/v1/styles/brt_top10nl__netherlandsrdnewquad?f=mapbox
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## 
+## ![Afbeelding met tekst, schermopname, scherm, software Door AI gegenereerde inhoud is mogelijk onjuist.](media/289dc59498703d0b40953004dc8783dd.png)
 
-## ![Afbeelding met tekst, schermopname, scherm, software Door AI gegenereerde inhoud is mogelijk onjuist.](media/bbf5d62b00bf48a5b768ea576aefe7ec.png)
+![](media/5744da95154957adfa38616e710a5414.png)
 
 ## Vraag:
 
