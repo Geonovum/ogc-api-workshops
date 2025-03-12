@@ -2,7 +2,7 @@
 
 ## 1. Verken de Styles voor BAG, BGT en BRT TOP10NL
 
-Ga naar de volgende PDOK API eindpunten en bekijk de beschikbare stijlen:
+Ga naar de volgende PDOK API endpoints en bekijk de beschikbare stijlen:
 
 -   BAG: <https://api.pdok.nl/lv/bag/ogc/v1/>
 
