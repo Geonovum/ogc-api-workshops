@@ -77,15 +77,15 @@ Voeg het volgende JSON-blok toe:
     Dit JSON-blok zorgt ervoor dat de **bronhoudercode** van de waterlopen wordt
     weergegeven als een label.
 
-    -   Het **text-field** veld geeft aan welk attribuut van de waterlopen als
+    1.  Het **text-field** veld geeft aan welk attribuut van de waterlopen als
         label moet worden weergegeven, in dit geval {bronhouder}, dat de
         bronhoudercode bevat.
 
-    -   De **paint** sectie bepaalt de visuele eigenschappen van het label,
+    2.  De **paint** sectie bepaalt de visuele eigenschappen van het label,
         zoals de kleur (text-color), de halo (de schaduw van het label), en de
         opaciteit (text-opacity).
 
-    -   De **layout** sectie bepaalt de opmaak van het label, zoals het
+    3.  De **layout** sectie bepaalt de opmaak van het label, zoals het
         lettertype en de grootte van de tekst (text-size).
 
 Kies een lettertype naar voorkeur uit de lijst in **text-font**, of voeg je
@@ -112,6 +112,10 @@ eigen lettertype toe.
 
 Dit zorgt ervoor dat objecten met bronhoudercode **G1892** (gemeente Zuidplas)
 geen labels krijgen.
+
+![Afbeelding met lijn, Kleurrijkheid, Parallel, schermopname Door AI
+gegenereerde inhoud is mogelijk
+onjuist.](media/e8a1165a4a68c148d9ed7b53f3ac3f1c.png)
 
 **Tip: Maak onderscheid tussen eigen en andere BGT-objecten**  
 Om visueel onderscheid te maken tussen objecten van je eigen bronhoudercode en

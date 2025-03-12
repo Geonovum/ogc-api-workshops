@@ -10,17 +10,24 @@ helpt je te begrijpen hoe het technisch werkt.
 
 2.  Voeg de BGT vector tiles toe zonder styling door de volgende URL in te
     voeren voor de vector tiles:
-    https://api.pdok.nl/lv/bgt/ogc/v1/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt
 
-3.  Laad de vector tiles laag in. Let op de zoomlevels (min 12, max 17).
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://api.pdok.nl/lv/bgt/ogc/v1/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1.  Laad de vector tiles laag in. Let op de zoomlevels (min 12, max 17).
 
 ## Download de BGT Standaardvisualisatie in Mapbox formaat:
 
 1.  Download de JSON van de BGT Standaardvisualisatie via de PDOK API:
 
-<https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__webmercatorquad/metadata>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__webmercatorquad/metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__webmercatornewquad?f=mapbox>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__webmercatornewquad?f=mapbox
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1.  Let op de juiste projecties. Als je de WebMercator tiles gebruikt, gebruik
     dan ook de WebMercator stijlen.
@@ -117,7 +124,7 @@ onjuist.](media/ee2d3fac3828457864bd906afe6f8a7d.png)
 
 2.  De verandering in kleur zal nu zichtbaar zijn in de kaart.
 
-    ![](media/82e1f6f7acdca6d9fa2016f14fa37cab.png)
+3.  ![](media/82e1f6f7acdca6d9fa2016f14fa37cab.png)
 
 **Andere stijlconfiguraties**
 

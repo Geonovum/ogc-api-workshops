@@ -15,9 +15,11 @@ styling en vervolgens met de styling van PDOK.
 4.  In het **Source** veld, voer de URL in voor de BAG vector tiles zonder
     styling:
 
-    1.  [https://api.pdok.nl/lv/bag/ogc/v1/tiles/{z}/{x}/{y}.pbf](https://api.pdok.nl/lv/bag/ogc/v1/tiles/%7bz%7d/%7bx%7d/%7by%7d.pbf)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-5.  Klik op **Add** (Toevoegen) om de vector tiles zonder styling in te laden.
+1.  Klik op **Add** (Toevoegen) om de vector tiles zonder styling in te laden.
 
 ## Stappen om de BAG vector tiles in QGIS te openen met de styling van PDOK:
 
@@ -26,12 +28,14 @@ styling en vervolgens met de styling van PDOK.
 2.  Ga naar het **Layer Styling** venster in QGIS en voeg de URL voor de styling
     toe:
 
-    1.  <https://api.pdok.nl/lv/bag/ogc/v1/styles/bag_standaardvisualisatie__webmercatorquad?f=json>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://api.pdok.nl/lv/bag/ogc/v1/styles/bag_standaardvisualisatie__webmercatorquad?f=json
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3.  Het is mogelijk dat je een waarschuwing ontvangt over een ontbrekend
+1.  Het is mogelijk dat je een waarschuwing ontvangt over een ontbrekend
     lettertype. Dit gaan we later oplossen.
 
-4.  De styling zal automatisch worden toegepast en de BAG tiles zullen nu
+2.  De styling zal automatisch worden toegepast en de BAG tiles zullen nu
     correct gestyled worden weergegeven.
 
 ## Wat valt op wanneer de tiles zonder styling worden ingeladen?
@@ -63,11 +67,19 @@ styling en vervolgens met de styling van PDOK.
 
 1.  Voeg de BRT vector tiles toe op dezelfde manier:
 
-    1.  [https://api.pdok.nl/brt/top10nl/ogc/v1/tiles/{z}/{x}/{y}.pbf](https://api.pdok.nl/brt/top10nl/ogc/v1/tiles/%7bz%7d/%7bx%7d/%7by%7d.pbf)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://api.pdok.nl/brt/top10nl/ogc/v1/tiles/NetherlandsRDNewQuad/{z}/{y}/{x}?f=mvt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-2.  Voeg de bijbehorende styling toe:
+1.  Voeg de bijbehorende styling toe:
 
-    1.  <https://api.pdok.nl/brt/top10nl/ogc/v1/styles/brt_standaardvisualisatie__webmercatorquad?f=json>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://api.pdok.nl/brt/top10nl/ogc/v1/styles/brt_top10nl__netherlandsrdnewquad
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+## 
+
+## ![Afbeelding met tekst, schermopname, scherm, software Door AI gegenereerde inhoud is mogelijk onjuist.](media/bbf5d62b00bf48a5b768ea576aefe7ec.png)
 
 ## Vraag:
 
