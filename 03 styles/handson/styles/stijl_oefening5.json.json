@@ -1,0 +1,68 @@
+{
+  "version": 8,
+  "name": "BAG Standaard Visualisatie",
+  "id": "bag_standaardvisualisatie",
+  "pitch": 50,
+  "center": [
+    0,
+    0
+  ],
+  "sprite": "https://api.pdok.nl/lv/bag/ogc/v1/resources/standaardsprites/sprites",
+  "glyphs": "https://api.pdok.nl/lv/bag/ogc/v1/resources/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "filter": 
+        [
+          "all",
+          [
+              "!=",
+              "status",
+              "Pand gesloopt"
+          ]
+        ],
+      "id": "pand-fill-bouwjaar",
+      "type": "fill",
+      "paint": {
+        "fill-opacity": 1,
+        "fill-color": [
+          "interpolate",          
+          ["linear"],
+          ["get", "bouwjaar"],
+          1900, "#00ff00",
+          2025, "#0000ff"
+        ]        
+      },
+      "source": "bag",
+      "source-layer": "pand"
+    },
+    {
+      "filter": 
+        [
+          "all",
+          [
+              "!=",
+              "status",
+              "Pand gesloopt"
+          ]
+        ],
+        "id": "pand-lijn",
+      "type": "line",
+      "paint": {
+        "line-width": 1,
+        "line-color": "#000000"
+      },
+      "source": "bag",
+      "source-layer": "pand"
+    }    
+  ],
+  "sources": {
+    "bag": {
+      "type": "vector",
+      "tiles": [
+        "https://api.pdok.nl/lv/bag/ogc/v1/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt"
+      ],
+      "minzoom": 17,
+      "maxzoom": 17
+    }
+  }
+}
