@@ -90,5 +90,4 @@ Dit laat zien hoe het gebruik van de gestandaardiseerde styles via PDOK veel
 tijdwinst kan opleveren, aangezien de styling al is voorbereid en geen
 handmatige configuratie vereist
 
-Ga verder naar oefening 3.
-[oefening 3](https://github.com/Geonovum/ogc-api-workshops/blob/main/03%20vector%20tiles%20with%20styles/handson/styles/oefening3.md)
+Ga verder naar [oefening 3](https://github.com/Geonovum/ogc-api-workshops/blob/main/03%20vector%20tiles%20with%20styles/handson/styles/oefening3.md).
