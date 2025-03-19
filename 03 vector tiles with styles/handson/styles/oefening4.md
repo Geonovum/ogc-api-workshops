@@ -137,3 +137,6 @@ bronhouder de objecten afkomstig zijn.
 Dit helpt om visueel onderscheid te maken tussen de objecten die je zelf beheert
 en die van een andere bronhouder, en toont tevens de bronhoudercode van de
 andere objecten, zodat je snel kunt zien welke bronhouder ze vertegenwoordigen.
+
+
+Ga verder naar [oefening 5](https://github.com/Geonovum/ogc-api-workshops/blob/main/03%20vector%20tiles%20with%20styles/handson/styles/oefening5.md)
