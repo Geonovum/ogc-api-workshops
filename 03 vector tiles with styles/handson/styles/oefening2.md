@@ -10,7 +10,7 @@ styling en vervolgens met de styling van PDOK.
 2.  Ga naar het menu **Layer** (Laag) en kies voor **Add Layer** (Laag
     toevoegen).
 
-3.  Selecteer **Add Vector Layer** (Voeg Vectorlaag toe).
+3.  Selecteer **Add Vector Tiles Layer** (Voeg Vector tegellaag toe).
 
 4.  In het **Source** veld, voer de URL in voor de BAG vector tiles zonder
     styling:
