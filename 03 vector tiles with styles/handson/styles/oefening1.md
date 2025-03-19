@@ -38,3 +38,7 @@ deze stijlen.
 
 -   Het is belangrijk om deze details goed door te nemen, omdat we later zelf
     stijlen gaan beheren en toepassen.
+
+
+Ga verder naar oefening 2.
+[oefening 2](https://github.com/Geonovum/ogc-api-workshops/blob/main/03%20vector%20tiles%20with%20styles/handson/styles/oefening2.md)
