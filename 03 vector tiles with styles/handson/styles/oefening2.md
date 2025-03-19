@@ -78,8 +78,8 @@ https://api.pdok.nl/brt/top10nl/ogc/v1/styles/brt_top10nl__webmercatorquad?f=map
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## ![Afbeelding met tekst, schermopname, scherm, software Door AI gegenereerde inhoud is mogelijk onjuist.](media/289dc59498703d0b40953004dc8783dd.png)
+![image](https://github.com/user-attachments/assets/438c4ea8-8f5f-4589-a2a2-6476547165b1)
 
-![](media/5744da95154957adfa38616e710a5414.png)
 
 ## Vraag:
 
