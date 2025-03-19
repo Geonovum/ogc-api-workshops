@@ -70,7 +70,7 @@ Voeg het volgende JSON-blok toe:
     },
     "source": "bgt",
     "source-layer": "waterdeel"
-}
+},
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1.  **Begrijp de stijlconfiguratie**  
