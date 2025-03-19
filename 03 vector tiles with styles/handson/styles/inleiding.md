@@ -19,4 +19,4 @@ hoe je stijlen kunt beheren en toepassen voor vector tiles visualisaties.
 
 Laten we nu beginnen met de eerste oefening!
 
-https://github.com/Geonovum/ogc-api-workshops/blob/main/03%20vector%20tiles%20with%20styles/handson/styles/oefening1.md
+[oefening 1](https://github.com/Geonovum/ogc-api-workshops/blob/main/03%20vector%20tiles%20with%20styles/handson/styles/oefening1.md)
