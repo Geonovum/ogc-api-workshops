@@ -135,3 +135,6 @@ onjuist.](media/ee2d3fac3828457864bd906afe6f8a7d.png)
 
 -   Dit maakt het mogelijk om alleen bepaalde objecten te visualiseren op basis
     van je eigen eisen en wensen.
+
+
+Ga verder naar [oefening 4](https://github.com/Geonovum/ogc-api-workshops/blob/main/03%20vector%20tiles%20with%20styles/handson/styles/oefening4.md).
