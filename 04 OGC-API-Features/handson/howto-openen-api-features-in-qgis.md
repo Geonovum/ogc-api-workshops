@@ -41,3 +41,13 @@ kaart.
 10\. Bekijk en analyseer de gegevens: Nu zou je de toegevoegde laag moeten kunnen
 zien in de kaartweergave van QGIS. Je kunt vervolgens de gegevens bekijken,
 analyseren en bewerken zoals je normaal zou doen met andere lagen in QGIS.
+
+---
+
+NB.
+De PDOK OGC API Features van bv de BAG of BGT bevatten standaard historie.
+Deze API's kun je het beste bevragen met een datetime parameter om alleen de 'huidige' features op te halen.
+bv: 
+```
+https://api.pdok.nl/lv/bgt/ogc/v1?datetime=2025-04-01T00:00:00.000Z
+```
