@@ -1,4 +1,5 @@
-var swig = require('swig-templates');
+// var swig = require('swig-templates');
+var pug = require('pug');
 
 function header(title, description) {
     var header = {};
@@ -19,7 +20,7 @@ function link(href, rel, type, title) {
     return item;
 }
 
-const serviceTitle = "amstelveen OGC API Feature server";
+const serviceTitle = "Amstelveen OGC API Feature server";
 const serviceDescription = "Access to data in the city of amstelveen via a Web API that conforms to the OGC API Features specification.";
 const serviceUrl = "http://localhost:8080/demoservice/v1";
 
@@ -36,11 +37,17 @@ function landingPageJSON() {
 }
 
 function landingPageHTML() {
-    var tmpl = swig.compileFile(__dirname + '/landingPage.template'),
+    // var tmpl = swig.compileFile(__dirname + '/landingPage.template'),
+    // renderedHtml = tmpl({
+    //     title: serviceTitle,
+    //     url: serviceUrl,
+    // });
+    var tmpl = pug.compileFile(__dirname + '/landingPage.pug'),
     renderedHtml = tmpl({
-        title: serviceTitle,
-        url: serviceUrl,
-    });
+            title: serviceTitle,
+            description: serviceDescription,
+            url: serviceUrl
+        });
     
     return renderedHtml;
 }
