@@ -11,7 +11,8 @@ Dit is een belangrijke stap: de API die resultaten kan geven voor
 ## Stap 1:
 Zoals altijd, ga naar de stap6 directory in de terminal, en installeer express als het de eerste keer is dat je node gaat opstarten in deze directory. `npm update`
 
-We gaan swig-templates gebruiken om de html landingPage te maken (swig zit nu in `package.json`)
+We gaan pug templates gebruiken om de html landigPage te maken. 
+(pug is toegevoegd aan `package.json`)
 
 ## Code voor `/` (Landing Page)
 
