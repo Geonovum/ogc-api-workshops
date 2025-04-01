@@ -1,0 +1,35 @@
+doctype html
+html(lang='en')
+  head
+    title #{title}
+
+  body
+
+    h1 #{title}
+    p #{description}
+
+    h2 Links to the main resources
+
+    p self = 
+      a(href= url)  #{url} 
+      | (application/json)
+    
+    p service = 
+      a(href= url + '/api')  the API definition (JSON)
+      | (application/openapi+json;version=3.0)
+    
+    p service = 
+      a(href= url + '/api.html')  the API definition (HTML)
+      | (text/html)
+
+    p conformance = 
+      a(href= url + '/conformance')  conformance classes implemented by this server
+      | (application/json)
+
+    p data = 
+      a(href= url + '/collections')  Metadata about the feature collections
+      | (application/json)
+
+    p Get Raw = 
+      a(href= url + '/?f=json')  JSON
+      | (application/json)

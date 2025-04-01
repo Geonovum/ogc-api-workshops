@@ -1,0 +1,17 @@
+doctype html
+html
+  body
+    h2 Collections in this service
+    table.striped
+      thead
+        tr
+          th Name
+          th Description
+      tbody
+        each collection in collections
+          tr(itemprop="dataset", itemscope="", itemtype="https://schema.org/Dataset")
+            td(data-label="name")
+              meta(itemprop="url", content=`${collection.url}collections/${collection.title}`)
+              a(title="Observations", href=`${collection.url}collections/${collection.title}`)
+                span(itemprop="name") #{collection.title}
+            td(itemprop="description", data-label="description") #{collection.title}

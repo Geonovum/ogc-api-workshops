@@ -1,0 +1,24 @@
+doctype html
+html
+  body
+    h1 Metadata about the feature collections
+
+    h2 Collections.
+    h3 #{collection.title} (#{collection.title})
+    p #{collection.title}
+
+    h4 Links for the collection
+    p item = 
+      a(href=`${collection.url}collections/${collection.title}/items`) #{collection.title}
+      |  (application/json)
+
+    h2 Links
+
+    p
+      | self = 
+      a(href=`${collection.url}collections`) Metadata about the feature collections
+      | (application/json)
+
+    h2 JSON output
+    p Get raw 
+      a(href=`${collection.url}collections?f=json`) JSON

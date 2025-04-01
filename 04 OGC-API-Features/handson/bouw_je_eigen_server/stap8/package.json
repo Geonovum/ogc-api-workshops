@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "express": "^4.18.2",
-    "swig-templates": "^2.0.3"
+    "pug": "^3.0.3"
   }
 }

@@ -1,0 +1,14 @@
+doctype html
+html
+  body
+    h1 Data from collection "#{collection.title}"
+
+    h2 Links.
+    p self = 
+      a(href=`${collection.url}collections/${collection.title}/items`) #{collection.title}
+      |  (application/json)
+
+    h2 Features
+
+    h2 JSON Output
+    p #{collection.geojson}

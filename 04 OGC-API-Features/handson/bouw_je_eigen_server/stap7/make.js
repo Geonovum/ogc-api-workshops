@@ -1,4 +1,4 @@
-var swig = require('swig-templates');
+var pug = require('pug');
 
 function header(title, description) {
     var header = {};
@@ -36,12 +36,13 @@ function landingPageJSON() {
 }
 
 function landingPageHTML() {
-    var tmpl = swig.compileFile(__dirname + '/landingPage.template'),
+    var tmpl = pug.compileFile(__dirname + '/landingPage.pug'),
     renderedHtml = tmpl({
-        title: serviceTitle,
-        url: serviceUrl,
-    });
-    
+            title: serviceTitle,
+            description: serviceDescription,
+            url: serviceUrl
+        });
+
     return renderedHtml;
 }
 
@@ -85,7 +86,7 @@ function collectionsHTML(collections) {
 
     console.log(items);
 
-    var tmpl = swig.compileFile(__dirname + '/collections.template'),
+    var tmpl = pug.compileFile(__dirname + '/collections.pug'),
     renderedHtml = tmpl({
         collections: items,
     });

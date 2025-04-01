@@ -1,4 +1,4 @@
-var swig = require('swig-templates');
+var pug = require('pug');
 
 function header(title, description) {
     var header = {};
@@ -36,11 +36,12 @@ function landingPageJSON() {
 }
 
 function landingPageHTML() {
-    var tmpl = swig.compileFile(__dirname + '/landingPage.template'),
+    var tmpl = pug.compileFile(__dirname + '/landingPage.pug'),
     renderedHtml = tmpl({
-        title: serviceTitle,
-        url: serviceUrl,
-    });
+            title: serviceTitle,
+            description: serviceDescription,
+            url: serviceUrl
+        });
     
     return renderedHtml;
 }
@@ -81,7 +82,7 @@ function collectionsHTML(collections) {
         items.push(item);
     });
 
-    var tmpl = swig.compileFile(__dirname + '/collections.template'),
+    var tmpl = pug.compileFile(__dirname + '/collections.pug'),
     renderedHtml = tmpl({
         collections: items,
     });
@@ -118,11 +119,11 @@ function collectionHTML(collectionId) {
     item.url = serviceUrl;
     item.title = collectionId;
 
-    var tmpl = swig.compileFile(__dirname + '/collection.template'),
+    var tmpl = pug.compileFile(__dirname + '/collection.pug'),
     renderedHtml = tmpl({
         collection: item,
     });
-    
+
     return renderedHtml;
 }
 
