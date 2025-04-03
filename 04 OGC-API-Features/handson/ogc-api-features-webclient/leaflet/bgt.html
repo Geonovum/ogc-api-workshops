@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BGT-panden</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+    #map {
+			width: 100%;
+			height: 100%;
+		}
+  </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+  var map = L.map('map').setView([51.902, 4.162], 14);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+      'Contains OS data &copy; Crown copyright and database right 2021.'
+  }).addTo(map);
+
+  (async () => {
+    const BGTpand = await fetch('https://api.pdok.nl/lv/bgt/ogc/v1/collections/pand/items?bbox=4.160,51.900,4.165,51.905&f=json', {
+        headers: {
+        'Accept': 'application/geo+json'
+      }
+    }).then(response => response.json());
+
+    L.geoJSON(BGTpand, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, 
+    );
+      },
+      onEachFeature: onEachFeature
+    }).addTo(map);
+  })();
+  
+  	function onEachFeature(feature, layer) {
+		var popupContent = "<a href='https://api.pdok.nl/lv/bgt/ogc/v1/collections/pand/items/" + feature.id + "' target='_blank'>" + feature.properties.bag_pnd + "</a>";
+		if (feature.properties && feature.properties.popupContent) {
+			popupContent += feature.properties.popupContent;
+		}
+		layer.bindPopup(popupContent);
+	}
+</script>
+
+</body>
+</html>
