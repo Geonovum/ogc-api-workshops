@@ -1,4 +1,4 @@
-# Howto: Openen OGC API Features Tiles in QGIS
+# Howto: Openen OGC API Features in QGIS
 
 Het configureren van een OGC API Features Service in QGIS vereist een paar
 stappen. Hier is een algemeen overzicht van wat je moet doen:
