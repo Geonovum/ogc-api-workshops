@@ -7,15 +7,16 @@ stappen. Hier is een algemeen overzicht van wat je moet doen:
 
 2\. Voeg een nieuwe laag toe: Ga naar het paneel 'Browser' in QGIS en zoek naar
 de optie om een nieuwe laag toe te voegen. Dit kan variëren afhankelijk van de
-versie van QGIS die je gebruikt, maar je zou een optie moeten vinden om een 'OGC
+versie van QGIS die je gebruikt, maar je zou een optie moeten vinden om een 'WFS / OGC
 API Features'-laag toe te voegen.
 
 3\. Kies het type verbinding: Klik op de optie voor een nieuwe verbinding en
-selecteer 'OGC API Features' (dit kan worden aangeduid als WFS3 in sommige
-versies van QGIS).
+selecteer 'OGC API Features'. Dit kan worden aangeduid als WFS3 in oudere
+versies van QGIS. In nieuwere versies is deze stap niet meer nodig.
 
 4\. Voer de URL in: Voer de URL in van de OGC API Features Service die je wilt
 gebruiken. Deze URL wordt meestal verstrekt door de aanbieder van de service.
+Voor een OGC API Features Service is dit de landingpage.
 
 5\. Authenticatie instellen (optioneel): Als de service authenticatie vereist,
 zorg er dan voor dat je de juiste authenticatie-instellingen configureert, zoals
