@@ -17,7 +17,7 @@ gegenereerde beschrijving](media/32b7442861e1e387e715acac2c4f755d.png)
 
 Ga naar de Conformance sectie.
 
--   Welke Conformance van welke standaard zou je hier nog graag bij willen die recent vastgesteld is?
+-   Een deel van de hier genoemde standaarden worden straks nog behandeld.
 
 ### Collecties
 

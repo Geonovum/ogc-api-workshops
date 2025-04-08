@@ -1,6 +1,6 @@
 ### OGC-API-Features in Leaflet
 
-In deze oefening gaan we dieper in op het gebruik van OGC-API-Features m.b.v. Leaflet
+In deze oefening gaan we dieper in op het gebruik van OGC-API-Features m.b.v. Leaflet.
 
 Je hebt een tekst-editor nodig, bijvoorbeeld Kladblok, Notepad++ of VS Code. Je kunt het HTML-bestand lokaal opslaan en vervolgens openen in een browser bijvoorbeeld Google Chrome.
 
@@ -47,8 +47,8 @@ Initialiseer een lege Leaflet-kaart en pas eventueel het centrale punt van de ka
 
 #### Stap 2: Voeg de BGT bakken toe als databron
 
-Voeg de BAG Vector Tiles als databron toe aan het <script> element na het initialiseren van een nieuwe MapLibre-kaart. Kies de laag 'pand' om aan de kaart toe te voegen en pas indien nodig de kleur van de panden aan.
-Let op: plaats de javascript binnen de map.on('load') functie.
+Voeg de BGT bakken als databron toe aan het <script> element na het initialiseren van een nieuwe Leaflet-kaart. Kies de laag 'bak' om aan de kaart toe te voegen.
+Let op: plaats de javascript onderin het script. Dus net voor '</script>'.
 
 ```javascript
   (async () => {
@@ -69,11 +69,9 @@ Let op: plaats de javascript binnen de map.on('load') functie.
 
 ```
 
-* Waarom liggen panden over elkaar heen wanneer je de default-center gebruikt?
-
 #### Stap 3: Maak een Popup
 
-Voeg de code toe om een popup te maken in je viewer.
+Voeg onderstaande code toe onderaan het script (Dus weer net voor '</script>'.) om een popup te maken in je viewer.
 
 ```javascript
   	function onEachFeature(feature, layer) {
@@ -91,5 +89,6 @@ En haal de 2 '//' weg voor 'onEachFeature'.
 
 Je hebt nu een eigen interactieve BGT OGC-API-Feature Viewer met Leaflet gebouwd!
 
-Bekijk het volledige script hier: 
+Bekijk als het niet lukt het volledige script hier:  
+ 
 https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/leaflet/bgtbak.html
