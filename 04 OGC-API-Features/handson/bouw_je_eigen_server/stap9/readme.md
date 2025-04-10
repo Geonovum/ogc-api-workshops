@@ -46,8 +46,8 @@ In je browser of via Bruno
 
 Landing Page:
 - http://localhost:8080/demoservice/v1/collections/buurten
-- http://localhost:8080/demoservice/v1/collections/buurten?f=json
-- http://localhost:8080/demoservice/v1/collections/buurten?f=html
+- http://localhost:8080/demoservice/v1/collections/buurten/items?f=json
+- http://localhost:8080/demoservice/v1/collections/buurten/items?f=html
 
 Resultaat:
 
