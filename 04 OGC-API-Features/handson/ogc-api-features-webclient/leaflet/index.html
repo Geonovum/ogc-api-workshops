@@ -42,17 +42,17 @@
         return L.marker(latlng, 
     );
       },
-    //   onEachFeature: onEachFeature
+      onEachFeature: onEachFeature
     }).addTo(map);
   })();
 
-	// function onEachFeature(feature, layer) {
-	// 	var popupContent = "<a href='http://localhost:8080/demoservice/v1/collections/NAPPeilmerken/items/" + feature.id + "' target='_blank'>" + feature.properties.name + "</a>";
-	// 	if (feature.properties && feature.properties.popupContent) {
-	// 		popupContent += feature.properties.popupContent;
-	// 	}
-	// 	layer.bindPopup(popupContent);
-	// }
+	function onEachFeature(feature, layer) {
+		var popupContent = "boutnr: " + feature.properties.boutnr + "</br> Ligging: " + feature.properties.ligging ;
+		if (feature.properties && feature.properties.popupContent) {
+			popupContent += feature.properties.popupContent;
+		}
+		layer.bindPopup(popupContent);
+	}
 </script>
 
 </body>

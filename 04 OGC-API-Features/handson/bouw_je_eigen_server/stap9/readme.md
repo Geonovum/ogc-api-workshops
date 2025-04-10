@@ -40,38 +40,47 @@ router.get('/collections/:collectionId/items', function (req, res) {
 node index.js
 ```
 
-`Example app listening at http://localhost:80`
+`Example app listening at http://localhost:8080`
 
-In je browser of via PostMan
+In je browser of via Bruno
 
 Landing Page:
-- http://localhost/amstelveen/collections/groendienst/items
-- http://localhost/amstelveen/collections/groendienst/items?f=json
-- http://localhost/amstelveen/collections/groendienst/items?f=html
+- http://localhost:8080/demoservice/v1/collections/buurten
+- http://localhost:8080/demoservice/v1/collections/buurten?f=json
+- http://localhost:8080/demoservice/v1/collections/buurten?f=html
 
 Resultaat:
 
 ### in JSON
 ```json
-"{\"type\":\"FeatureCollection\",\"crs\":{\"type\":\"name\",\"properties\":{\"name\":\"EPSG:4326\"}},\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[4.4783351318391,51.114442184776]},\"properties\":{\"categorie\":\"GroepsopvangBabysEnPeuters\",\"categorietxt\":\"Groepsopvang baby's en peuters\",\"id\":146885,\"naam\":\"De Drie Klavertjes\",\"via\":\"http://poi.api.geopunt.be/v1/core?id=146885\",\"adres\":\"Duffelsesteenweg 353, 2550 amstelveen\",\"x\":4.4783351318391,\"y\":51.114442184776}},{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[4.4510933670167,51.13755372405]},\"properties\":{\"categorie\":\"GroepsopvangBabysEnPeuters\",\"categorietxt\":\"Groepsopvang baby's en peuters\",\"id\":147697,\"naam\":\"'t Brugske\",\"via\":\"http://poi.api.geopunt.be/v1/core?id=147697\",\"adres\":\"Antwerpsesteenweg 62, 2550 amstelveen\",\"x\":4.4510933670167,\"y\":51.13755372405}},{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[4.453777476859,51.125258504412]},\"properties\":{\"categorie\":\"GroepsopvangBabysEnPeuters\",\"categorietxt\":\"Groepsopvang baby's en peuters\",\"id\":150227,\"naam\":\"Kidz-Planet\",\"via\":\"http://poi.api.geopunt.be/v1/core?id=150227\",\"adres\":\"Blauwesteenstraat 77, 2550 amstelveen\",\"x\":4.453777476859,\"y\":51.125258504412}},{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[4.4562966861328,51.106771379376]},\"properties\":{\"categorie\":\"GroepsopvangBabysEnPeuters\",\"categorietxt\":\"Groepsopvang baby's en peuters\",\"id\":157884,\"naam\":\"'t Wisterke\",\"via\":\"http://poi.api.geopunt.be/v1/core?id=157884\",\"adres\":\"Beekboshoek 42, 2550 amstelveen\",\"x\":4.4562966861328,\"y\":51.106771379376}},{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[4.4722055491099,51.133144121845]},\"properties\":{\"categorie\":\"GroepsopvangBabysEnPeuters\",\"categorietxt\":\"Groepsopvang baby's en peuters\",\"id\":201645,\"naam\":\"Kinderopvang Speel-goed BVBA\",\"via\":\"http://poi.api.geopunt.be/v1/core?id=201645\",\"adres\":\"Kauwlei 15, 2550 amstelveen\",\"x\":4.4722055491099,\"y\":51.133144121845}},{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[4.4463372070709,51.131894192936]},\"properties\":{\"categorie\":\"GroepsopvangBabysEnPeuters\",\"categorietxt\":\"Groepsopvang baby's en peuters\",\"id\":228940,\"naam\":\"'t Lachebekje BVBA\",\"via\":\"http://poi.api.geopunt.be/v1/core?id=228940\",\"adres\":\"Mechelsesteenweg 94, 2550 amstelveen\",\"x\":4.4463372070709,\"y\":51.131894192936}},{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[4.4462532805616,51.131683104149]},\"properties\":{\"categorie\":\"GroepsopvangBabysEnPeuters\",\"categorietxt\":\"Groepsopvang baby's en peuters\",\"id\":234070,\"naam\":\"'t Lachebekje BVBA\",\"via\":\"http://poi.api.geopunt.be/v1/core?id=234070\",\"adres\":\"Mechelsesteenweg 102, 2550 amstelveen\",\"x\":4.4462532805616,\"y\":51.131683104149}}]}"
+{"type":"FeatureCollection","name":"Buurten","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"fid":1,"buurtcode":"BU03620401","buurtnaam":"Stadshart","wijkcode":"WK036204","gemeentecode":"GM0362","gemeentenaam":"Amstelveen","wijknaam":"Stadshart","id_kv":1},"geometry":{"type":"Polygon","coordinates":[[[4.857296745844306,52.306325723050186],[4.857297004962856,52.30632563433261],[4.857297137434973,52.30632546865092],[4.85729883009887,52.30632332723977],[4.857298916960706,52.306323051702],[4.857298968760995,52.3063228883552],[4.857299067866605,52.30632256973061],[4.857307042467379,52.30629714378192],[4.857307101887812,52.306296956202104],[4.857309372892447,52.30629722073251],[4.857426599379163,52.306310912157485],[4.857427012283511,52.30631096074372],[4.857427446432116,52.30631094920655],[4.857617414234491,52.30630713614032],[4.85827660261133,52.30629317965907],[4.858311654780662,52.30629244660668],[4.85833721801667,52.30629190479967],[4.858460313501634,52.3062892644571],[4.858461023354793,52.306289248755895],[4.858461736129609,52.306289233966574],[4.858578917941784,52.306286738732226],[4.858663862085824,52.30628515899538],[4.858665638115089,52.30628512558767],[4.85870499990461,52.30628436583862],[4.858706994618284,52.30628431453298],[4.858708990883629,52.30628425604396],[4.858715413838341,52.30628406813593],[4.85891440970203,52.306279465544634],[4.858935942463183,52.30627890111209],[4.85895747016029,52.30627826924413],[4.858978991327078,52.30627756993426],[4.859000513315683,52.3062768014177],...
 ```
 
 ### in HTML:
 
-Data from collection "GroepsopvangBabysEnPeutersamstelveen"
+__Data from collection "buurten"__
 
-Links.
+__Links.__
 
-self = GroepsopvangBabysEnPeutersamstelveen (application/json)
+self = buurten (application/json)
 
-Features
+__Features__
 
-JSON Output
+__JSON Output__
 
-{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"EPSG:4326"}},"features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[4.4783351318391,51.114442184776]},"properties":{"categorie":"GroepsopvangBabysEnPeuters","categorietxt":"Groepsopvang baby's en peuters","id":146885,"naam":"De Drie Klavertjes","via":"http://poi.api.geopunt.be/v1/core?id=146885","adres":"Duffelsesteenweg 353, 2550 amstelveen","x":4.4783351318391,"y":51.114442184776}},{"type":"Feature","geometry":{"type":"Point","coordinates":[4.4510933670167,51.13755372405]},"properties":{"categorie":"GroepsopvangBabysEnPeuters","categorietxt":"Groepsopvang baby's en peuters","id":147697,"naam":"'t Brugske","via":"http://poi.api.geopunt.be/v1/core?id=147697","adres":"Antwerpsesteenweg 62, 2550 amstelveen","x":4.4510933670167,"y":51.13755372405}},{"type":"Feature","geometry":{"type":"Point","coordinates":[4.453777476859,51.125258504412]},"properties":{"categorie":"GroepsopvangBabysEnPeuters","categorietxt":"Groepsopvang baby's en peuters","id":150227,"naam":"Kidz-Planet","via":"http://poi.api.geopunt.be/v1/core?id=150227","adres":"Blauwesteenstraat 77, 2550 amstelveen","x":4.453777476859,"y":51.125258504412}},{"type":"Feature","geometry":{"type":"Point","coordinates":[4.4562966861328,51.106771379376]},"properties":{"categorie":"GroepsopvangBabysEnPeuters","categorietxt":"Groepsopvang baby's en peuters","id":157884,"naam":"'t Wisterke","via":"http://poi.api.geopunt.be/v1/core?id=157884","adres":"Beekboshoek 42, 2550 amstelveen","x":4.4562966861328,"y":51.106771379376}},{"type":"Feature","geometry":{"type":"Point","coordinates":[4.4722055491099,51.133144121845]},"properties":{"categorie":"GroepsopvangBabysEnPeuters","categorietxt":"Groepsopvang baby's en peuters","id":201645,"naam":"Kinderopvang Speel-goed BVBA","via":"http://poi.api.geopunt.be/v1/core?id=201645","adres":"Kauwlei 15, 2550 amstelveen","x":4.4722055491099,"y":51.133144121845}},{"type":"Feature","geometry":{"type":"Point","coordinates":[4.4463372070709,51.131894192936]},"properties":{"categorie":"GroepsopvangBabysEnPeuters","categorietxt":"Groepsopvang baby's en peuters","id":228940,"naam":"'t Lachebekje BVBA","via":"http://poi.api.geopunt.be/v1/core?id=228940","adres":"Mechelsesteenweg 94, 2550 amstelveen","x":4.4463372070709,"y":51.131894192936}},{"type":"Feature","geometry":{"type":"Point","coordinates":[4.4462532805616,51.131683104149]},"properties":{"categorie":"GroepsopvangBabysEnPeuters","categorietxt":"Groepsopvang baby's en peuters","id":234070,"naam":"'t Lachebekje BVBA","via":"http://poi.api.geopunt.be/v1/core?id=234070","adres":"Mechelsesteenweg 102, 2550 amstelveen","x":4.4462532805616,"y":51.131683104149}}]}
+{"type":"FeatureCollection","name":"Buurten","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"fid":1,"buurtcode":"BU03620401","buurtnaam":"Stadshart","wijkcode":"WK036204","gemeentecode":"GM0362","gemeentenaam":"Amstelveen","wijknaam":"Stadshart","id_kv":1},"geometry":{"type":"Polygon","coordinates":[[[4.857296745844306,52.306325723050186],[4.857297004962856,52.30632563433261],[4.857297137434973,52.30632546865092],[4.85729883009887,52.30632332723977],[4.857298916960706,52.306323051702],[4.857298968760995,52.3063228883552],[4.857299067866605,52.30632256973061],[4.857307042467379,52.30629714378192],[4.857307101887812,52.306296956202104],[4.857309372892447,52.30629722073251],[4.857426599379163,52.306310912157485],[4.857427012283511,52.30631096074372],[4.857427446432116,52.30631094920655],[4.857617414234491,52.30630713614032],[4.85827660261133,52.30629317965907],[4.858311654780662,52.30629244660668],[4.85833721801667,52.30629190479967],[4.858460313501634,52.3062892644571],[4.858461023354793,52.306289248755895],[4.858461736129609,52.306289233966574],[4.858578917941784,52.306286738732226],[4.858663862085824,52.30628515899538],[4.858665638115089,52.30628512558767],[4.85870499990461,52.30628436583862],[4.858706994618284,52.30628431453298],[4.858708990883629,52.30628425604396],[4.858715413838341,52.30628406813593],[4.85891440970203,52.306279465544634],[4.858935942463183,52.30627890111209],[4.85895747016029,52.30627826924413],[4.858978991327078,52.30627756993426],[4.859000513315683,52.3062768014177],[4.859022028741729,52.3062759681554],...
 
 
-## NB
+## Leaflet client en CORS
 
 Voor de leaflet client demo is er nog een extra functie toegevoegd in de index.js: cors - 'Cross Origin Resource Sharing'
+
+Deze functie zorgt ervoor dat de (nodeJS/express) server requests toestaat vanuit javascript in de browser en een response terug geeft.
+
+In de configuratie staat:
+
+```
+origin: 'http://127.0.0.1:5500'
+```
+In VS Code kun je een extensie 'Live Server' installeren waarmee je html pagina's kunt serveren. Live server doet dat standaard op poort 5500. Dus dat is de poort die hier opgegeven wordt. Deze moet eventueel aangepast worden als er een andere poort gebruikt wordt.
 
