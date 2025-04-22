@@ -53,7 +53,7 @@ select ?s ?wkt where {
 
 ## 2. De vragen uit oefening 2 tonen op de kaart
 
-In oefening twee zijn wij geeindigt met het bevragen van de dataset naar de kerken van voor 1101 en na 2024. 
+In oefening twee zijn wij geëindigd met het bevragen van de dataset naar de kerken van voor 1101 en na 2024. 
 
 Deze kunnen we tonen op de kaart door de geometrie van de gevonden resultaten te tonen. Dit is een combinatie van hetgeen wij hiervoor hebben gedaan. Je kunt dit zelf bouwen, of je mag gebruik maken van de code hieronder. 
 
