@@ -8,10 +8,10 @@ ex:SpeakersCorner a ex:Monument ;
     rdfs:label "Speakers Corner" ; 
     geo:hasGeometry ex:SCPoint . 
 ex:SCPoint a sf:Point ;
-    geo:asWKT "POINT(-0.15936 51.5119)"^^sf:wktLiteral .
+    geo:asWKT "POINT(-0.15936 51.5119)"^^geo:wktLiteral .
 
 <http://dbpedia.org/page/Natural_History_Museum,_London> a ex:Museum ; 
     rdfs:label "Natural History Museum" ; 
     geo:hasGeometry ex:NHMPoint . 
 ex:NHMPoint a sf:Point ;
-    geo:asWKT "POINT(-0.1765 51.4964)"^^sf:wktLiteral .
+    geo:asWKT "POINT(-0.1765 51.4964)"^^geo:wktLiteral .
