@@ -1,0 +1,12 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix ex: <http://www.example.org/POI#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> . 
+
+ex:HydePark a ex:Park .
+<http://dbpedia.org/page/Hyde_Park> a ex:Park ; 
+    rdfs:label "Hyde Park" ; 
+    geo:hasGeometry ex:HPPoly . 
+ex:HPPoly a sf:Polygon ;
+    geo:asWKT "POLYGON((-0.1912 51.51,-0.158 51.5136,-0.157 51.5101,-0.152 51.506,-0.153 51.5034,-0.17475 51.502,-0.1877 51.503,-0.1912 51.51))"^^sf:wktLiteral .

@@ -1,0 +1,19 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix ex: <http://www.example.org/POI#> .
+
+ex:Restaurant a owl:Class;
+    rdfs:subClassOf ex:Service .
+ex:Park a owl:Class;
+    rdfs:subClassOf ex:Attraction .
+ex:Museum a owl:Class;
+    rdfs:subClassOf ex:Attraction .
+ex:Monument a owl:Class;
+    rdfs:subClassOf ex:Attraction .
+ex:Service a owl:Class;
+    rdfs:subClassOf ex:PointOfInterest .
+ex:Attraction a owl:Class;
+    rdfs:subClassOf ex:PointOfInterest .
+ex:PointOfInterest a owl:Class;
+    rdfs:subClassOf geo:Feature .
