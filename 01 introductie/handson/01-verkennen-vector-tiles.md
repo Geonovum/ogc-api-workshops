@@ -8,7 +8,7 @@ verkenning.
 ## BAG Vector Tiles
 
 Navigeer naar de BAG Vector Tiles op PDOK via de volgende link:
-<https://api.pdok.nl/lv/bag/ogc/v1_0>. Op het scherm wordt de landing page van
+<https://api.pdok.nl/lv/bag/ogc/v1>. Op het scherm wordt de landing page van
 de BAG Vector Tiles API weergegeven.
 
 ![](media/7b744d089508c6ad711e8bb64f149a58.png)
@@ -22,7 +22,7 @@ Deze pagina is beschikbaar in zowel HTML- als JSON-indeling. Onder "Conformance"
 kun je zien aan welke standaarden de API voldoet.
 
 Klik op de landing page op Conformance en ga naar
-<https://api.pdok.nl/lv/bag/ogc/v1_0/conformance>
+<https://api.pdok.nl/lv/bag/ogc/v1/conformance>
 
 -   Welke versie van de OGC Vector Tiles-specificaties wordt toegepast?
 
@@ -36,7 +36,7 @@ Onder "Tiles" wordt vermeld dat de BAG-data beschikbaar is als vector tiles in
 diverse projecties en stijlen.
 
 Klik op de landing page op Tiles en ga naar
-<https://api.pdok.nl/lv/bag/ogc/v1_0/tiles>.
+<https://api.pdok.nl/lv/bag/ogc/v1/tiles>.
 
 ![](media/6acac7092c226575633b1ebd1fcc8133.png)
 
@@ -65,13 +65,16 @@ Hetzelfde geldt voor EuropeanETRS89_LAEAQuad.
 -   Waarom verschillen deze zoomniveaus en dimensies?
 
 Bekijk de metadata van de NetherlandsRDNewQuad Tile Matrix Set.
-<https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/NetherlandsRDNewQuad>.
+<https://api.pdok.nl/lv/bag/ogc/v1/tiles/NetherlandsRDNewQuad>.
+
+Druk op [NetherlandsRDNewQuad](https://api.pdok.nl/lv/bag/ogc/v1/tileMatrixSets/NetherlandsRDNewQuad) om alle zoomniveaus te zien.
 
 -   Waar bevindt zich ongeveer het oorsprongs- of referentiepunt van deze Tile
     Matrix Set?
 
 *Hint: Het referentiepunt is zichtbaar in RD-coördinaten. Zoek een reversed
 geocoder op internet om de locatie te vinden.*
+
 
 ### Styles
 
@@ -80,30 +83,12 @@ aanbieder. De stijlen worden beschikbaar gesteld in het Mapbox-formaat. Deze
 pagina is beschikbaar in zowel HTML als JSON-indeling.
 
 Kies op de landing page Styles en ga naar
-<https://api.pdok.nl/lv/bag/ogc/v1_0/styles>.
+<https://api.pdok.nl/lv/bag/ogc/v1/styles>.
 
 -   Hoeveel stijlen zijn beschikbaar voor de BAG?
 
 -   Wat merk je op wanneer je schakelt tussen de standaardvisualisatie van BAG
     voor NetherlandsRDNEwQuad en EuropeanETRS89_LAEAQuad?
-
-### Tile Matrix Sets
-
-Beschrijving van de Tile Matrix Sets die via deze API worden ontsloten. Merk op
-dat alle zoomniveaus van de tile matrix zijn beschreven. Zie de *Tile Matrix Set
-Limits* op de Tiles pagina's om te zien welke zoomniveaus door deze API worden
-ondersteund. De pagina is zowel in HTML als JSON beschikbaar.
-
-Kies op de landing page Tile Matrix Sets en ga naar
-<https://api.pdok.nl/lv/bag/ogc/v1_0/tileMatrixSets>
-
--   Hoeveel tile matrixsets zijn beschikbaar voor de BAG?
-
--   Uit hoeveel tegels bestaat de Tile Matrix Set op zoomniveau 17 van
-    WebMercatorQuad?
-
--   Waar bevindt zich ongeveer het referentiepunt van de NetherlandsRDNewQuad
-    Tile Matrix Set?
 
 ### OpenAPI-specificatie
 
@@ -114,7 +99,7 @@ een eerste werkende API-aanroep met het gewenste resultaat. Deze pagina is
 beschikbaar in zowel HTML als JSON-indeling.
 
 Kies op de landing page OpenAPI-specificatie en ga naar
-<https://api.pdok.nl/lv/bag/ogc/v1_0/api>
+<https://api.pdok.nl/lv/bag/ogc/v1/api>
 
 Via de Swagger UI kun je verschillende 'GET' en/of 'POST'-verzoeken op deze API
 uitproberen en de respons bekijken.
