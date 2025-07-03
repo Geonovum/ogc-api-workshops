@@ -12,9 +12,11 @@ selecteer 'OGC API Vector Tiles'.
 
 4\. Voer de URL in: Voer de URL in van de OGC Vector Tiles-service die je wilt
 gebruiken. Deze URL wordt meestal verstrekt door de aanbieder van de service.
-Bij PDOK heet het de "URL template" vb: "https://api.pdok.nl/lv/bag/ogc/v1/tiles/NetherlandsRDNewQuad/{z}/{y}/{x}?f=mvt"
+Bij PDOK heet het de "URL template" vb: "https://api.pdok.nl/lv/bag/ogc/v1/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt"
+De andere 2 TileMatrixSets(NetherlndsRDNewQuad en EuropeanETRS89_LAEAQuad) werken nog niet goed in QGIS.
 
 5\. Stel het minimale en maximale zoomniveau in. Deze is te vinden onder landingpage/tileMatrixSets.
+Voor TileMatrixSets https://api.pdok.nl/lv/bag/ogc/v1/tileMatrixSets/WebMercatorQuad kun je 17 invullen bij het maximum.
 
 6\. Authenticatie instellen (optioneel):
 
@@ -45,6 +47,8 @@ Nadat je alle instellingen hebt geconfigureerd, klik je op 'Toevoegen' of 'OK'
 om de laag toe te voegen aan je kaart.
 
 10\. Bekijk en analyseer de gegevens:
+
+Zoom ergens in Nederland in naar schaal 1:3000. Als je te ver uitgezoomd bent zie je niets.
 
 Nu zou je de toegevoegde laag moeten kunnen zien in de kaartweergave van QGIS.
 Je kunt vervolgens de gegevens bekijken, analyseren en bewerken zoals je normaal
