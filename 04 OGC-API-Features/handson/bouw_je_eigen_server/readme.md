@@ -30,6 +30,13 @@ Open vervolgens de repository in VS Code.
 
 De stappen in de tutorial zijn geschreven de Bart de Lathouwer.
 
+Elke stap legt een volgend stukje uit.
+- basis werking van een webserver
+- HTTP methods (GET, POST, ...)
+- routes (/collections, /collections/{id}, ...)
+- content negotiation (HTML, JSON)
+
+Elke stap/folder werkt op zichzelf. De werking van de server in stap9 is dus niet afhankelijk van de stappen ervoor.
 
 ## Stap 1
 
