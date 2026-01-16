@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <title>CRS demo — reproject features</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <h3>CRS demo — haal één feature en reprojecteer met proj4</h3>
+  <p> Deze demo haalt 1 bak op van de bgt in RD (EPSG:28992) projectie en doet een reprojectie naar WGS84 in de client</p>
+  <pre id="out"></pre>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"></script>
+  <script>
+    const API_BASE = 'https://api.pdok.nl/lv/bgt/ogc/v1'; // pas aan
+    const COLLECTION_ID = 'bak'; // pas aan
+
+    const out = (s) => { document.getElementById('out').textContent += s + '\n'; };
+
+    async function run(){
+      out('Ophalen van één feature (limit=1) in RD (EPSG:28992)...');
+      const url = `${API_BASE}/collections/${COLLECTION_ID}/items?crs=http://www.opengis.net/def/crs/EPSG/0/28992&limit=1`;
+      const r = await fetch(url);
+      const json = await r.json();
+      
+      const feat = json.features && json.features[0];
+      if(!feat){ out('Geen feature gevonden'); return; }
+      out('Native geometry: ' + JSON.stringify(feat.geometry));
+
+      // Voorbeeld: reprojecteer van RD (EPSG:28992) naar WebMercator (EPSG:3857)
+      // Pas aan indien nodig; definities kunnen afwijken per server.
+      try{
+        proj4.defs('EPSG:28992', '+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs');
+        proj4.defs('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs');
+        proj4.defs('EPSG:4326', '+proj=longlat +datum=WGS84 +no_defs');
+        // Als native CRS onbekend is, pas hieronder aan
+        const from = 'EPSG:28992';
+        const to = 'EPSG:4326';
+        out(`Reprojecteer van ${from} → ${to}`);
+
+        // neem aan dat geometry.type === 'Point'
+        if(feat.geometry.type === 'Point'){
+          const [x,y] = feat.geometry.coordinates;
+          const p = proj4(from, to, [x,y]);
+          out('Reprojecteerde coördinaat: ' + JSON.stringify(p));
+        } else {
+          out('Complexe geometrie: reprojecteer alle coördinaten (niet geïmplementeerd volledig in deze demo)');
+        }
+      }catch(e){ out('Reprojectie error: ' + e); }
+    }
+
+    run();
+  </script>
+</body>
+</html>

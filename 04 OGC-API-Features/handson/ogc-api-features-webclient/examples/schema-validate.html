@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <title>Schema validate</title>
+</head>
+<body>
+  <h3>Schema validate (Custom validator)</h3>
+  <p>Vul de URL van het collectie-schema en een item-URL (of gebruik `?limit=1`).</p>
+  Schema URL: <input id="schema" value="http://localhost:5000/collections/pois/schema" size="60" /><br/>
+  Item URL: <input id="item" value="http://localhost:5000/collections/pois/items/4" size="60" /><br/>
+  <button id="run">Validate</button>
+  <pre id="out"></pre>
+
+
+  <script>
+    const out = (s)=> document.getElementById('out').textContent += s + '\n';
+    document.getElementById('run').addEventListener('click', async ()=>{
+      document.getElementById('out').textContent = '';
+      const schemaUrl = document.getElementById('schema').value;
+      const itemUrl = document.getElementById('item').value;
+      if(!schemaUrl || !itemUrl){ out('Vul beide URLs in'); return; }
+      try{
+        out('Ophalen schema...');
+        const sres = await fetch(schemaUrl);
+        const schema = await sres.json();
+        out('Ophalen item...');
+        const ires = await fetch(itemUrl);
+        const item = await ires.json();
+
+        // Simpele custom validator voor demo
+        function validateFeature(properties, schema) {
+          const errors = [];
+          // Check required
+          if (schema.required) {
+            for (const req of schema.required) {
+              if (!(req in properties)) {
+                errors.push(`Missing required property: ${req}`);
+              }
+            }
+          }
+          // Check properties types
+          if (schema.properties) {
+            for (const [key, propSchema] of Object.entries(schema.properties)) {
+              if (key in properties) {
+                const value = properties[key];
+                const type = propSchema.type;
+                if (type && typeof value !== type && (type !== 'integer' || typeof value !== 'number')) {
+                  errors.push(`Property ${key}: expected ${type}, got ${typeof value}`);
+                }
+                if (propSchema.format === 'date-time' && value && !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$/.test(value)) {
+                  errors.push(`Property ${key}: invalid date-time format`);
+                }
+              }
+            }
+          }
+          return errors;
+        }
+
+        const errors = validateFeature(item.properties, schema);
+        out('Valid: ' + (errors.length === 0));
+        if (errors.length > 0) out('Fouten: ' + errors.join(', '));
+      }catch(e){ out('Fout: ' + e); }
+    });
+  </script>
+</body>
+</html>

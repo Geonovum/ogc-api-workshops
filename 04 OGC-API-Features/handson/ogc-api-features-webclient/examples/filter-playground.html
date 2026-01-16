@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <title>Filter playground</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <h3>Filter playground</h3>
+  <p>Deze demo laat een formulier zien om een filter te bouwen en uit te voeren.</p>
+  <p>Let op: Niet alle OGC API Features implementeren Part 3, Filtering!</p>
+  <p> Hoe kom je er ook alweer achter wat wel en niet ondersteunt wordt?</p>
+  <div>
+    API base: <input id="api" value="http://localhost:5000" size="50" /><br/>
+    Collection: <input id="col" value="pois" /><br/>
+    Parameternaam voor filter: <input id="param" value="filter" /><br/>
+    Property: <input id="prop" value="naam" />
+    Operator: <input id="op" value="=" />
+    Waarde: <input id="val" value="'Pampus'" />
+    <button id="run">Query</button>
+  </div>
+  <pre id="out"></pre>
+
+  <script>
+    const outEl = document.getElementById('out');
+    function out(s){ outEl.textContent += s + '\n'; }
+
+    document.getElementById('run').addEventListener('click', async ()=>{
+      outEl.textContent = '';
+      const API = document.getElementById('api').value;
+      const COL = document.getElementById('col').value;
+      const PARAM = document.getElementById('param').value;
+      const prop = document.getElementById('prop').value;
+      const op = document.getElementById('op').value;
+      const val = document.getElementById('val').value;
+
+      // eenvoudige builder — pas aan naar server syntax (CQL2 etc.)
+      const filterExpr = `${prop}${op}${val}${op.endsWith("'")?"":""}`;
+      const url = `${API}/collections/${COL}/items?${encodeURIComponent(PARAM)}=${encodeURIComponent(filterExpr)}`;
+      out('Query: ' + url);
+      try{
+        const r = await fetch(url);
+        const j = await r.json();
+        out('Status: ' + r.status);
+        if(j.features) out('Aantal features: ' + j.features.length);
+        out(JSON.stringify(j, null, 2).slice(0, 2000));
+      }catch(e){ out('Fout: ' + e); }
+    });
+  </script>
+</body>
+</html>
