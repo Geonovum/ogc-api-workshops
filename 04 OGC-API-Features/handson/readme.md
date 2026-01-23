@@ -25,3 +25,7 @@ Deze tutorial laat je zien hoe je OGC API Features in QGIS kan gebruiken.
 ## [OGC API Features in Webclients](./ogc-api-features-webclient/)
 
 Deze handson oefeningen geven voorbeelden van javascript en python libraries die je kunt gebruiken om met OGC API Features te werken in code.
+
+### [part 2, 3 en 5](./ogc-api-features-webclient/part_2_3_5/)
+
+In deze submap staan extra voorbeelden van functionaliteit van CRS, Filtering en Schema's

@@ -14,13 +14,9 @@ Inzicht geven in het gebruik van JSON Schema binnen OGC API Features: waar schem
 - Open `/collections/{id}` en zoek de link naar het collectie-schema. Noteer `required` properties.
 
 2) Valideer een feature
-- Open `examples/schema-validate.html`. Vul de URL van een collectie-schema en een feature-URL (of gebruik `/collections/{id}/items?limit=1`).
+- Open `schema-validate.html`. Vul de URL van een collectie-schema en een feature-URL (of gebruik `/collections/{id}/items?limit=1`).
 - Druk op "Validate" en bekijk of het item voldoet aan het schema.
 
 3) Formuliergeneratie
 - Gebruik de schema-eigenschappen om op papier of in een eenvoudige HTML-form-generator een form te maken voor het aanmaken van een nieuw feature (mock; niet per se POST uitvoeren).
 
-4) Rapportage
-- Valideer een set van 20 features (optioneel: klein script) en rapporteer hoeveel features schema-validatie doorstaan.
-
----

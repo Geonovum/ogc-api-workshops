@@ -27,12 +27,9 @@ Korte theorie over CRS en hands-on oefeningen waarmee deelnemers leren:
 - Maak twee bbox-requests (een in native CRS, een in EPSG:4326 of EPSG:28992). Vergelijk aantallen features en coördinaten.
 
 4) Client-side reprojection (voorbeeld)
-- Open `examples/crs-demo.html` in je browser. Dit kleine script haalt features op in het native CRS en reprojecteert naar EPSG:3857/EPSG:4326 met `proj4`.
+- Open `crs-demo.html` in je browser. Dit kleine script haalt features op in het native CRS en reprojecteert naar EPSG:3857/EPSG:4326 met `proj4`.
 - Pas de API-base URL in het script aan naar je target API en test.
 
 5) QGIS-check (optioneel)
 - Laad een GeoJSON-response als laag in QGIS en wissel de project-CRS; controleer of geometrieën correct verschijnen.
-
----
-Tijd: 20–40 minuten (inclusief korte uitleg en hands-on reproduceren).
 
