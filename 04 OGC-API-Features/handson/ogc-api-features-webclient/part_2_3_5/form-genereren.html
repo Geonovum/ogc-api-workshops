@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>OGC API Features - Local Schema Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/jsoneditor.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { padding: 30px; background-color: #f4f7f6; }
+        .container { max-width: 800px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        #status { margin-bottom: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Buurten Editor</h1>
+    <p class="text-muted">Gegenereerd op basis van Part 5 Schema</p>
+    <hr>
+
+    <div id="status" class="text-primary">Schema laden van localhost...</div>
+    <div id="editor-holder"></div>
+</div>
+
+<script>
+    // De lokale URL van jouw OGC API Features server
+    const SCHEMA_URL = "http://localhost:5000/collections/buurten_geojson/schema";
+
+    async function loadLocalSchema() {
+        const statusEl = document.getElementById('status');
+        
+        try {
+            const response = await fetch(SCHEMA_URL);
+            if (!response.ok) throw new Error(`Server fout: ${response.status}`);
+            
+            const schema = await response.json();
+
+            // We pakken de properties van de features (volgens GeoJSON structuur in OGC API)
+            // Mocht jouw server direct het attribuut-schema sturen, gebruik dan 'schema' direct.
+            const attributeSchema = schema.properties?.properties || schema;
+            attributeSchema.title = "Buurt Attributen";
+
+            statusEl.innerText = "✅ Schema succesvol geladen";
+            statusEl.classList.replace('text-primary', 'text-success');
+
+            renderForm(attributeSchema);
+        } catch (error) {
+            console.error(error);
+            statusEl.innerText = "❌ Fout: " + error.message;
+            statusEl.classList.replace('text-primary', 'text-danger');
+        }
+    }
+
+    function renderForm(schema) {
+        new JSONEditor(document.getElementById('editor-holder'), {
+            schema: schema,
+            theme: 'bootstrap5',
+            disable_collapse: true,
+            disable_edit_json: true,
+            disable_properties: true,
+            no_additional_properties: true
+        });
+    }
+
+    loadLocalSchema();
+</script>
+</body>
+</html>

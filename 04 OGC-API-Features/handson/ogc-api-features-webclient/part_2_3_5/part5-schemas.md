@@ -18,5 +18,5 @@ Inzicht geven in het gebruik van JSON Schema binnen OGC API Features: waar schem
 - Druk op "Validate" en bekijk of het item voldoet aan het schema.
 
 3) Formuliergeneratie
-- Gebruik de schema-eigenschappen om op papier of in een eenvoudige HTML-form-generator een form te maken voor het aanmaken van een nieuw feature (mock; niet per se POST uitvoeren).
+- Gebruik de schema-eigenschappen om op papier of in een eenvoudige HTML-form-generator een form te maken voor het aanmaken van een nieuw feature (mock; niet per se POST uitvoeren). Zie `form-genereren.html` voor een simpel voorbeeld.
 
