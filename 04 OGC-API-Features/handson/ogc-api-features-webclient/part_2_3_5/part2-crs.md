@@ -9,7 +9,7 @@ Korte theorie over CRS en hands-on oefeningen waarmee deelnemers leren:
 ## Theorie (kort)
 - Wat is een CRS; verschil tussen geographic en projected.
 - EPSG-codes en axis-order (bijv. `EPSG:4326` vs `EPSG:3857` vs nationale EPSG-codes).
-- Waar in OGC API Features je CRS vindt: collectie metadata (`/collections` en `/collections/{id}` — links/`crs`/`supportedCRS`).
+- Waar in OGC API Features je CRS vindt: collectie metadata (`/collections` en `/collections/{id}`).
 - Default / native CRS van de server en hoe de server reprojection aanbiedt.
 - Effect op `bbox` en feature-coördinaten; precisie en datumtransformaties.
 

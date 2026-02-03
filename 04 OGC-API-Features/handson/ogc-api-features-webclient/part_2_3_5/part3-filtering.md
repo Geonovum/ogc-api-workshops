@@ -9,6 +9,10 @@ leren hoe je features kan filteren via OGC API Features Part 3: property-filters
 - Filtertalen: CQL2 (tekst/JSON) of implementatie-specifieke varianten; logische operatoren en spatial predicates.
 - Combinatie van filters (AND/OR) en performance/security overwegingen.
 
+__NB__ PDOK is bezig Part 3 te implementeren, dus niet alle filter functionaliteit werkt mogelijk op de PDOK API's.
+Een andere server die gebruikt kan worden om te testen is: https://apitestbed.geonovum.nl/adr_pygeoapi/v1/
+
+
 ## Oefeningen
 
 1) Verken `queryables`
@@ -27,3 +31,8 @@ leren hoe je features kan filteren via OGC API Features Part 3: property-filters
 
 5) Complexere expressies
 - Probeer een gecombineerde expressie (bijv. `population > 1000 AND landuse = 'residential'`) met de server-ondersteunde syntax.
+
+6) ruimtelijke filters
+- probeer een ruimtelijk filter:
+``` ?filter=INTERSECTS(geom, POLYGON((5.13 52.70,5.15 52.70,5.13 52.72,5.15 52.72,5.15 52.70)))```
+(en vervang de bbox voor een bbox die een deel van de featurecollection bevat die je gebruikt...)
