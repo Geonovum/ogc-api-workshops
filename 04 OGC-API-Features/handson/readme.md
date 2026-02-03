@@ -26,6 +26,8 @@ Deze tutorial laat je zien hoe je OGC API Features in QGIS kan gebruiken.
 
 Deze handson oefeningen geven voorbeelden van javascript en python libraries die je kunt gebruiken om met OGC API Features te werken in code.
 
+Het python voorbeeld is een 'jupyter notebook', om dit voorbeeld te kunnen uitvoeren heb je een python omgeving met jupyter notebook nodig.
+
 ### [part 2, 3 en 5](./ogc-api-features-webclient/part_2_3_5/)
 
 In deze submap staan extra voorbeelden van functionaliteit van CRS, Filtering en Schema's
