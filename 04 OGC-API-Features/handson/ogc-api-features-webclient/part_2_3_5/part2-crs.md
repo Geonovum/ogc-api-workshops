@@ -24,7 +24,8 @@ Korte theorie over CRS en hands-on oefeningen waarmee deelnemers leren:
 - Vergelijk de geometrieën met het native CRS-response.
 
 3) BBOX in een niet-native CRS
-- Maak twee bbox-requests (een in native CRS, een in EPSG:4326 of EPSG:28992). Vergelijk aantallen features en coördinaten.
+- Maak twee bbox-requests (een in native CRS, een in EPSG:4326 of EPSG:28992). Vergelijk aantallen features en coördinaten. Bijvoorbeeld: https://api.pdok.nl/lv/bgt/ogc/v1/collections/bak/items?f=json&limit=1000&bbox=4.7,52.01,4.71,52.02 en https://api.pdok.nl/lv/bgt/ogc/v1/collections/bak/items?f=json&crs=http://www.opengis.net/def/crs/EPSG/0/28992&limit=1000&bbox=4.7,52.01,4.71,52.02 
+- Probeer ook een bbox in RD op te geven met de extra parameter <bbox-crs=http://www.opengis.net/def/crs/EPSG/0/28992>
 
 4) Client-side reprojection (voorbeeld)
 - Open `crs-demo.html` in je browser. Dit kleine script haalt features op in het native CRS en reprojecteert naar EPSG:3857/EPSG:4326 met `proj4`.
