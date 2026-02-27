@@ -147,7 +147,12 @@ resources:
         processor:
             name: pygeoapi.process.localoutlier.LOFProcessor
 
-    aanvraag:
+    shapely-functions:
         type: process
         processor:
-            name: pygeoapi.process.aanvraag.AanvraagProcessor
+            name: pygeoapi.process.shapely_functions.ShapelyFunctionsProcessor
+   
+    geom-details:
+        type: process
+        processor:
+            name: pygeoapi.process.geom_details.GeomProcessor
