@@ -43,10 +43,15 @@ server:
     cors: true
     pretty_print: true
     admin: ${PYGEOAPI_SERVER_ADMIN:-false}
-    limit: 1000
-    # limits:
-    #     default_items: 10
-    #     max_items: 50
+    # server limits on number of items to return.
+    # overridable when redefined in resource level configuration
+    limits:
+        default_items: 50
+        max_items: 1000
+        # max_distance_x: 25
+        # max_distance_y: 25
+        # max_distance_units: m
+        # on_exceed: throttle  # throttle or error (default=throttle)
     map:
         url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
