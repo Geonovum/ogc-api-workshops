@@ -3,3 +3,4 @@ package-lock.json
 .vscode/settings.json
 05 OGC API Processes/handson/pygeoapi/bomen.geojson
 05 OGC API Processes/handson/pygeoapi/meetstations.geojson
+05 OGC API Processes/handson/pygeoapi/notebooks/.ipynb_checkpoints/docker-client-checkpoint.ipynb

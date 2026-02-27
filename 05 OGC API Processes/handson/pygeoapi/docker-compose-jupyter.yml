@@ -1,0 +1,35 @@
+
+
+services:
+  pygeoapi:
+    build: .
+
+    container_name: pygeoapi
+
+    ports:
+      - 5000:80
+    networks:
+      - pygeoapi_network
+
+    volumes:
+      - ./pygeoapi.config.yml:/pygeoapi/local.config.yml
+      - ./data:/data
+      - ./plugins/process/squared.py:/pygeoapi/pygeoapi/process/squared.py
+      - ./plugins/process/localoutlier.py:/pygeoapi/pygeoapi/process/localoutlier.py
+      - ./plugins/process/aanvraag.py:/pygeoapi/pygeoapi/process/aanvraag.py
+
+  jupyter:
+    image: jupyter/base-notebook
+    ports:
+      - "8888:8888"
+    networks:
+      - pygeoapi_network
+    depends_on:
+      - pygeoapi
+
+    volumes:
+      - ./notebooks:/home/jovyan/work
+
+networks:
+  pygeoapi_network:
+    driver: bridge
