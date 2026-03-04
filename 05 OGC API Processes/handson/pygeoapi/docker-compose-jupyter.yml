@@ -16,7 +16,8 @@ services:
       - ./data:/data
       - ./plugins/process/squared.py:/pygeoapi/pygeoapi/process/squared.py
       - ./plugins/process/localoutlier.py:/pygeoapi/pygeoapi/process/localoutlier.py
-      - ./plugins/process/aanvraag.py:/pygeoapi/pygeoapi/process/aanvraag.py
+      - ./plugins/process/geom_details.py:/pygeoapi/pygeoapi/process/geom_details.py
+      - ./plugins/process/shapely_functions.py:/pygeoapi/pygeoapi/process/shapely_functions.py
 
   jupyter:
     image: jupyter/base-notebook
