@@ -13,24 +13,26 @@ Vind gebouwen binnen 100 meter van een kerk.
 ## Query
 
 ```sparql
-REFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
 PREFIX uom: <http://www.opengis.net/def/uom/OGC/1.0/>
 PREFIX imxgeo: <http://modellen.geostandaarden.nl/def/imx-geo#>
-prefix ext: <https://modellen.kkg.kadaster.nl/def/imxgeo-ext#>
-SELECT ?gebouw ?kerk
+PREFIX ext: <https://modellen.kkg.kadaster.nl/def/imxgeo-ext#>
+PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
+PREFIX imxgeo-ext: <https://modellen.kkg.kadaster.nl/def/imxgeo-ext#>
+
+SELECT ?puntWKT ?kerkWKT
 WHERE {
   ?gebouw a imxgeo:Gebouw;
-    geo:hasGeometry/geo:asWKT ?gebouwWKT .
+    imxgeo:heeftAlsAdres/geo:hasGeometry/geo:asWKT ?puntWKT.
   ?kerk a imxgeo:Gebouw ;
                   ext:gebouwType "kerk";
     imxgeo:bevindtZichOpPerceel/geo:hasGeometry/geo:asWKT ?kerkWKT.
-
-  FILTER(
-    geof:distance(?gebouwWKT, ?kerkWKT, uom:metre) < 100
-  )
+ 
+   bind(geof:distance(?puntWKT, ?kerkWKT, uom:meter) as ?distance)
+filter (?distance<100000)
 }
-limit 10
+limit 100
 ```
 
 ## Opdrachten
