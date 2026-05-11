@@ -28,5 +28,5 @@ LIMIT 100
 ```
 
 ## Opdrachten
-1. Maak oude kerken rood.
-2. Maak nieuwe kerken groen.
+1. Maak oude kerken rood. (Zoek voor imxgeo:bouwjaar)
+2. Maak nieuwe kerken groen. (bind specifieke waarde van bouwjaar met specifieke kleur)
