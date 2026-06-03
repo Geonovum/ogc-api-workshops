@@ -10,8 +10,8 @@ De voorbeelden die we laten zien zijn in de omgeving van Gouda, specifiek in de 
 
 ### BAG Vector Tiles Openen
 
-1.  Open QGIS en navigeer naar het Browser-paneel. Zoek naar Vector Tiles en
-    klik op 'Nieuwe algemene verbinding...'
+1.  Open QGIS en navigeer naar het Browser-paneel. Zoek naar Vector Tiles (of Vectortegels) en
+    klik met de rechter muisknop op 'Nieuwe algemene verbinding...'
 
     ![Afbeelding met tekst, schermopname, scherm, software Automatisch
     gegenereerde beschrijving](media/be1c52b06c83f03d6ad05783abf09097.png)
