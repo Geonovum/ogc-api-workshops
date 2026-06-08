@@ -9,7 +9,7 @@ Korte theorie over CRS en hands-on oefeningen waarmee deelnemers leren:
 ## Theorie (kort)
 - Definitie CRS: De wijze waarop geo-informatie gekoppeld wordt aan een locatie op aarde.
 - Verschil tussen geographic (lengte en breedte) en projected (X,Y,Z).
-- EPSG-codes en axis-order (bijv. `[EPSG:4326](https://www.opengis.net/def/crs/EPSG/0/4326)` vs `[EPSG:3857](https://www.opengis.net/def/crs/EPSG/0/3857)` vs [nationale EPSG-codes](https://www.opengis.net/def/crs/EPSG/0/28992)).
+- EPSG-codes en axis-order (bijv. [EPSG:4326](https://www.opengis.net/def/crs/EPSG/0/4326) vs [EPSG:3857](https://www.opengis.net/def/crs/EPSG/0/3857) vs [nationale EPSG-codes](https://www.opengis.net/def/crs/EPSG/0/28992)).
 - Waar in OGC API Features je CRS vindt: collectie metadata (`/collections` en `/collections/{id}`).
 - Default / native CRS (meestal [WGS-84](https://www.opengis.net/def/crs/EPSG/0/4326) ) de server en hoe de server reprojection aanbiedt.
 - Effect op `bbox` en feature-coördinaten; precisie en datumtransformaties.
@@ -29,7 +29,7 @@ Korte theorie over CRS en hands-on oefeningen waarmee deelnemers leren:
 - Probeer ook een bbox in RD op te geven met de extra parameter <bbox-crs=http://www.opengis.net/def/crs/EPSG/0/28992>
 
 4) Client-side reprojection (voorbeeld)
-- Open `[crs-demo.html](https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/part_2_3_5/crs-demo.html)` in je browser. Dit kleine script haalt features op in het native CRS en reprojecteert naar EPSG:3857/EPSG:4326 met `proj4`.
+- Open [crs-demo.html](https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/part_2_3_5/crs-demo.html) in je browser. Dit kleine script haalt features op in het native CRS en reprojecteert naar EPSG:3857/EPSG:4326 met `proj4`.
 - Pas de API-base URL in het script aan naar je target API en test.
 
 5) QGIS-check (optioneel)

@@ -14,9 +14,9 @@ Inzicht geven in het gebruik van JSON Schema binnen OGC API Features: waar schem
 - Open `/collections/{id}` en zoek de link naar het collectie-schema. Noteer `required` properties.
 
 2) Valideer een feature
-- Open `[schema-validate.html](https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/part_2_3_5/schema-validate.html)`. Vul de URL van een collectie-schema en een feature-URL (of gebruik `/collections/{id}/items?limit=1`).
+- Open [schema-validate.html](https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/part_2_3_5/schema-validate.html). Vul de URL van een collectie-schema en een feature-URL (of gebruik `/collections/{id}/items?limit=1`).
 - Druk op "Validate" en bekijk of het item voldoet aan het schema.
 
 3) Formuliergeneratie
-- Gebruik de schema-eigenschappen om op papier of in een eenvoudige HTML-form-generator een form te maken voor het aanmaken van een nieuw feature (mock; niet per se POST uitvoeren). Zie `[form-genereren.html](https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/part_2_3_5/form-genereren.html)` voor een simpel voorbeeld.
+- Gebruik de schema-eigenschappen om op papier of in een eenvoudige HTML-form-generator een form te maken voor het aanmaken van een nieuw feature (mock; niet per se POST uitvoeren). Zie [form-genereren.html](https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/part_2_3_5/form-genereren.html) voor een simpel voorbeeld.
 

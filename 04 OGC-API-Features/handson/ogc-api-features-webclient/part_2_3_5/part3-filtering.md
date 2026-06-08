@@ -25,7 +25,7 @@ Probeer daarom een andere service om de opdrachten uit te voeren als het niet we
 3) Spatial + temporal combinatie
 - Vraag items op met `bbox=...` en `datetime=YYYY-MM-DD/YYYY-MM-DD` en vergelijk resultaten met alleen bbox.
 
-4) Filter playground (`[filter-playground.html](https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/part_2_3_5/filter-playground.html)`)
+4) Filter playground ([filter-playground.html](https://github.com/Geonovum/ogc-api-workshops/blob/main/04%20OGC-API-Features/handson/ogc-api-features-webclient/part_2_3_5/filter-playground.html))
 - Open de voorbeeldpagina, vul property/waarde en bbox in en druk op "Query". De pagina bouwt een filter-parameter en toont de resultaten.
 - Tip: controleer de OpenAPI van de server om te zien hoe je filters moet doorgeven; pas de parameternaam aan op de pagina indien nodig.
 
