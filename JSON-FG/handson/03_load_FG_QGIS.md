@@ -1,27 +1,16 @@
-# Handson examples / exercises for JSON-FG
+# Load JSON-FG files in QGIS
 
-This folder contains a number of different exercises and examples. Depending on your interests, you can follow one or more of these examples.
+In this exercise, you will learn how to load a JSON-FG file in QGIS and experience the new data types for CircularString, CompoundCurve, and CurvePolygon.
 
-## [View JSON-FG examples in a browser or JSON-editor](./01_view_FG.md)
+## Step 1
 
-In this exercise you will learn to recognise the new elements of JSON-FG
+Open QGIS and check if the version number is greater than or equal to 3.44.
+If the version number is lower, it is possible that JSON-FG is not yet properly supported.
+If necessary, download a newer version via: https://www.qgis.org/nl/download/
 
-## [Validate a JSON-FG file](./02_validate_FG.md)
+## Step 2
 
-In this exercise you will learn how to validate JSON-FG files and also how to correct them. 
-
-## [Load JSON-FG files in QGIS](./03_load_FG_QGIS.md)
-
-In this exercise you will learn how to load a JSON-FG file in QGIS and experience the new datatypes for CircularString, CompoundCurve and CurvePolygon. 
-
-## [Time slider in QGIS](./04_timeslider_FG_QGIS.md)
-
-In this exercise you will learn how to use the time element of JSON-FG files in QGIS and create a time slider showing the changes of the community borders in the Netherlands. 
-
-## [3D JSON-FG in QGIS](./05_3D_FG_QGIS.md)
-
-In this exercise you will learn how to view 3D JSON-FG files in QGIS. 
-
-## [JSON-FG measures in QGIS](./06_Measures_FG_QGIS.md)
-
-In this exercise you will learn how to use measures from JSON-FG files in QGIS. 
+Go to "Databronnen beheren" in QGIS (Ctrl+L) and browse to the folder where the JSON-FG sample files were downloaded.
+Select curves_FG.json and click "Toevoegen".
+If all goes well, a polygon with three holes will appear. If necessary, add an extra layer from the browser via a WMS/WMTS connection for orientation, such as an aerial photo mosaic from https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts
+Try to find the elements from the JSON-FG file.
