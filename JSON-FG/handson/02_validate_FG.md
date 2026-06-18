@@ -1,27 +1,19 @@
-# Handson examples / exercises for JSON-FG
+# Validation of JSON-FG files
 
-This folder contains a number of different exercises and examples. Depending on your interests, you can follow one or more of these examples.
+In this exercise, you will learn how to validate JSON-FG files and also how to correct them.
 
-## [View JSON-FG examples in a browser or JSON-editor](./01_view_FG.md)
+## Step 1
 
-In this exercise you will learn to recognise the new elements of JSON-FG
+Open https://github.com/Geonovum/ogc-checker/blob/main/src/specs/json-fg/examples/ in a browser.
 
-## [Validate a JSON-FG file](./02_validate_FG.md)
+Copy the contents of 'feature.json' using Ctrl-A, Ctrl-C, and paste it using Ctrl-A, Ctrl-V into the left section of https://geonovum.github.io/ogc-checker/#/json-fg.
+If done correctly, everything on the right should be green, indicating it is OK.
 
-In this exercise you will learn how to validate JSON-FG files and also how to correct them. 
+## Step 2
 
-## [Load JSON-FG files in QGIS](./03_load_FG_QGIS.md)
+Now do the same with the JSON files downloaded in the previous exercise and correct the errors. Hint: pay attention to the versions in the conformsTo element
 
-In this exercise you will learn how to load a JSON-FG file in QGIS and experience the new datatypes for CircularString, CompoundCurve and CurvePolygon. 
+## Step 3
 
-## [Time slider in QGIS](./04_timeslider_FG_QGIS.md)
+Make a mistake somewhere in a JSON FG document and see what the OGC checker thinks of it.
 
-In this exercise you will learn how to use the time element of JSON-FG files in QGIS and create a time slider showing the changes of the community borders in the Netherlands. 
-
-## [3D JSON-FG in QGIS](./05_3D_FG_QGIS.md)
-
-In this exercise you will learn how to view 3D JSON-FG files in QGIS. 
-
-## [JSON-FG measures in QGIS](./06_Measures_FG_QGIS.md)
-
-In this exercise you will learn how to use measures from JSON-FG files in QGIS. 
