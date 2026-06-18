@@ -1,27 +1,20 @@
-# Handson examples / exercises for JSON-FG
-
-This folder contains a number of different exercises and examples. Depending on your interests, you can follow one or more of these examples.
-
-## [View JSON-FG examples in a browser or JSON-editor](./01_view_FG.md)
-
-In this exercise you will learn to recognise the new elements of JSON-FG
-
-## [Validate a JSON-FG file](./02_validate_FG.md)
-
-In this exercise you will learn how to validate JSON-FG files and also how to correct them. 
-
-## [Load JSON-FG files in QGIS](./03_load_FG_QGIS.md)
-
-In this exercise you will learn how to load a JSON-FG file in QGIS and experience the new datatypes for CircularString, CompoundCurve and CurvePolygon. 
-
-## [Time slider in QGIS](./04_timeslider_FG_QGIS.md)
-
-In this exercise you will learn how to use the time element of JSON-FG files in QGIS and create a time slider showing the changes of the community borders in the Netherlands. 
-
-## [3D JSON-FG in QGIS](./05_3D_FG_QGIS.md)
+# 3D JSON-FG in QGIS
 
 In this exercise you will learn how to view 3D JSON-FG files in QGIS. 
 
-## [JSON-FG measures in QGIS](./06_Measures_FG_QGIS.md)
+## Step 1
 
-In this exercise you will learn how to use measures from JSON-FG files in QGIS. 
+Load 3D_polyhedron_dom_FG.json in QGIS with the building parts.
+With a richt click on the layer you can select to zoom to the layer.
+
+## Step 2
+
+In the list of layers you can double click the just added layer to edit the properties.
+Go to "3D-weergave" (3D settings)
+Select for "Enkel symbool" (single symbol)
+Click in the main menu on "beeld" (view/display?) and "3D-kaartweergaven" (3D-scenes) and select "Nieuwe 3D-kaartweergave" (new 3D-scene)
+You should now be able to view the Dome of Köln in 3D from different perspectives
+
+## Step 3
+
+Do the same with 3D_prism_BAG_FG.json with the building parts.
