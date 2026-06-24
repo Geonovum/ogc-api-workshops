@@ -17,4 +17,4 @@ You should now be able to view the Dome of Köln in 3D from different perspectiv
 
 ## Step 3
 
-Do the same with 3D_prism_BAG_FG.json with the building parts.
+Do the same with 3D_prism_toronto-city-hall.json and 3D_polyhedron_BAG_FG.json with the building parts.

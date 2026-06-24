@@ -25,3 +25,7 @@ In this exercise you will learn how to view 3D JSON-FG files in QGIS.
 ## [JSON-FG measures in QGIS](./06_measures_FG_QGIS.md)
 
 In this exercise you will learn how to use measures from JSON-FG files in QGIS. 
+
+## [Create a BGT JSON-FG with a circular string](./07_BGT_FG.md)
+
+In this exercise you will learn the advantage of using the circular string and compound curve 

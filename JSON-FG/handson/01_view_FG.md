@@ -27,8 +27,8 @@ Locate the time element.
 
 ## Step 4 3D
 
-Open 3D_polyhedron_dom_FG.json and 3D_prism_BAG_FG.json in a text editor. 
-Notice the difference in structure for 3D
+Open 3D_polyhedron_dom_FG.json and 3D_prism_toronto-city-hall in a text editor. 
+Notice the difference in structure for 3D.
 
 ## Step 5 Curves
 

@@ -11,7 +11,7 @@ If done correctly, everything on the right should be green, indicating it is OK.
 
 ## Step 2
 
-Now do the same with the JSON files downloaded in the previous exercise and correct the errors. Hint: pay attention to the versions in the conformsTo element
+Now do the same with the JSON files downloaded in the previous exercise and correct the errors. Hint: pay attention to the versions in the conformsTo element.
 
 ## Step 3
 
