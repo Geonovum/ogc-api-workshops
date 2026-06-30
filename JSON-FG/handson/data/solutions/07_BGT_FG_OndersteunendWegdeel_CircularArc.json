@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "timeStamp": "2026-06-25T13:03:30Z",
+  "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/28992",
+  "links": [
+    {
+      "rel": "self",
+      "title": "This document as JSON-FG",
+      "type": "application/vnd.ogc.fg+json",
+      "href": "https://api.pdok.nl/lv/bgt/ogc/v1/collections/ondersteunendwegdeel/items?crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F28992&f=jsonfg&limit=10&lokaal_id=G0307.92a82176fc034ee7a74f26870f34e44c"
+    },
+    {
+      "rel": "alternate",
+      "title": "This document as GeoJSON",
+      "type": "application/geo+json",
+      "href": "https://api.pdok.nl/lv/bgt/ogc/v1/collections/ondersteunendwegdeel/items?crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F28992&f=json&limit=10&lokaal_id=G0307.92a82176fc034ee7a74f26870f34e44c"
+    },
+    {
+      "rel": "alternate",
+      "title": "This document as HTML",
+      "type": "text/html",
+      "href": "https://api.pdok.nl/lv/bgt/ogc/v1/collections/ondersteunendwegdeel/items?crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F28992&f=html&limit=10&lokaal_id=G0307.92a82176fc034ee7a74f26870f34e44c"
+    }
+  ],
+  "conformsTo": [
+    "http://www.opengis.net/spec/json-fg-1/1.0/conf/core",
+    "http://www.opengis.net/spec/json-fg-1/1.0/conf/types-schemas",
+    "http://www.opengis.net/spec/json-fg-1/1.0/conf/circular-arcs"
+  ],
+  "features": [
+    {
+      "id": "6d901ee8-bedd-5b6c-9081-b76cbc319e4f",
+      "type": "Feature",
+      "featureType": "OndersteunendWegdeel",
+      "time": null,
+      "place": {
+        "type": "CurvePolygon",
+        "geometries": [
+          {
+            "type": "CompoundCurve",
+            "geometries": [
+              {
+                "type": "LineString",
+                "coordinates": [
+                  [
+                    154413.645,
+                    463733.62
+                  ],
+                  [
+                    154413.5,
+                    463733.141
+                  ],
+                  [
+                    154415.395,
+                    463732.568
+                  ],
+                  [
+                    154415.54,
+                    463733.047
+                  ],
+                  [
+                    154415.54,
+                    463733.047
+                  ]
+                ]
+              },
+              {
+                "type": "CircularString",
+                "coordinates": [
+                  [
+                    154415.54,
+                    463733.047
+                  ],
+                  [
+                    154415.020243245,
+                    463734.342401285
+                  ],
+                  [
+                    154413.645,
+                    463733.62
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "geometry": null,
+      "properties": {
+        "bronhouder": "G0307",
+        "creation_date": "2018-01-15T23:00:00Z",
+        "eind_registratie": null,
+        "functie": "verkeerseiland",
+        "functie_codespace": "http://www.geostandaarden.nl/imgeo/def/2.1#FunctieOndersteunendWegdeel",
+        "fysiek_voorkomen": "open verharding",
+        "fysiek_voorkomen_codespace": "http://www.geostandaarden.nl/imgeo/def/2.1#FysiekVoorkomenOndersteunendWegdeel",
+        "in_onderzoek": null,
+        "in_onderzoek_leeg": "geenWaarde",
+        "kruinlijn_leeg": "waardeOnbekend",
+        "lokaal_id": "G0307.92a82176fc034ee7a74f26870f34e44c",
+        "lv_publicatiedatum": "2018-01-17T16:42:41Z",
+        "op_talud": "false",
+        "op_talud_leeg": null,
+        "plus_functie": null,
+        "plus_functie_codespace": "http://www.geostandaarden.nl/imgeo/def/2.1#VoidReasonValue",
+        "plus_functie_leeg": "waardeOnbekend",
+        "plus_fysiek_voorkomen": "betonstraatstenen",
+        "plus_fysiek_voorkomen_codespace": "http://www.geostandaarden.nl/imgeo/def/2.1#FysiekVoorkomenOndersteunendWegdeelPlus",
+        "plus_fysiek_voorkomen_leeg": null,
+        "plus_status": null,
+        "plus_status_codespace": "http://www.geostandaarden.nl/imgeo/def/2.1#VoidReasonValue",
+        "plus_status_leeg": "geenWaarde",
+        "relatieve_hoogteligging": 0,
+        "status": "bestaand",
+        "status_codespace": "http://www.geostandaarden.nl/imgeo/def/2.1#Status",
+        "status_leeg": null,
+        "termination_date": null,
+        "termination_date_leeg": "geenWaarde",
+        "tijdstip_registratie": "2018-01-17T15:45:14Z",
+        "version": "9005a923-610f-2f53-6b71-29ac3924c522"
+      }
+    }
+  ],
+  "numberReturned": 1
+}
