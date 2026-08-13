@@ -5,3 +5,4 @@ package-lock.json
 05 OGC API Processes/handson/pygeoapi/meetstations.geojson
 05 OGC API Processes/handson/pygeoapi/notebooks/.ipynb_checkpoints/docker-client-checkpoint.ipynb
 3DTiles/2026/~*
+.DS_Store
