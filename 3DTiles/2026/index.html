@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Geef je data diepte: van 2D naar 3D met OS tools</title>
+    <title>3D Tiles Workshop</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
@@ -14,7 +14,7 @@
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css">
     <!-- Custom style -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/base.css">
 </head>
 
 <style>
@@ -26,23 +26,19 @@
         <div class="slides">
             <!-- Titel slide -->
             <section class="center">
-                <h3>Geef je data diepte:<br> van 2D naar 3D met OS tools</h3>
+                <h3>3D Tiles Workshop<br> 3D Tiles (1.0 en 1.1) maken en bekijken  </h3>
                 <p>
-                    Workshop 3D Tiles &middot; 7 oktober 2025 - Geonovum in Amersfoort
+                    Workshop 3D Tiles &middot; 12 november 2026 - Geonovum in Amersfoort
                 </p>
             </section>
 
             <!-- Introductie slide -->
             <section class="center">
-                <h3>Even voorstellen</h3>
+                <h3>3D Tiles 1.0</h3>
                 <div class="container">
                     <div class="col flex flex-center flex-col">
                         <!-- <img src="https://placehold.co/400" class="speaker" alt="Spreker 2"> -->
-                        <h5>Bert Temme</h5>
-                        <p>
-                            Researcher<br>
-                            <a href="mailto:bert.temme@sogelink.com">bert.temme@sogelink.com</a>
-                        </p>
+                        <h5>Casus Proefpolderdijk bij Andijk</h5>
                     </div>
             </section>
 
@@ -52,16 +48,17 @@
                     <div class="col">
                         <h5>Na deze workshop</h5>
                         <ul>
-                            <li>Heb je kennis van de 3D Tiles-standaard</li>
-                            <li>Kun je 3D-tilesets maken uit 2D data</li>
-                            <li>Kun je een 3D-tileset inladen in een CesiumJS-webomgeving</li>
-                            <li>Zijn de mogelijkheden voor datavisualisatie met CesiumJS bekend</li>
+                            <li>Heb je kennis van de 3D Tiles-standaard* </li>
+                            <li>Kun je 3D-tilesets maken uit 2D data*</li>
+                            <li>Kun je een 3D-tileset inladen in een CesiumJS-webomgeving*</li>
+                            <li>Zijn de mogelijkheden voor datavisualisatie met CesiumJS bekend*</li>
+                            <li>* volgens de 3D Tiles 1.0 specificatie</li>
                         </ul>
                     </div>
                     <div class="col">
                         <h5>Benodigdheden</h5>
                         <ul>
-                            <li>Laptop met internetverbinding</li>
+                            <li>Laptop met internetverbinding en (admin)rechten</li>
                             <li>Docker</li>
                             <li>QGIS 3.40 of hoger</li>
                             <li>Database management tool (pgAdmin of DBeaver)</li>
@@ -74,7 +71,6 @@
             <section class="center">
                 <h3>Programma</h3>
                 <ol>
-                    <li>Introductie 3D Tiles</li>
                     <li>Deel 1: Dataverwerking tot 3D Tiles
                         <ul>
                             <li>Data downloaden en importeren</li>
@@ -94,64 +90,6 @@
                 </ol>
             </section>
 
-            <!-- 3D Tiles: een OGC standaard -->
-            <section>
-                <h3>3D Tiles: een OGC standaard</h3>
-                <div class="container">
-                    <div class="col">
-                        <ul>
-                            <li>Open standaard voor het visualiseren van (grote hoeveelheden) 3D geodata op het web</li>
-                            <li>Ontwikkeld door Cesium en gestandaardiseerd door OGC</li>
-                            <li>Hiërarchische datastructuur (spatial tiling)</li>
-                            <li>Ondersteunt verschillende formaten:
-                                <ul>
-                                    <li>Batched 3D Models (b3dm)</li>
-                                    <li>Instanced 3D Models (i3dm)</li>
-                                    <li>Point Clouds (pnts)</li>
-                                    <li>Composite (cmpt)</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <img src="images/3dtiles_ecosysteem.png" alt="3D Tiles Ecosysteem">
-                    </div>
-                </div>
-                <p class="small-text">Zie voor een gedetailleerd overzicht van de 3D Tiles specificatie: <a
-                        href="https://github.com/CesiumGS/3d-tiles/blob/main/3d-tiles-reference-card.pdf"
-                        target="_blank">3D Tiles Reference Card</a></p>
-            </section>
-
-            <!-- Waarom zijn 3D Tiles nuttig? -->
-            <section>
-                <h3>Waarom zijn 3D Tiles nuttig?</h3>
-                <ul>
-                    <li>Optimalisatie voor grote datasets
-                        <ul>
-                            <li>Alleen de noodzakelijke data wordt ingeladen</li>
-                            <li>Level of Detail (LOD) mechanisme</li>
-                        </ul>
-                    </li>
-                    <li>Interoperabiliteit
-                        <ul>
-                            <li>Open standaard</li>
-                            <li>Ondersteund door verschillende viewers (Cesium, ArcGIS, QGIS, Unity3D, Unreal)</li>
-                        </ul>
-                    </li>
-                    <li>Streaming van 3D content
-                        <ul>
-                            <li>Progressief laden van data</li>
-                            <li>Efficiënt voor web-based toepassingen</li>
-                        </ul>
-                    </li>
-                    <li>Styling mogelijkheden
-                        <ul>
-                            <li>3D Tiles Styling Language</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-
             <!-- Introductie Digital Twins -->
             <section>
                 <h3>Aan de slag!</h3>
@@ -160,10 +98,10 @@
                         <ul>
                             <li>Casus: Proefpolderdijk bij Andijk</li>
                             <li>
-                                Data:
+                                Benodigde data:
                                 <ul>
-                                    <li>Digitaal Topografisch Bestand (DTB) voor het terrein en bomen</li>
-                                    <li>De BAG voor gebouwen</li>
+                                    <li>Digitaal Topografisch Bestand (DTB) voor het terrein en bomen (Rijkswaterstaat) </li>
+                                    <li>De BAG voor gebouwen (3D BAG)</li>
                                 </ul>
                             </li>
                             <li>
