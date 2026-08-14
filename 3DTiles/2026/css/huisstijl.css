@@ -1,0 +1,193 @@
+:root {
+    /* Huisstijlkleuren */
+    --green: #97C00E;
+    --gray: #64686B;
+    --blue: #0085C6;
+
+    /* Licht / donker */
+    --white: #FFFFFF;
+    --dark: #3C3C3C;
+    --light-gray: #F2F2F2;
+
+    /* Toepassingen */
+    --body-text: #97C00E;
+    --headings: #64686B;
+    --chart-blue: #0085C6;
+    --chart-green: #97C00E;
+    --chart-gray: #64686B;
+    --link: #3C7AE6;
+    --visited-link: #405D95;
+}
+
+
+/* =========================
+   LAYOUT
+   ========================= */
+
+.container {
+    display: flex;
+}
+
+.col {
+    flex: 1;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+
+/* =========================
+   TEKST
+   ========================= */
+
+p {
+    font-size: 18px;
+    color: var(--body-text);
+}
+
+ol,
+ul,
+li {
+    font-size: 20px;
+    color: var(--body-text);
+}
+
+/* Kopteksten */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--headings);
+}
+
+
+/* =========================
+   LINKS
+   ========================= */
+
+a {
+    color: var(--link);
+}
+
+a:visited {
+    color: var(--visited-link);
+}
+
+
+/* =========================
+   AFBEELDINGEN
+   ========================= */
+
+img {
+    border-radius: 10px;
+}
+
+img.speaker {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+
+/* =========================
+   TEKST UITLIJNING
+   ========================= */
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+
+/* =========================
+   MARGINS
+   ========================= */
+
+.m-0 {
+    margin: 0 !important;
+}
+
+.mr-3 {
+    margin-right: 0.75rem !important;
+}
+
+
+/* =========================
+   NOTICE / ALERT
+   ========================= */
+
+.alert.notice {
+    background-color: #EAF3CC;
+    border-left: 6px solid var(--green);
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    color: var(--dark);
+}
+
+
+/* =========================
+   CODE
+   ========================= */
+
+code:not(pre code) {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--dark);
+    color: var(--white);
+    border-radius: 5px;
+    display: inline-block;
+    padding: 3px 5px;
+    font-size: 80%;
+}
+
+pre.code-wrapper {
+    font-size: 1rem;
+    background-color: var(--dark);
+    color: var(--white);
+}
+
+.reveal .code-wrapper code.no-whitespace {
+    white-space: normal;
+}
+
+
+/* =========================
+   WRAPPING
+   ========================= */
+
+.wrap {
+    text-wrap: wrap !important;
+}
+
+
+/* =========================
+   REVEAL.JS
+   ========================= */
+
+.reveal {
+    background-color: var(--white);
+    color: var(--body-text);
+}
+
+.reveal .slide-number {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    background: none;
+    color: var(--gray);
+}
