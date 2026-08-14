@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 :root {
     /* Huisstijlkleuren */
     --green: #97C00E;
@@ -10,13 +12,19 @@
     --light-gray: #F2F2F2;
 
     /* Toepassingen */
-    --body-text: #97C00E;
     --headings: #64686B;
+    --body-text: #64686B;
     --chart-blue: #0085C6;
+    --backgroundsurface-blue: #0085C6;
+    --backgroundsurface-green: #97C00E;
     --chart-green: #97C00E;
     --chart-gray: #64686B;
     --link: #3C7AE6;
     --visited-link: #405D95;
+    --body-text2: #97C00E;
+
+    /* Fonts */
+    --font-main: 'Montserrat', sans-serif;
 }
 
 
@@ -50,6 +58,10 @@
    TEKST
    ========================= */
 
+body {
+    font-family: var(--font-main);
+}
+
 p {
     font-size: 18px;
     color: var(--body-text);
@@ -70,6 +82,7 @@ h4,
 h5,
 h6 {
     color: var(--headings);
+    font-family: var(--font-main);
 }
 
 
