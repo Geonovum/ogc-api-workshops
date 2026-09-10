@@ -33,7 +33,7 @@ Notice the difference in structure for 3D.
 ## Step 5 Curves
 
 Open curves_FG.json in a text editor.
-Find the 3 new datatypes:  CircularString, CompoundCurve and Curve Polygon
+Find the 3 new datatypes: CircularString, CompoundCurve and Curve Polygon
 
 ## Step 6 Measures
 

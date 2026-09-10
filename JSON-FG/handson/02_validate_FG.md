@@ -4,7 +4,7 @@ In this exercise, you will learn how to validate JSON-FG files and also how to c
 
 ## Step 1
 
-Open https://github.com/Geonovum/ogc-checker/blob/main/src/specs/json-fg/examples/ in a browser.
+Open https://github.com/Geonovum/ogc-checker/tree/main/src/standards/json-fg/examples in a browser.
 
 Copy the contents of 'feature.json' using Ctrl-A, Ctrl-C, and paste it using Ctrl-A, Ctrl-V into the left section of https://geonovum.github.io/ogc-checker/#/json-fg.
 If done correctly, everything on the right should be green, indicating it is OK.

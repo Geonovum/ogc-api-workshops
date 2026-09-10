@@ -10,7 +10,7 @@ In this exercise, you will learn how to load a JSON-FG file in QGIS and experien
 
 ## Step 2
 
-- Go to "Databronnen beheren" in QGIS (Ctrl+L) and browse to the folder where the JSON-FG sample files were downloaded.
-- Select curves_FG.json and click "Toevoegen".
+- In the Browser panel, navigate to the folder where the JSON-FG sample files were downloaded. Alternatively, open "Databronnen beheren" (Data Source Manager) in QGIS with Ctrl+L and browse there.
+- Under the curves_FG.json file, there is a curves_FG layer, select it and click the "Toevoegen" (Add Selected Layers) button in the toolbar (or choose 'Add Layer to Project' in the context menu).
 - If all goes well, a polygon with three holes will appear. If necessary, add an extra layer from the browser via a WMS/WMTS connection for orientation, such as an aerial photo mosaic from https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts
 - Try to find the elements from the JSON-FG file.

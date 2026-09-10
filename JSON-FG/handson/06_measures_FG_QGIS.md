@@ -10,6 +10,6 @@ You should see a road segment in Germany
 
 ## Step 2
 
-Inspect the road segment with the identify button.
-Open the derived attributes with "Afgeleid" in the panel for "Identificatieresultaten" (Identification results)
+Inspect the road segment with the identify button (in the toolbar, the one with a blue circle with an "i").
+Open the derived attributes with "Afgeleid" (Derived) in the panel for "Identificatieresultaten" (Identify Results)
 Notice the extra things you can do with measures.
