@@ -30,7 +30,7 @@ Probeer daarom een andere service om de opdrachten uit te voeren als het niet we
 - Tip: controleer de OpenAPI van de server om te zien hoe je filters moet doorgeven; pas de parameternaam aan op de pagina indien nodig.
 
 5) Complexere expressies
-- Probeer een gecombineerde expressie (bijv. `population > 1000 AND landuse = 'residential'`) met de server-ondersteunde syntax.:
+- Probeer een gecombineerde expressie met de server-ondersteunde syntax.:
 https://api.pdok.nl/kadaster/bag/ogc/v2-demo/collections/adres/items?filter=openbare_ruimte_naam=%27Barchman%20Wuytierslaan%27%20AND%20huisnummer=10
 
 6) ruimtelijke filters
