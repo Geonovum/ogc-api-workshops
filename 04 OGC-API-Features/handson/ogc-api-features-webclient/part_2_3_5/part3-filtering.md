@@ -31,8 +31,8 @@ Probeer daarom een andere service om de opdrachten uit te voeren als het niet we
 
 5) Complexere expressies
 - Probeer een gecombineerde expressie (bijv. `population > 1000 AND landuse = 'residential'`) met de server-ondersteunde syntax.:
-https://gs-main.geosolutionsgroup.com/geoserver/ogc/features/v1/collections/topp:states/items?filter=PERSONS%3E6660000%20AND%20HOUSHOLD%3C4440000
+https://api.pdok.nl/kadaster/bag/ogc/v2-demo/collections/adres/items?filter=openbare_ruimte_naam=%27Barchman%20Wuytierslaan%27%20AND%20huisnummer=10
 
 6) ruimtelijke filters
 - probeer een ruimtelijk filter:
-https://gs-main.geosolutionsgroup.com/geoserver/ogc/features/v1/collections/topp:states/items?filter=s_intersects(the_geom,POLYGON((-75%2035,-80%2037,-77%2051,-75%2035)))
+https://api.pdok.nl/kadaster/bag/ogc/v2-demo/collections/adres/items?filter=S_INTERSECTS(geometry,POLYGON((5.371%2052.152,5.375%2052.152,5.371%2052.153,5.371%2052.152)))
