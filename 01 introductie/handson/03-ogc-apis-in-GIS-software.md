@@ -92,11 +92,15 @@ creation_date.
     gegenereerde beschrijving](media/be1c52b06c83f03d6ad05783abf09097.png)
 
 2\. Vul het onderstaande venster in met de naam 'BAG Vector Tiles' en de URL:
-https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt
+~~https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt~~
+
+https://api.pdok.nl/kadaster/bag/ogc/v2/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt
 
 \- Welk maximaal zoomniveau moet worden ingesteld voor de verbinding?
 
-*Hint: Kijk op https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/WebMercatorQuad.*
+*Hint: Kijk op ~~https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/WebMercatorQuad~~*
+
+https://api.pdok.nl/kadaster/bag/ogc/v2/tiles/WebMercatorQuad
 
 3\. Klik op OK en voeg de laag toe aan het QGIS-project via dubbelklikken of
 rechtsklikken » Laag aan project toevoegen…
