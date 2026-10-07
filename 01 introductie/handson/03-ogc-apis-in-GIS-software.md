@@ -119,7 +119,8 @@ ongeveer 1:3100 om gegevens te bekijken.
 onder Vector Tiles, en selecteer "Verbinding bewerken…".
 
 7\. Bekijk de beschikbare stijlen op:
-<https://api.pdok.nl/lv/bag/ogc/v1_0/styles>
+~~<https://api.pdok.nl/lv/bag/ogc/v1_0/styles>~~
+<https://api.pdok.nl/kadaster/bag/ogc/v2/styles>
 
 ![Afbeelding met tekening, diagram, ontwerp Automatisch gegenereerde
 beschrijving](media/af682fbcccafa9cc9d006e379183b316.png)
@@ -129,10 +130,10 @@ beschrijving](media/af682fbcccafa9cc9d006e379183b316.png)
 8\. Herhaal de bovenstaande stappen met de BGT Vector Tiles:
 
 \- URL:
-[https://api.pdok.nl/lv/bgt/ogc/v1/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt](https://api.pdok.nl/lv/bgt/ogc/v1/tiles/WebMercatorQuad/%7bz%7d/%7by%7d/%7bx%7d?f=mvt)
+[https://api.pdok.nl/kadaster/bag/ogc/v2/tiles/WebMercatorQuad/{z}/{y}/{x}?f=mvt](https://api.pdok.nl/kadaster/bag/ogc/v2/tiles/WebMercatorQuad/%7bz%7d/%7by%7d/%7bx%7d?f=mvt)
 
 \- Experimenteer met de verschillende stijlen op:
-<https://api.pdok.nl/lv/bgt/ogc/v1/styles>
+<https://api.pdok.nl/kadaster/bag/ogc/v2/styles>
 
 *Hint: Let op het zoomniveau tijdens het verkennen.*
 
