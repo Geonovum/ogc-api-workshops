@@ -1,0 +1,2 @@
+*.ifc filter=lfs diff=lfs merge=lfs -text
+Dockerfile.ifc !filter !diff !merge text

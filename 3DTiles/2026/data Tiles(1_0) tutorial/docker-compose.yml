@@ -1,0 +1,60 @@
+services:
+  postgis:
+    image: postgis/postgis:18-3.6
+    container_name: postgis
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PROJ_NETWORK: "ON"
+    ports:
+      - "5439:5432"
+    volumes:
+      # PostgreSQL 18+ expects the volume on /var/lib/postgresql (data goes in /var/lib/postgresql/18/docker)
+      - postgis_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  workspace:
+    build:
+      context: .
+    container_name: workspace
+    ports:
+      - "8080:8080"
+    environment:
+      PGHOST: postgis
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PROJ_NETWORK: "ON"
+    volumes:
+      - ./container:/workspace
+    depends_on:
+      postgis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # IFC-tools (IfcOpenShell) voor de optionele opdrachten: IFC naar GLB en IFC naar LOD's.
+  # Zelfde map /workspace en dezelfde database als de workspace-container.
+  ifc:
+    build:
+      context: .
+      dockerfile: Dockerfile.ifc
+    container_name: ifc
+    environment:
+      PGHOST: postgis
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: postgres
+    volumes:
+      - ./container:/workspace
+    depends_on:
+      postgis:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgis_data:
