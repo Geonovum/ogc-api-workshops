@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css">
@@ -17,19 +17,23 @@
     <link rel="stylesheet" href="css/huisstijl.css">
 </head>
 
-<style>
-
-</style>
-
 <body>
     <div class="reveal">
         <div class="slides">
             <!-- Titel slide -->
-            <section class="center">
-                <h3>3D Tiles Workshop<br> 3D Tiles (1.0 en 1.1) maken en bekijken  </h3>
-                <p>
-                    Workshop 3D Tiles &middot; 12 november 2026 - Geonovum in Amersfoort
-                </p>
+            <section class="gn-title" data-state="gn-state-title">
+                <img class="gn-title__logo" src="images/geonovum/geonovum-logo.svg" alt="Geonovum">
+                <div class="gn-title__grid">
+                    <div class="gn-title__text">
+                        <p class="gn-kicker">Workshop &middot; 12 november 2026 &middot; Geonovum, Amersfoort</p>
+                        <h1>3D Tiles Workshop</h1>
+                        <p class="gn-subtitle">3D Tiles (1.0 en 1.1) maken en bekijken</p>
+                        <p class="gn-tagline">Verkent, verbindt, verankert</p>
+                    </div>
+                    <div class="gn-title__visual">
+                        <img src="images/geonovum/geonovum-visual.png" alt="">
+                    </div>
+                </div>
             </section>
 
             <!-- Introductie slide -->
@@ -145,7 +149,7 @@
                     Er worden 2 containers gestart:
                     <ul>
                         <li><code>postgis</code>: een PostgreSQL database met PostGIS extensie</li>
-                        <li><code>workspace</code>: een Ubuntu container met daarin alle benodigde tools geïnstalleerd</li>
+                        <li><code>workspace</code>: een Linux container (GDAL op Alpine) met daarin alle benodigde tools geïnstalleerd</li>
                     </ul> 
                 </p>
 
@@ -169,6 +173,13 @@
                         <li>Gebruikersnaam: <code>postgres</code></li>
                         <li>Wachtwoord: <code>postgres</code></li>
                     </ul>
+                    <p class="m-0">Nieuwe verbinding aanmaken:</p>
+                    <ul>
+                        <li><b>pgAdmin:</b> klik met de rechtermuisknop op <i>Servers</i> &rarr; <i>Register</i> &rarr; <i>Server...</i>.
+                            Geef een naam op (tab <i>General</i>) en vul de gegevens hierboven in op de tab <i>Connection</i>.</li>
+                        <li><b>DBeaver:</b> klik op <i>Connect to your database</i> (stekker-icoon linksboven), kies <i>PostgreSQL</i>
+                            en vul de gegevens hierboven in. Klik op <i>Test Connection</i> en daarna op <i>Finish</i>.</li>
+                    </ul>
                 </div>
                 <p class="alert notice"><b>Let op:</b> als je vanuit de workspace container verbindt met de database,
                     gebruik dan <code>postgis</code> als host.</p>
@@ -184,7 +195,11 @@
                         <li>
                             <p>Gebruik het volgende commando om een shell verbinding te maken met de workspace
                                 container:</p>
-                            <pre><code class="language-bash">docker exec -it workspace bash</code></pre>
+                            <pre><code class="language-bash">docker exec -it workspace sh</code></pre>
+                            <p class="gn-note"><i>docker exec</i> voert een commando uit in een draaiende container,
+                                <i>-it</i> maakt het interactief met een echte terminal, <i>workspace</i> is de naam van de
+                                container en <i>sh</i> is de shell die gestart wordt (de container heeft geen bash).
+                                Alles wat je daarna typt, draait in de container en niet op je eigen machine.</p>
                         </li>
                         <li>
                             <p>Als het goed is kom je in de directory <code>/workspace</code> terecht. Deze map is via
@@ -204,7 +219,7 @@
             </section>
 
             <!-- Deel 1: Dataverwerking - Introductie -->
-            <section class="center">
+            <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
                 <h3>Deel 1: Dataverwerking tot 3D Tiles</h3>
                 <div class="left">
                     <p>In dit deel gaan we:</p>
@@ -231,10 +246,16 @@
                                     href="https://geoweb.rijkswaterstaat.nl/ModuleViewer/?app=1c8c833022c04e63a0f74533c19a6a27"
                                     target="_blank">RWS DTB Bladindeling viewer</a> het Andijk kaartblad (DTB kaartblad
                                 d15cz)</li>
-                            <li>Download de data (d15cz.zip) en plaats de ZIP in <code>./container/data/dtb</code></li>
+                            <li>Download de data (d15cz.zip) en plaats de ZIP in <code>./container/data/dtb</code>
+                                <p class="gn-note">De map ./container staat naast je
+                                    docker-compose.yml (bijv. c:\3dtiles-workshop\container). Maak de submappen data\dtb zelf aan.
+                                    In de container is dit /workspace/data/dtb.</p></li>
                             <li>Bekijk de inhoud met GDAL (vanuit je container shell):</li>
                         </ol>
                         <pre><code class="language-bash">ogrinfo /vsizip/data/dtb/d15cz.zip</code></pre>
+                        <p class="gn-note">GDAL is een open source toolkit voor het lezen,
+                            omzetten en bewerken van geodata. <i>ogrinfo</i> is de GDAL-tool die toont welke lagen er in een
+                            vectorbestand zitten, met o.a. geometrietype, projectie en attributen.</p>
                         <p>De zip bevat 3 shapefiles:</p>
                         <ul>
                             <li>d15cz_lin.shp (DTB lijnen)</li>
@@ -244,6 +265,8 @@
                         <p class="alert notice"><b>Good to know:</b> de <code>/vsizip/</code> prefix voor de file path
                             in ogrinfo zorgt ervoor dat je ZIPs kunt inspecteren.</p>
                         <p class="alert notice">Vraag: wat is de projectie van de bestanden?</p>
+                        <p class="gn-note"><b>Hint:</b> dit kun je op meerdere manieren achterhalen:
+                            met GDAL, via de bestanden van de shapefile, in QGIS of in pgAdmin/DBeaver.</p>
 
                     </div>
                     <div class="col">
@@ -261,12 +284,14 @@
                     <div class="col left mr-3">
                         <p>Voor het laden van de DTB vlakken:</p>
                         <pre><code class="language-bash wrap">ogr2ogr -f "PostgreSQL" PG:"host=postgis port=5432 user=postgres dbname=postgres password=postgres" /vsizip/data/dtb/d15cz.zip/d15cz_reg.shp -nln public.dtb_vlak_andijk -nlt MULTIPOLYGONZ</code></pre>
+                        <p class="gn-note"><i>ogr2ogr</i> (GDAL) leest de vlakken-shapefile
+                            direct uit de ZIP en schrijft ze naar de tabel dtb_vlak_andijk in PostGIS. De projectie blijft
+                            hetzelfde als in het bronbestand.</p>
                         <p>Voor het laden van de DTB punten:</p>
                         <pre><code class="language-bash wrap">ogr2ogr -f "PostgreSQL" PG:"host=postgis port=5432 user=postgres dbname=postgres password=postgres" /vsizip/data/dtb/d15cz.zip/d15cz_sym.shp -t_srs epsg:4979 -nln public.dtb_punt_andijk -nlt POINTZ</code></pre>
-                    </div>
-                    <div class="col">
-                        <p>Controleer of de data goed geladen is:</p>
-                        <pre><code class="language-bash wrap">psql -c "SELECT count(*) from public.dtb_punt_andijk;"</code></pre>
+                        <p class="gn-note">Hetzelfde voor de punten, naar de tabel
+                            dtb_punt_andijk. Met <i>-t_srs epsg:4979</i> worden de coördinaten tijdens het laden omgezet naar
+                            WGS84 3D (zie volgende sheet).</p>
                     </div>
                 </div>
                 <div class="alert notice">
@@ -285,15 +310,56 @@
 
             </section>
 
-            <!-- Data voorbereiden -->
+            <!-- Controleren geladen data + projecties -->
             <section>
+                <h3>Controleer de geladen data</h3>
+                <div class="container">
+                    <div class="col left mr-3">
+                        <p>Controleer of de data goed geladen is:</p>
+                        <pre><code class="language-bash wrap">psql -c "SELECT count(*) from public.dtb_vlak_andijk;"</code></pre>
+                        <pre><code class="language-bash wrap">psql -c "SELECT count(*) from public.dtb_punt_andijk;"</code></pre>
+                        <p class="gn-note"><i>psql</i> is de command-line client van
+                            PostgreSQL. Deze commando's tellen het aantal rijen per tabel. Krijg je een getal groter dan 0,
+                            dan is het laden gelukt. Er hoeft geen wachtwoord bij, dat staat al in de omgevingsvariabelen van
+                            de container.</p>
+                    </div>
+                    <div class="col left">
+                        <p>Waarom worden alleen de punten omgezet naar WGS84?</p>
+                        <ul>
+                            <li><b>Vlakken</b> worden later verwerkt door <i>pg2b3dm</i>. Die leest de projectie uit de
+                                geometriekolom en rekent zelf om. De vlakken kunnen dus in hun oorspronkelijke projectie blijven.</li>
+                            <li><b>Punten</b> (de bomen) worden later verwerkt door <i>i3dm.export</i>. Die verwacht de punten
+                                in WGS84 (lengte, breedte en hoogte). Daarom zetten we ze bij het laden al om met
+                                <i>-t_srs epsg:4979</i>.</li>
+                        </ul>
+                        <p class="alert notice"><b>Good to know:</b> 3D Tiles zelf gebruikt intern ECEF (EPSG:4978): x, y en z
+                            vanuit het middelpunt van de aarde. Beide tools zetten de data uiteindelijk om naar ECEF.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data voorbereiden -->
+            <section id="data-voorbereiden">
                 <h3>Data voorbereiden</h3>
                 <p>Nu gaan we de data voorbereiden voor de omzetting naar 3D Tiles.</p>
                 <p>Maak ruimtelijke indexen aan in een database client:</p>
+                <p class="gn-note">pg2b3dm en i3dm.export verdelen de data in tiles en
+                    vragen daarvoor steeds de objecten binnen een bepaald gebied op. Een ruimtelijke (GiST) index maakt die
+                    zoekvragen veel sneller. pg2b3dm bepaalt per vlak de tile op basis van het middelpunt van de omhullende
+                    rechthoek, daarom indexeren we bij de vlakken precies die expressie.</p>
                 <pre><code class="language-sql">CREATE INDEX ON public.dtb_vlak_andijk USING gist(st_centroid(st_envelope(wkb_geometry)));
 CREATE INDEX ON public.dtb_punt_andijk USING gist(wkb_geometry);</code></pre>
+                <p class="gn-note">Open een SQL-venster, plak de SQL en voer het uit:<br>
+                    <b>pgAdmin:</b> klik op de database <i>postgres</i> &rarr; menu <i>Tools</i> &rarr; <i>Query Tool</i>, uitvoeren met F5 (of &#9654;).<br>
+                    <b>DBeaver:</b> klik op je verbinding &rarr; menu <i>SQL Editor</i> &rarr; <i>New SQL script</i>, uitvoeren met Alt+X (hele script).<br>
+                    <b>QGIS:</b> menu <i>Database</i> &rarr; <i>DB Manager</i> &rarr; kies je PostGIS-verbinding &rarr; <i>SQL Window</i>, uitvoeren met <i>Execute</i>.</p>
 
                 <p>Maak een database view voor de punten (bomen) in een database client:</p>
+                <p class="gn-note">Een view is een opgeslagen query: er wordt geen
+                    data gekopieerd. Deze view selecteert alleen de punten die een boom zijn en levert de kolommen die
+                    i3dm.export verwacht: <i>rotation</i> en <i>scale</i> per boom, <i>tags</i> met de attributen die je later
+                    in de viewer ziet als je op een boom klikt, <i>model</i> met het 3D-model dat op elk punt wordt
+                    geplaatst, en <i>geom</i> met de locatie. Uitvoeren gaat op dezelfde manier als hierboven.</p>
                 <pre><code class="language-sql">CREATE or replace view public.v_dtb_punt_andijk AS
 SELECT
     RANDOM()*360 AS rotation,
@@ -315,6 +381,14 @@ WHERE omschr = 'Boom';
             <section>
                 <h3>Data bekijken</h3>
                 <p>Gebruik een GIS programma of database client om de data te bekijken.</p>
+                <p class="gn-note">
+                    <b>QGIS:</b> open het <i>Browser</i>-paneel &rarr; <i>PostgreSQL</i> &rarr; je verbinding &rarr; <i>public</i>,
+                    en sleep <i>dtb_vlak_andijk</i> en <i>v_dtb_punt_andijk</i> naar de kaart.<br>
+                    <b>DBeaver:</b> in de <i>Database Navigator</i>: verbinding &rarr; <i>postgres</i> &rarr; <i>Schemas</i> &rarr;
+                    <i>public</i> &rarr; <i>Tables</i>, dubbelklik op de tabel &rarr; tab <i>Data</i> &rarr; klik op <i>Spatial</i>
+                    om de hele tabel op een kaart te zien.<br>
+                    <b>pgAdmin:</b> open de <i>Query Tool</i> en voer bijv. <i>SELECT * FROM public.dtb_vlak_andijk;</i> uit.
+                    Klik in de resultaten op het oogje bij de geometriekolom (<i>Geometry Viewer</i>).</p>
                 <div class="container">
                     <div class="col mr-3">
                         <p>DTB punten (bomen)</p>
@@ -331,22 +405,75 @@ WHERE omschr = 'Boom';
             <section>
                 <h3>3D Tiles maken van DTB vlakken</h3>
                 <p>We gaan nu de tool <code>pg2b3dm</code> gebruiken om 3D Tiles te maken van de DTB vlakken.</p>
+                <div class="left">
+                    <ol class="small-text">
+                        <li>Check of <code>pg2b3dm</code> geïnstalleerd is met <code>pg2b3dm --version</code></li>
+                        <li>Gebruik <code>pg2b3dm --help</code> om de opties van de tool te weergeven
+                            <p class="gn-note">pg2b3dm leest geometrieën (vlakken,
+                                lijnen met <i>--radiuscolumn</i>) uit een PostGIS-tabel en maakt er 3D Tiles van. De opties
+                                vallen in groepen:<br>
+                                <b>Verbinding:</b> -U (gebruiker), -h (host), -p (poort), -d (database).<br>
+                                <b>Data:</b> -t (tabel), -c (geometriekolom), -a (attributen die je later in de viewer ziet),
+                                -q (filter, bijv. alleen één type vlak).<br>
+                                <b>Uiterlijk:</b> --default_color, --shaderscolumn (kleur per object), --add_outlines,
+                                --double_sided.<br>
+                                <b>Tiling:</b> --max_features_per_tile (standaard 1000), -g / --geometricerrorfactor (wanneer een
+                                tile geladen wordt), --use_implicit_tiling, -r (ADD of REPLACE), -l (LOD-kolom).<br>
+                                <b>Uitvoer:</b> -o (map), --create_gltf (glb of b3dm), -f (Cesium of Mapbox).</p></li>
+                        <li>Voer het volgende commando uit:</li>
+                    </ol>
+                    <pre><code class="language-bash wrap">pg2b3dm -U postgres -h postgis -p 5432 -d postgres -t public.dtb_vlak_andijk -a dtb_id,omschr,datum --use_implicit_tiling false -o ./output/dtb_vlakken -c wkb_geometry --create_gltf false</code></pre>
+                    <p class="gn-note">We verbinden met de database in de
+                        <i>postgis</i>-container (-U, -h, -p, -d) en lezen de tabel <i>dtb_vlak_andijk</i> met geometriekolom
+                        <i>wkb_geometry</i> (-t, -c). De kolommen dtb_id, omschr en datum gaan als attributen mee (-a).
+                        <i>--use_implicit_tiling false</i> zet alle tiles uitgeschreven in één tileset.json, en
+                        <i>--create_gltf false</i> schrijft de tiles als .b3dm-bestanden (3D Tiles 1.0) in plaats van .glb.
+                        Het resultaat komt in ./output/dtb_vlakken (-o).</p>
+                </div>
+
+                <!-- Resultaat pg2b3dm -->
+                <h4>Resultaat</h4>
                 <div class="container">
-                    <div class="col mr-3">
+                    <div class="col left mr-3">
+                        <p class="small-text">Wat doet pg2b3dm met de vlakken?</p>
                         <ol class="small-text">
-                            <li>Check of <code>pg2b3dm</code> geïnstalleerd is met <code>pg2b3dm --version</code></li>
-                            <li>Gebruik <code>pg2b3dm --help</code> om de opties van de tool te weergeven</li>
-                            <li>Voer het volgende commando uit:</li>
+                            <li>Leest de vlakken met hun attributen uit PostGIS.</li>
+                            <li>Rekent de coördinaten om van RD New naar ECEF, het stelsel van 3D Tiles.</li>
+                            <li>Zet elk vlak om in driehoeken (een 3D-mesh), want een viewer kan alleen driehoeken tekenen.</li>
+                            <li>Verdeelt het gebied in tiles met maximaal 1000 vlakken per tile.</li>
+                            <li>Schrijft elke tile als .b3dm-bestand in de map <i>content</i>, met de attributen erin.</li>
+                            <li>Schrijft <i>tileset.json</i>: de inhoudsopgave met per tile het gebied (bounding volume) en
+                                de geometric error.</li>
                         </ol>
-                        <pre><code class="language-bash wrap">pg2b3dm -U postgres -h postgis -p 5432 -d postgres -t public.dtb_vlak_andijk -a dtb_id,omschr,datum --use_implicit_tiling false -o ./output/dtb_vlakken -c wkb_geometry --create_gltf false</code></pre>
+                        <p class="gn-note">Een viewer zoals Cesium leest eerst
+                            tileset.json en laadt daarna alleen de tiles die in beeld zijn en dichtbij genoeg zijn (op basis
+                            van de geometric error). Zo blijft de viewer snel, ook bij heel veel data.</p>
                     </div>
                     <div class="col left">
                         <p class="small-text">Resultaat: een tileset.json bestand en een directory 'content' met de 3D
-                            tiles in
-                            b3dm formaat.</p>
+                            tiles in b3dm formaat.</p>
                         <img src="images/output_pg2b3dm.png" alt="b3dm Tileset">
                     </div>
                 </div>
+                <div class="alert notice">
+                    <p class="m-0"><b>Good to know:</b> zo ziet de tileset.json eruit (4685 vlakken &rarr; 10 tiles):</p>
+                    <ul>
+                        <li><b>root</b> heeft zelf geen <i>content</i>, alleen 10 <b>children</b>. Elke child is een tile met
+                            één .b3dm-bestand (<i>content.uri</i>) en geen eigen children.</li>
+                        <li><b>boundingVolume</b> is per tile een <i>region</i>: west, zuid, oost, noord (in radialen) plus
+                            minimale en maximale hoogte (in meters). Hiermee bepaalt de viewer of een tile in beeld is.</li>
+                        <li><b>geometricError</b> (in meters) vertelt hoeveel fout je ziet als je de tile <i>niet</i> laadt.
+                            Root 1000, tiles 250 of 125: steeds gedeeld door de <i>geometricerrorfactor</i> (2). Hoe dichterbij
+                            je komt, hoe kleiner de fout op het scherm mag zijn, dus hoe meer tiles er geladen worden.</li>
+                        <li><b>refine: ADD</b> betekent dat children worden <i>toegevoegd</i> aan wat al getoond wordt.
+                            Bij <i>REPLACE</i> zou een child de parent vervangen.</li>
+                        <li><b>Geen LOD:</b> pg2b3dm vereenvoudigt de geometrie niet. Elk vlak staat precies één keer in één
+                            tile, op volledig detail. De tiles verdelen de data alleen over het gebied. Echte niveaus van detail
+                            krijg je alleen als je zelf een LOD-kolom meegeeft (<i>-l</i>, met <i>-r REPLACE</i>).<sup>*</sup></li>
+                    </ul>
+                </div>
+                <p class="gn-footnote"><sup>*</sup> Meerdere detailniveaus (LOD) maken met pg2b3dm
+                    komt aan bod in een extra opdracht.</p>
             </section>
 
             <!-- 3D Tiles maken van DTB punten -->
@@ -356,23 +483,73 @@ WHERE omschr = 'Boom';
                     kunnen op elk punt een 3D-model (bijvoorbeeld van een boom) renderen. Dit doen we door
                     <code>i3dm.export</code> ook een GLB-bestand mee te geven.
                 </p>
+                <div>
+                <ol class="small-text">
+                    <li>Check of <code>i3dm.export</code> geïnstalleerd is met
+                        <code>i3dm.export --version</code>
+                    </li>
+                    <li>Gebruik <code>i3dm.export --help</code> om de opties van de tool te weergeven
+                        <p class="gn-note">i3dm.export leest punten uit een
+                            PostGIS-tabel of view en plaatst op elk punt een 3D-model (instancing). Uit de tabel gebruikt
+                            het de kolommen <i>model</i>, <i>rotation</i>, <i>scale</i> en <i>tags</i>. De opties vallen in groepen:<br>
+                            <b>Verbinding:</b> -c (connection string met host, gebruiker, wachtwoord, database en poort).<br>
+                            <b>Data:</b> -t (tabel of view), --geometrycolumn (standaard <i>geom</i>), -q (filter).<br>
+                            <b>Modellen:</b> --use_external_model (model als los bestand in plaats van ingebakken),
+                            --use_scale_non_uniform (aparte schaal per as).<br>
+                            <b>Tiling:</b> --max_features_per_tile (standaard 1000), -g (geometric error, standaard 1000),
+                            --boundingvolume_heights (min/max hoogte van de tiles, standaard 0,10 m), --use_clustering.<br>
+                            <b>Uitvoer:</b> -o (map), --use_i3dm (.i3dm in plaats van .cmpt), --use_gpu_instancing
+                            (.glb met EXT_mesh_gpu_instancing, 3D Tiles 1.1), --tileset_version.</p></li>
+                    <li>Plaats het bestand <a href="tree.glb">tree.glb</a> in de <code>./container</code> directory op je
+                        host machine.
+                        <img class="img-small" src="images/tree_model.png" alt="3D-model van een boom (tree.glb)">
+                        <div class="gn-note">Opties om een .glb-bestand te bekijken:
+                            <ul>
+                                <li>In de browser: sleep het bestand naar
+                                    <a href="https://gltf-viewer.donmccurdy.com/" target="_blank">glTF Viewer</a> of de
+                                    <a href="https://sandbox.babylonjs.com/" target="_blank">Babylon.js Sandbox</a>.</li>
+                                <li>In een (open source) applicatie zoals
+                                    <a href="https://www.blender.org/" target="_blank">Blender</a>
+                                    (<i>File</i> &rarr; <i>Import</i> &rarr; <i>glTF 2.0 (.glb/.gltf)</i>) of de lichte viewer
+                                    <a href="https://f3d.app/" target="_blank">F3D</a>.</li>
+                            </ul>
+                        </div></li>
+                    <li>Voer het volgende commando uit:</li>
+                </ol>
+                <pre><code class="language-bash wrap">i3dm.export -c "Host=postgis;Username=postgres;Password=postgres;Database=postgres;Port=5432" -t public.v_dtb_punt_andijk -o ./output/dtb_punten --use_i3dm true</code></pre>
+                <p class="gn-note">We verbinden met de database in de
+                    <i>postgis</i>-container (-c) en lezen de view <i>v_dtb_punt_andijk</i> (-t), die je op
+                    <a href="#/data-voorbereiden">sheet 14</a> hebt gemaakt. Die levert per boom
+                    de locatie (<i>geom</i>), het model (tree.glb), een rotatie, een schaal en de attributen (tags).<br>
+                    Het model (tree.glb) komt niet uit het commando, maar uit de view. De view is in de database
+                    opgeslagen als query. i3dm.export voert hem uit en krijgt per boom in de kolom <i>model</i>
+                    de tekst 'tree.glb'. Dat is alleen een bestandsnaam: het 3D-model zelf staat niet in de database.
+                    i3dm.export zoekt het bestand op in de map waar je het commando uitvoert (<i>/workspace</i> in de
+                    container, <i>./container</i> op je host). Staat het daar niet, dan stopt het met de fout
+                    <i>Could not find file '/workspace/tree.glb'</i>.<br>
+                    <i>--use_i3dm true</i> schrijft de tiles als .i3dm-bestanden in plaats van .cmpt. Het resultaat komt
+                    in ./output/dtb_punten (-o).</p>
+                </div>
+
+                <!-- Resultaat i3dm.export -->
+                <h4>Resultaat</h4>
                 <div class="container">
                     <div class="col left mr-3">
+                        <p class="small-text">Wat doet i3dm.export met de punten?</p>
                         <ol class="small-text">
-                            <li>Check of <code>i3dm.export</code> geïnstalleerd is met
-                                <code>i3dm.export --version</code>
-                            </li>
-                            <li>Gebruik <code>i3dm.export --help</code> om de opties van de tool te weergeven</li>
-                            <li>Plaats het bestand <a href="tree.glb">tree.glb</a> in de <code>./container</code> directory op je
-                                host machine.</li>
-                            <li>Voer het volgende commando uit:</li>
+                            <li>Leest de punten uit de view, met per punt het model, de rotatie, de schaal en de tags.</li>
+                            <li>Rekent de coördinaten om naar ECEF, het stelsel van 3D Tiles.</li>
+                            <li>Verdeelt het gebied in tiles met maximaal 1000 punten per tile (implicit tiling, quadtree).</li>
+                            <li>Schrijft elke tile als .i3dm-bestand in de map <i>content</i>: het model (tree.glb) één keer,
+                                plus per boom de positie, rotatie, schaal en attributen.</li>
+                            <li>Schrijft in de map <i>subtrees</i> welke tiles er bestaan, en in <i>tileset.json</i> het
+                                sjabloon voor de bestandsnamen (<i>content/{level}_{x}_{y}.i3dm</i>).</li>
                         </ol>
-                        <pre><code class="language-bash wrap">i3dm.export -c "Host=postgis;Username=postgres;Password=postgres;Database=postgres;Port=5432" -t public.v_dtb_punt_andijk -o ./output/dtb_punten --use_i3dm true</code></pre>
                     </div>
-                    <div class="col">
+                    <div class="col left">
                         <p class="small-text">Resultaat: een tileset.json bestand, een directory 'content' met de 3D
-                            tiles in i3dm formaat, en een subtree folder.</p>
-                        <img src="images/tree_model.png" alt="Tree Model">
+                            tiles in i3dm formaat en een directory 'subtrees'.</p>
+                        <img src="images/output_i3dm.png" alt="i3dm Tileset">
                     </div>
                 </div>
             </section>
@@ -387,15 +564,34 @@ WHERE omschr = 'Boom';
                             (in de Docker container):</p>
                         <pre><code class="language-bash wrap">3d-tiles-validator --tilesetFile ./output/dtb_vlakken/tileset.json</code></pre>
                         <pre><code class="language-bash wrap">3d-tiles-validator --tilesetFile ./output/dtb_punten/tileset.json</code></pre>
+                        <div class="gn-note"><b>Wat wordt er gevalideerd?</b> De validator controleert of de tileset
+                            voldoet aan de 3D Tiles-specificatie:
+                            <ul>
+                                <li><i>tileset.json</i>: zijn de verplichte onderdelen aanwezig en kloppen ze, zoals
+                                    bounding volumes en geometric error?</li>
+                                <li>De tiles: bestaan de bestanden waarnaar verwezen wordt, en zijn de .b3dm-, .i3dm- en
+                                    subtree-bestanden goed opgebouwd?</li>
+                                <li>De 3D-modellen in de tiles (glTF): voldoen die aan de glTF-specificatie?</li>
+                            </ul>
+                        </div>
+                        <p class="gn-note"><b>Hoe zie je het resultaat?</b> In de terminal verschijnt een rapport.
+                            Bovenaan staan <i>numErrors</i>, <i>numWarnings</i> en <i>numInfos</i>. Onder <i>issues</i>
+                            staat per melding het bestand (<i>path</i>), de uitleg (<i>message</i>) en de ernst
+                            (<i>severity</i>: ERROR, WARNING of INFO). Bij 0 errors is de tileset geldig. Met
+                            <i>--reportFile rapport.json</i> schrijf je het rapport naar een bestand.</p>
                     <p class="alert notice"><b>Tip:</b>Bij valideren van dtb_punten verschijnen 'info' meldingen. Reden is dat model 'tree.glb' niet helemaal
                         voldoet aan de glTF specificatie. Voor nu negeren we deze waarschuwing.</b></p>
+                    <p class="alert notice"><b>Klaar met deel 1?</b> Blijf in de workspace-container: op sheet 20 start
+                        je daar de webserver voor deel 2. Ben je er toch uit (je prompt begint met <i>PS</i> of
+                        <i>C:\</i>), ga dan terug met <code>docker exec -it workspace sh</code>. Stop de containers
+                        niet met <code>docker compose down</code>; dat doe je pas bij de cleanup op sheet 32.</p>
                      </p>
                     </div>
                 </div>
             </section>
 
             <!-- Deel 2: Datavisualisatie - Introductie -->
-            <section class="center">
+            <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
                 <h3>Deel 2: Datavisualisatie in 3D</h3>
                 <p>In dit deel gaan we:</p>
                 <ol>
@@ -450,9 +646,38 @@ WHERE omschr = 'Boom';
                             <li>PDOK BRT achtergrondkaart</li>
                             <li>3D Basisvoorziening - Digitaal Terreinmodel (DTM)</li>
                         </ul>
-                        <img src="images/cesium-viewer-open.png" alt="Cesium Viewer">
+                        <img src="images/cesium-viewer-dtb.png" alt="Cesium Viewer met DTB vlakken en bomen, met de attributen van een aangeklikte bomengroep">
                     </div>
                 </div>
+
+                <p class="small-text">Zo worden de lagen ingeladen in <i>cesium-viewer.html</i> (ingekort):</p>
+                <pre><code class="language-javascript wrap code-full">// 1. PDOK achtergrondkaart (grijs), als ondergrond van de viewer
+var viewer = new Cesium.Viewer('cesiumContainer', {
+  ...
+  baseLayer: new Cesium.ImageryLayer(new Cesium.UrlTemplateImageryProvider({
+    url: "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/grijs/EPSG:3857/{z}/{x}/{y}.png",
+    maximumLevel: 19,
+  }))
+});
+
+// 2. PDOK quantized mesh terreinmodel (3D Basisvoorziening DTM)
+var terrainProvider = await Cesium.CesiumTerrainProvider.fromUrl(
+  'https://api.pdok.nl/kadaster/3d-basisvoorziening/ogc/v1_0/collections/digitaalterreinmodel/quantized-mesh'
+);
+viewer.scene.terrainProvider = terrainProvider;
+
+// 3. DTB vlakken (gemaakt met pg2b3dm), 1 meter omhoog geschoven
+const tilesetDtbVlakken = await Cesium.Cesium3DTileset.fromUrl(
+  "./output/dtb_vlakken/tileset.json"
+);
+tilesetDtbVlakken.modelMatrix = Cesium.Matrix4.fromTranslation(new Cesium.Cartesian3(0, 0, 1));
+viewer.scene.primitives.add(tilesetDtbVlakken);
+
+// 4. DTB punten / bomen (gemaakt met i3dm.export)
+const tilesetPunten = await Cesium.Cesium3DTileset.fromUrl(
+  "./output/dtb_punten/tileset.json"
+);
+viewer.scene.primitives.add(tilesetPunten);</code></pre>
             </section>
 
             <!-- Tileset stijlen aanpassen -->
@@ -460,16 +685,22 @@ WHERE omschr = 'Boom';
                 <h3>Tileset stijlen aanpassen</h3>
                 <p>Styling kan worden toegepast op twee manieren:</p>
                 <ul>
-                    <li>Tijdens het genereren van de tileset</li>
-                    <li>Tijdens het visualiseren in de client</li>
+                    <li>Tijdens het genereren van de tileset
+                        <p class="gn-note">Bijvoorbeeld met pg2b3dm (<i>--default_color</i> of
+                            <i>--shaderscolumn</i>). De kleur wordt in de tiles opgeslagen; voor een andere kleur moet je
+                            de tileset opnieuw maken.</p></li>
+                    <li>Tijdens het visualiseren in de client
+                        <p class="gn-note">De viewer kleurt de objecten op basis van hun attributen, bijvoorbeeld met
+                            een <i>Cesium3DTileStyle</i>. De tiles blijven hetzelfde; je past alleen de code aan.</p></li>
                 </ul>
-                <p>Voeg de volgende code toe aan de tileset van de DTB vlakken voor het aanpassen van de style tijdens visualisatie:</p>
+                <p>Wij doen hier het tweede. Voeg de volgende code toe in <i>cesium-viewer.html</i> (in
+                    <code>./container</code>) om de DTB vlakken een kleur te geven op basis van hun omschrijving:</p>
                 <p class="alert notice"><b>Tip:</b> Voeg code toe onder regel '// todo: voeg hier code toe'</p>
 
                 <pre><code class="language-javascript">tilesetDtbVlakken.style = new Cesium.Cesium3DTileStyle({
   color: {
     conditions: [
-    ["${feature['osmchr']} === 'Bitumen'", "color('#430719')"],
+    ["${feature['omschr']} === 'Bitumen'", "color('#430719')"],
     ["${feature['omschr']} === 'Steen bekleding'", "color('#740320')"],
     ["${feature['omschr']} === 'Bomen en struiken'", "color('#008000')"],
     ["${feature['omschr']} === 'Industrieterrein'", "color('#FFFF00')"]
@@ -487,12 +718,25 @@ WHERE omschr = 'Boom';
                     <div class="col left mr-3">
                         <p>Kopieer het 3D model <a href= "windturbine.glb">windturbine.glb</a> naar de werkdirectory.</p>
                         <p>Voeg de volgende code toe aan <code>cesium-viewer.html</code></p>
-                        <pre><code class="language-javascript">const windturbine = viewer.entities.add({ 
+                        <pre><code class="language-javascript wrap">const windturbine = viewer.entities.add({
   position: Cesium.Cartesian3.fromDegrees(5.193486,52.754867), 
   model: { 
-    uri: "windturbine.glb"         
-  }, 
+    uri: "windturbine.glb"
+  },
 });</code></pre>
+                        <div class="gn-note"><b>Wat doen we hier?</b> De windturbine is geen 3D Tiles, maar één los
+                            glTF-model (.glb) dat Cesium in zijn geheel inlaadt en op één punt neerzet (een <i>entity</i>).
+                            Voor één object is dat prima; 3D Tiles is bedoeld voor grote datasets die in tiles worden
+                            verdeeld en alleen geladen worden wanneer ze in beeld zijn.<br>
+                            Ook de andere lagen zijn niet allemaal 3D Tiles. In de Cesium viewer combineren we
+                            verschillende soorten data:
+                            <ul>
+                                <li>PDOK achtergrondkaart: 2D kaarttegels (WMTS), over het terrein gelegd</li>
+                                <li>PDOK terreinmodel: hoogtedata als <i>quantized mesh</i></li>
+                                <li>DTB vlakken en bomen: <b>3D Tiles</b> (onze eigen tilesets)</li>
+                                <li>Windturbine: een los glTF-model</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col">
                         <img src="images/windturbine.png" alt="Windturbine">
@@ -513,43 +757,9 @@ viewer.scene.primitives.add(tileset3DGebouwen);</code></pre>
 
             <p class="alert notice"><b>Tip:</b> Voor 3D LoD2.2 gebouwen gebruik https://data.3dbag.nl/v20250903/cesium3dtiles/lod22/tileset.json</p>
 
-            </section>
+                <img src="images/cesium-viewer-open.png" alt="Cesium Viewer met de 3D Basisvoorziening gebouwen, DTB vlakken en bomen">
 
-            <!-- Optionele opdracht: maak 3D Tiles van panden in Andijk -->
-            <section class="center">
-                <h3>Optionele opdracht: maak 3D Tiles van panden in Andijk</h3>
-                <p>Gebruik <a href="https://3dbag.nl/en/download">BAG data (.gpkg)</a> om 3D Tiles te maken van de panden in Andijk.</p>
-                
-                <p>Stappen:</p>
-                <ol>
-                    <li>Download de BAG data van Andijk</li>
-                    <li>Importeer de data in Postgres</li>
-                    <li>Maak 3D Tiles van de panden</li>
-                    <li>Voeg de tileset toe aan de Cesium Viewer</li>
-                </ol>
             </section>
-
-            <!-- Optionele opdracht 2: voeg IFC model toe -->
-            <section class="center">
-                <h3>Optionele opdracht: Voeg IFC model toe</h3>
-                <p class="left m-0">IFC model (download raw): <a href = "https://github.com/Geonovum/temp_geobim/blob/main/data/Kievitsweg_R25_ILS%20Spaces%2020250815_LoGeoRef.ifc">https://github.com/Geonovum/temp_geobim/blob/main/data/Kievitsweg_R25_ILS%20Spaces%2020250815_LoGeoRef.ifc</a></p>
-                <p class="left m-0">Exporteer naar GLB in : <a href = "https://3dviewer.net/">https://3dviewer.net/</a></p>
-                <p class="left m-0">Plaats GLB in container</p>
-                <p class="left m-0">Voeg toe aan Cesium Viewer (zoek een handige lokatie):</p>
-                <pre><code class="language-javascript">
-                viewer.entities.add({ 
-                    position: Cesium.Cartesian3.fromDegrees(5.194139,52.753524), 
-                    model: { 
-                    uri: "model.glb",
-                        heightReference: Cesium.HeightReference.CLAMP_TO_GROUND         
-                    }, 
-                });
-                </code></pre>
-                <p class="alert notice"><b>Tip:</b> Gebruik HeightReference.CLAMP_TO_GROUND om het model op het terrein te plaatsen.</p>
-                <p class="alert notice"><b>Tip:</b> Element 'IfcSite' in de IFC file kan worden gebruikt om de locatie van het model te definiëren.</p>
-                <p class="alert notice"><b>Vraag:</b> Wat zijn de beperkingen van deze aanpak?</p>
-            </section>
-
 
             <!-- QGIS 3D Tiles -->
             <section>
@@ -595,6 +805,162 @@ viewer.scene.primitives.add(tileset3DGebouwen);</code></pre>
 
 
 
+            <!-- Optionele opdracht 1: maak 3D Tiles van panden in Andijk -->
+            <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
+                <h3>Optionele opdracht 1: Maak 3D Tiles van panden in Andijk</h3>
+                <p>Gebruik <a href="https://3dbag.nl/en/download">BAG data (.gpkg)</a> om 3D Tiles te maken van de panden in Andijk.</p>
+                
+                <p>Stappen:</p>
+                <ol>
+                    <li>Download de BAG data van Andijk</li>
+                    <li>Importeer de data in Postgres</li>
+                    <li>Maak 3D Tiles van de panden</li>
+                    <li>Voeg de tileset toe aan de Cesium Viewer</li>
+                </ol>
+            </section>
+
+            <!-- Optionele opdracht 2: voeg IFC model toe -->
+            <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
+                <h3>Optionele opdracht 2: Voeg IFC model toe</h3>
+                <p class="left m-0">IFC model (download raw): <a href = "https://github.com/Geonovum/temp_geobim/blob/main/data/Kievitsweg_R25_ILS%20Spaces%2020250815_LoGeoRef.ifc">https://github.com/Geonovum/temp_geobim/blob/main/data/Kievitsweg_R25_ILS%20Spaces%2020250815_LoGeoRef.ifc</a></p>
+                <p class="left m-0">Plaats de IFC in <code>./container</code> en exporteer naar GLB met
+                    <a href="https://docs.ifcopenshell.org/introduction.html">IfcOpenShell</a> in de <i>ifc</i>-container:</p>
+                <pre><code class="language-bash">docker exec -it ifc sh
+ifc_naar_glb.py Kievitsweg.ifc -o model.glb</code></pre>
+                <p class="gn-note left">Het script laat ruimtes (IfcSpace) en sparingen weg en schrijft
+                    <i>model.glb</i> naar <code>/workspace</code> (<code>./container</code> op je host). Is de IFC
+                    gegeorefereerd (IfcMapConversion), dan print het ook de Cesium-code met de juiste locatie en hoogte.</p>
+                <p class="left m-0">Voeg toe aan Cesium Viewer (zoek een handige lokatie):</p>
+                <pre><code class="language-javascript">
+                viewer.entities.add({ 
+                    position: Cesium.Cartesian3.fromDegrees(5.194139,52.753524), 
+                    model: { 
+                    uri: "model.glb",
+                        heightReference: Cesium.HeightReference.CLAMP_TO_GROUND         
+                    }, 
+                });
+                </code></pre>
+                <p class="alert notice"><b>Tip:</b> Gebruik HeightReference.CLAMP_TO_GROUND om het model op het terrein te plaatsen.</p>
+                <p class="alert notice"><b>Tip:</b> Element 'IfcSite' in de IFC file kan worden gebruikt om de locatie van het model te definiëren.</p>
+                <p class="alert notice"><b>Vraag:</b> Wat zijn de beperkingen van deze aanpak?</p>
+            </section>
+
+            <!-- Optionele opdracht 3: IFC naar 3D Tiles met LOD's -->
+            <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
+                <h3>Optionele opdracht 3: IFC naar 3D Tiles met detailniveaus (LOD)</h3>
+                <p class="left">Zet het BIM-model van een parkeergarage (P+R Kralingse Zoom, Rotterdam) om naar 3D Tiles
+                    met drie detailniveaus. Ver weg zie je een blok, dichterbij de verdiepingen, dichtbij het volledige
+                    IFC-model.</p>
+                <ol class="left small-text">
+                    <li>Kopieer het architectuurmodel <i>PKZ_HPP_TO_MOD_COM_ARC_A_02.ifc</i> (uit
+                        <i>data_bronnen/Parkeergarage</i>) naar <code>./container</code>.</li>
+                    <li>Maak de LOD's in de <i>ifc</i>-container (duurt ongeveer 1 minuut):
+                        <pre><code class="language-bash wrap">docker exec -it ifc sh
+ifc_naar_lod.py PKZ_HPP_TO_MOD_COM_ARC_A_02.ifc --zonder IfcMember</code></pre>
+                        <div class="gn-note">Het script leest de IFC met IfcOpenShell, rekent de coördinaten om van
+                            RD + NAP naar WGS84 en schrijft de tabel <i>public.parkeergarage_lod</i> met een kolom
+                            <i>lod</i>:
+                            <ul>
+                                <li><b>lod 0</b>: één blok voor het hele gebouw (LOD1)</li>
+                                <li><b>lod 1</b>: per verdieping een blok met de footprint van die verdieping</li>
+                                <li><b>lod 2</b>: alle bouwelementen uit de IFC (volledig detail)</li>
+                            </ul>
+                            <i>--zonder IfcMember</i> laat de 59.000 ronde gevelstaven weg (6 miljoen driehoeken): de
+                            tileset wordt dan ongeveer 90 MB in plaats van 640 MB.</div></li>
+                    <li>Maak de 3D Tiles in de <i>workspace</i>-container:
+                        <pre><code class="language-bash wrap">pg2b3dm -h postgis -U postgres -d postgres -t public.parkeergarage_lod -c geom -l lod -r REPLACE -a model,ifc_klasse,naam,verdieping --use_implicit_tiling false -g 80 -o ./output/parkeergarage</code></pre>
+                        <p class="gn-note"><i>-l lod</i> gebruikt de LOD-kolom: lod 0 komt in de bovenste tile, lod 1
+                            daaronder en lod 2 in de tiles daar weer onder. <i>-r REPLACE</i>: een fijner niveau
+                            <i>vervangt</i> het grovere. <i>-g 80</i> bepaalt de geometric error en daarmee wanneer de
+                            viewer wisselt: bij een scherm van 1000 pixels hoog op ongeveer 1 km (blok &rarr;
+                            verdiepingen) en 500 m (verdiepingen &rarr; detail).</p></li>
+                    <li>Voeg de tileset toe aan <i>cesium-viewer.html</i>. Met de kleuren zie je welk niveau getoond wordt:
+                        <pre><code class="language-javascript code-full">const tilesetParkeergarage = await Cesium.Cesium3DTileset.fromUrl(
+  "./output/parkeergarage/tileset.json"
+);
+viewer.scene.primitives.add(tilesetParkeergarage);
+tilesetParkeergarage.style = new Cesium.Cesium3DTileStyle({
+  color: {
+    conditions: [
+      ["${feature['ifc_klasse']} === 'Gebouw'", "color('#E8A33D')"],
+      ["${feature['ifc_klasse']} === 'Verdieping'", "color('#3D8BE8')"],
+      ["true", "color('#FFFFFF')"]
+    ]
+  }
+});</code></pre>
+                        <p class="gn-note">De parkeergarage staat in Rotterdam. Vervang onderaan de regel
+                            <code>viewer.zoomTo(tilesetDtbVlakken, ...)</code> door
+                            <code>viewer.zoomTo(tilesetParkeergarage);</code> zodat de viewer erheen vliegt.</p></li>
+                </ol>
+                <p class="alert notice"><b>Vraag:</b> Zoom langzaam in en uit. Bij welke afstand wisselt het
+                    detailniveau? Wat gebeurt er met <i>-g 40</i> of <i>-g 200</i>?</p>
+                <p class="alert notice"><b>Verder:</b> de
+                    <a href="https://github.com/tudelft3d/IFC_BuildingEnvExtractor">IFC_BuildingEnvExtractor</a> van
+                    de TU Delft haalt de buitenschil uit een IFC in meerdere LOD's (LoD0 t/m LoD3, als CityJSON).</p>
+            </section>
+
+            <!-- Optionele opdracht 3 (vervolg): meer modellen in dezelfde tileset -->
+            <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
+                <h3>Optionele opdracht 3 (vervolg): alle modellen in één 3D-omgeving</h3>
+                <p class="left">De parkeergarage bestaat uit meerdere IFC-modellen, één per discipline. Ze hebben
+                    dezelfde georeferentie, dus in Cesium vallen ze precies over elkaar. Met <i>--toevoegen</i> zet je
+                    ze in dezelfde tabel als het architectuurmodel. <i>--alleen-detail</i> maakt geen blokken: deze
+                    modellen komen alleen in lod 2 en verschijnen dus pas als je dichtbij bent.</p>
+                <ul class="left small-text">
+                    <li><i>PKZ_PHM_..._CON_A_01.ifc</i>: constructie van de bestaande garage (ingemeten)</li>
+                    <li><i>PKZ_IMD_..._CON_A_02.ifc</i>: nieuwe constructie van de optopping, inclusief palen</li>
+                    <li><i>PKZ_OVA_..._INS_A_02.ifc</i>: installaties (leidingen, sprinklers, verlichting)</li>
+                </ul>
+
+                <p class="left"><b>3a. Bestaand en nieuw.</b> Kopieer de twee constructiemodellen naar
+                    <code>./container</code> en voeg ze toe in de <i>ifc</i>-container:</p>
+                <pre><code class="language-bash wrap">ifc_naar_lod.py PKZ_PHM_TO_MOD_COM_CON_A_01.ifc --model Bestaand --toevoegen --alleen-detail
+ifc_naar_lod.py PKZ_IMD_TO_MOD_COM_CON_A_02.ifc --model Constructie --toevoegen --alleen-detail</code></pre>
+                <p class="gn-note left">Draai daarna het pg2b3dm-commando van de vorige slide opnieuw (in de
+                    <i>workspace</i>-container). De kolom <i>model</i> gaat mee als attribuut. Toon in Cesium alleen
+                    de constructie:</p>
+                <pre><code class="language-javascript code-full">tilesetParkeergarage.style = new Cesium.Cesium3DTileStyle({
+  show: "${feature['model']} === 'Bestaand' || ${feature['model']} === 'Constructie'",
+  color: {
+    conditions: [
+      ["${feature['model']} === 'Bestaand'", "color('#9E9E9E')"],
+      ["true", "color('#E8A33D')"]
+    ]
+  }
+});</code></pre>
+                <p class="alert notice"><b>Vraag:</b> Welke verdiepingen zijn nieuw? En waarom loopt de nieuwe
+                    constructie tot ver onder het maaiveld?</p>
+
+                <p class="left"><b>3b. In het gebouw kijken.</b> Voeg de leidingen uit het installatiemodel toe:</p>
+                <pre><code class="language-bash">ifc_naar_lod.py PKZ_OVA_TO_MOD_COM_INS_A_02.ifc --model Installaties \
+    --alleen IfcPipeSegment --toevoegen --alleen-detail</code></pre>
+                <p class="gn-note left">Het hele installatiemodel is 8,4 miljoen driehoeken (vooral armaturen,
+                    sprinklerkoppen en koppelstukken). Met <i>--alleen IfcPipeSegment</i> neem je alleen de leidingen
+                    mee (0,6 miljoen). Maak na pg2b3dm de architectuur doorzichtig, zodat je de leidingen en de
+                    constructie erdoorheen ziet:</p>
+                <pre><code class="language-javascript code-full">tilesetParkeergarage.style = new Cesium.Cesium3DTileStyle({
+  color: {
+    conditions: [
+      ["${feature['model']} === 'Architectuur'", "color('#FFFFFF', 0.25)"],
+      ["${feature['model']} === 'Bestaand'", "color('#9E9E9E')"],
+      ["${feature['model']} === 'Constructie'", "color('#E8A33D')"],
+      ["${feature['model']} === 'Installaties'", "color('#3D8BE8')"]
+    ]
+  }
+});</code></pre>
+
+                <p class="left"><b>3c. Eén tileset of meerdere?</b> Maak het installatiemodel ook eens als eigen
+                    tileset (<i>--tabel public.installaties</i>, zonder <i>--toevoegen</i>, eigen map bij
+                    <i>-o</i>) en zet hem aan en uit met <code>tilesetInstallaties.show = false</code>.</p>
+                <p class="alert notice"><b>Vraag:</b> Wat zijn de voor- en nadelen van alle modellen in één tileset
+                    ten opzichte van een tileset per discipline? Denk aan laden, filteren en bijwerken als één model
+                    verandert.</p>
+                <p class="alert notice"><b>Let op:</b> met architectuur, beide constructies en de leidingen samen
+                    wordt de tileset ongeveer 380 MB. Draai je <i>ifc_naar_lod.py</i> voor het architectuurmodel
+                    opnieuw (zonder <i>--toevoegen</i>), dan begint de tabel weer leeg.</p>
+            </section>
+
+
             <!-- Cleanup na de workshop -->
             <section>
                 <h3>Cleanup na de workshop</h3>
@@ -638,6 +1004,12 @@ viewer.scene.primitives.add(tileset3DGebouwen);</code></pre>
                 </ul>
             </section>
         </div>
+        <div class="gn-footer" aria-hidden="true">
+            <img src="images/geonovum/geonovum-logo.svg" alt="">
+            <span class="gn-footer__sep"></span>
+            <span>3D Tiles Workshop &middot; 12 november 2026</span>
+            <span class="gn-footer__url">geonovum.nl</span>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
@@ -652,12 +1024,31 @@ viewer.scene.primitives.add(tileset3DGebouwen);</code></pre>
             slideNumber: 'c/t',
             copycode: {
                 style: {
-                    copybg: "#347CAE",
+                    copybg: "#207AB3",
                     scale: 0.6,
                 },
             },
             plugins: [RevealMarkdown, RevealHighlight, RevealNotes, CopyCode]
         });
+
+        // Zet de scrollbalk van een slide recht boven de navigatiepijltjes (< >).
+        // De slides worden geschaald, dus de afstand wordt bij elke resize opnieuw berekend.
+        function positionScrollbar() {
+            const slides = document.querySelector('.reveal .slides');
+            const controls = document.querySelector('.reveal .controls');
+            if (!slides || !controls) return;
+            const slidesRect = slides.getBoundingClientRect();
+            const controlsRect = controls.getBoundingClientRect();
+            const scale = Reveal.getScale() || 1;
+            const scrollbarWidth = 10; // ongeveer de breedte van een 'thin' scrollbalk
+            const controlsShift = 30;  // pijltjes staan 30px naar links (zie .reveal .controls in huisstijl.css)
+            const targetRight = controlsRect.left + controlsRect.width / 2 + controlsShift + scrollbarWidth / 2;
+            const extra = Math.max(0, (targetRight - slidesRect.right) / scale);
+            document.querySelector('.reveal').style.setProperty('--scroll-extra', extra + 'px');
+        }
+        Reveal.on('ready', positionScrollbar);
+        Reveal.on('resize', positionScrollbar);
+        if (Reveal.isReady()) positionScrollbar();
     </script>
 </body>
 

@@ -1,30 +1,176 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+/* =====================================================================
+   Geonovum huisstijl voor reveal.js
+   Kleuren, lettertypes en accenten overgenomen van www.geonovum.nl
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap');
 
 :root {
-    /* Huisstijlkleuren */
-    --green: #97C00E;
-    --gray: #64686B;
-    --blue: #0085C6;
+    /* Geonovum kleuren (logo en website) */
+    --gn-green: #8DB63F;
+    --gn-green-dark: #70902F;
+    --gn-blue: #207AB3;
+    --gn-blue-dark: #19618F;
+    --gn-gray: #5E5E5E;
+    --gn-gray-logo: #5D5E5C;
 
-    /* Licht / donker */
+    /* Neutraal */
     --white: #FFFFFF;
-    --dark: #3C3C3C;
-    --light-gray: #F2F2F2;
+    --text: #4C4C4C;
+    --text-strong: #212121;
+    --text-muted: #747474;
+    --surface: #F7F7F7;
+    --surface-footer: #F4F4F4;
+    --border: #ECECEC;
+    --code-bg: #272822;
 
     /* Toepassingen */
-    --headings: #64686B;
-    --body-text: #64686B;
-    --chart-blue: #0085C6;
-    --backgroundsurface-blue: #0085C6;
-    --backgroundsurface-green: #97C00E;
-    --chart-green: #97C00E;
-    --chart-gray: #64686B;
-    --link: #3C7AE6;
-    --visited-link: #405D95;
-    --body-text2: #97C00E;
+    --headings: var(--gn-gray);
+    --body-text: var(--text);
+    --link: var(--gn-blue);
+    --link-hover: var(--gn-green);
 
-    /* Fonts */
-    --font-main: 'Montserrat', sans-serif;
+    /* Lettertypes: koppen Montserrat, tekst Open Sans (zoals geonovum.nl) */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-main: 'Open Sans', sans-serif;
+    --font-code: 'Consolas', 'Courier New', monospace;
+
+    /* Hoogte van de footerbalk */
+    --gn-footer-h: 44px;
+
+    /* Oude namen, voor bestaande verwijzingen */
+    --green: var(--gn-green);
+    --blue: var(--gn-blue);
+    --gray: var(--gn-gray);
+    --dark: var(--text-strong);
+    --light-gray: var(--surface);
+}
+
+
+/* =========================
+   ACHTERGROND / REVEAL BASIS
+   ========================= */
+
+html,
+body,
+.reveal-viewport {
+    background: var(--white);
+}
+
+.reveal {
+    font-family: var(--font-main);
+    color: var(--body-text);
+    background: var(--white);
+}
+
+/* Dunne balk boven in beeld in de logokleuren: grijs, blauw, groen */
+.reveal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    z-index: 20;
+    background: linear-gradient(90deg,
+            var(--gn-gray-logo) 0 33.33%,
+            var(--gn-blue) 33.33% 66.66%,
+            var(--gn-green) 66.66% 100%);
+}
+
+.reveal .slides {
+    text-align: left;
+}
+
+.reveal .slides > section {
+    padding-top: 28px;
+    padding-bottom: 50px;
+}
+
+
+/* =========================
+   FOOTERBALK MET LOGO
+   ========================= */
+
+.gn-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--gn-footer-h);
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    background: var(--surface-footer);
+    border-top: 1px solid rgba(94, 94, 94, .15);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gn-gray);
+    pointer-events: none;
+}
+
+.reveal .gn-footer img {
+    height: 28px;
+    width: auto;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.gn-footer .gn-footer__sep {
+    width: 1px;
+    height: 20px;
+    background: rgba(94, 94, 94, .3);
+}
+
+.gn-footer .gn-footer__url {
+    margin-left: auto;
+    margin-right: 90px;
+    color: var(--gn-blue);
+}
+
+/* Paginanummer rechts in de footerbalk */
+.reveal .slide-number {
+    position: absolute;
+    right: 24px;
+    bottom: 0;
+    top: auto;
+    left: auto;
+    width: auto;
+    height: var(--gn-footer-h);
+    line-height: var(--gn-footer-h);
+    z-index: 16;
+    padding: 0;
+    background: none;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gn-gray);
+}
+
+.reveal .slide-number a {
+    color: inherit;
+    border: 0;
+}
+
+/* Navigatiepijltjes (< >) in Geonovum-blauw, boven de footerbalk.
+   'right' moet gelijk blijven aan 'controlsShift' in het script onderaan index.html (+ standaard 12px). */
+.reveal .controls {
+    color: var(--gn-blue);
+    right: 42px;
+    bottom: calc(var(--gn-footer-h) + 10px);
+}
+
+/* Voortgangsbalk in groen, net boven de footer */
+.reveal .progress {
+    bottom: var(--gn-footer-h);
+    height: 3px;
+    color: var(--gn-green);
+    background: transparent;
+    z-index: 16;
 }
 
 
@@ -34,10 +180,12 @@
 
 .container {
     display: flex;
+    gap: 1.5rem;
 }
 
 .col {
     flex: 1;
+    min-width: 0;
 }
 
 .flex {
@@ -62,27 +210,132 @@ body {
     font-family: var(--font-main);
 }
 
-p {
+.reveal p {
     font-size: 18px;
+    line-height: 1.55;
     color: var(--body-text);
 }
 
-ol,
-ul,
-li {
+.reveal ol,
+.reveal ul,
+.reveal li {
     font-size: 20px;
+    line-height: 1.5;
     color: var(--body-text);
 }
 
-/* Kopteksten */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* Lijsten: nummers en bolletjes binnen de dia houden (anders vallen ze links buiten beeld) */
+.reveal ol,
+.reveal ul {
+    margin: 0 0 0.6em 0;
+    padding-left: 1.8em;
+}
+
+.reveal ol ol,
+.reveal ol ul,
+.reveal ul ul,
+.reveal ul ol {
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+/* Kleine, ingesprongen toelichting onder een stap of commando */
+.reveal .gn-note {
+    font-size: 12px;
+    line-height: 1.55;
+    margin: 0 0 0.6em 1.5em;
+    color: var(--text);
+}
+
+/* Voetnoot onderaan een dia */
+.reveal .gn-footnote {
+    font-size: 12px;
+    margin: 0.5em 0 0 0;
+    color: var(--text-muted);
+}
+
+.reveal ul > li::marker {
+    color: var(--gn-green);
+}
+
+.reveal ol > li::marker {
+    color: var(--gn-blue);
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+.reveal b,
+.reveal strong {
+    color: var(--text-strong);
+    font-weight: 600;
+}
+
+.reveal .small-text,
+.reveal .small-text li {
+    font-size: 16px;
+}
+
+/* Lijstje binnen een toelichting: even klein als de toelichting zelf */
+.reveal .gn-note ul {
+    margin: 0.2em 0 0 1.2em;
+}
+
+.reveal .gn-note li {
+    font-size: 12px;
+}
+
+
+/* =========================
+   KOPTEKSTEN
+   ========================= */
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
     color: var(--headings);
-    font-family: var(--font-main);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
+    text-shadow: none;
+    line-height: 1.15;
+}
+
+.reveal h1 { font-size: 60px; }
+.reveal h2 { font-size: 40px; }
+.reveal h4 { font-size: 24px; color: var(--gn-blue); margin-top: 1em; }
+.reveal h5 { font-size: 22px; color: var(--gn-blue); }
+
+/* Dia-titel: links uitgelijnd met het groene streepje van geonovum.nl */
+.reveal h3 {
+    position: relative;
+    font-size: 34px;
+    text-align: left;
+    padding-bottom: 14px;
+    margin: 0 0 24px 0;
+}
+
+.reveal h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 96px;
+    height: 5px;
+    background: var(--gn-green);
+}
+
+/* Gecentreerde dia's: titel en streepje in het midden */
+.reveal section.center > h3 {
+    text-align: center;
+}
+
+.reveal section.center > h3::after {
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 
@@ -90,12 +343,25 @@ h6 {
    LINKS
    ========================= */
 
-a {
+.reveal a {
     color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(32, 122, 179, .35);
+    transition: color .2s, border-color .2s;
 }
 
-a:visited {
-    color: var(--visited-link);
+.reveal a:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+}
+
+.reveal a:visited {
+    color: var(--gn-blue-dark);
+}
+
+.reveal .controls button,
+.reveal .controls a {
+    border: 0;
 }
 
 
@@ -103,11 +369,20 @@ a:visited {
    AFBEELDINGEN
    ========================= */
 
-img {
-    border-radius: 10px;
+.reveal img {
+    border-radius: 0;
+    border: 1px solid var(--border);
+    max-width: 100%;
+    height: auto;
 }
 
-img.speaker {
+.reveal img.img-small {
+    display: block;
+    width: 120px;
+    margin: 0.3em 0;
+}
+
+.reveal img.speaker {
     width: 300px;
     height: 300px;
     border-radius: 50%;
@@ -141,16 +416,32 @@ img.speaker {
 
 
 /* =========================
-   NOTICE / ALERT
+   NOTICE / ALERT (Good to know, Tip, Vraag)
    ========================= */
 
-.alert.notice {
-    background-color: #EAF3CC;
-    border-left: 6px solid var(--green);
-    padding: 10px;
-    margin: 10px 0;
+.reveal .alert.notice {
+    background-color: var(--surface);
+    border-left: 4px solid var(--gn-green);
+    padding: 10px 14px;
+    margin: 12px 0;
     text-align: left;
-    color: var(--dark);
+    color: var(--text);
+    font-size: 16px;
+}
+
+.reveal .alert.notice p,
+.reveal .alert.notice li {
+    font-size: 16px;
+    color: var(--text);
+}
+
+.reveal .alert.notice ul {
+    margin: 4px 0 0 1.2em;
+}
+
+.reveal .alert.notice b:first-child {
+    color: var(--gn-blue);
+    font-family: var(--font-heading);
 }
 
 
@@ -158,20 +449,37 @@ img.speaker {
    CODE
    ========================= */
 
-code:not(pre code) {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: var(--dark);
-    color: var(--white);
-    border-radius: 5px;
+/* Inline code: lichtblauw label in plaats van een zwart blokje */
+.reveal code:not(pre code) {
+    font-family: var(--font-code);
+    background-color: #EAF2F8;
+    color: var(--gn-blue-dark);
+    border-radius: 3px;
     display: inline-block;
-    padding: 3px 5px;
-    font-size: 80%;
+    padding: 1px 5px;
+    font-size: 85%;
+}
+
+.reveal pre {
+    width: 100%;
+    box-shadow: none;
+    border-left: 4px solid var(--gn-blue);
+    font-size: 0.5em;
+}
+
+.reveal pre code {
+    font-family: var(--font-code);
+    background: var(--code-bg);
+    max-height: 420px;
+}
+
+/* Langer codeblok dat helemaal zichtbaar moet zijn (de slide zelf scrollt) */
+.reveal pre code.code-full {
+    max-height: none;
 }
 
 pre.code-wrapper {
     font-size: 1rem;
-    background-color: var(--dark);
-    color: var(--white);
 }
 
 .reveal .code-wrapper code.no-whitespace {
@@ -185,22 +493,155 @@ pre.code-wrapper {
 
 .wrap {
     text-wrap: wrap !important;
+    white-space: pre-wrap !important;
 }
 
 
 /* =========================
-   REVEAL.JS
+   TITELDIA
    ========================= */
 
-.reveal {
-    background-color: var(--white);
-    color: var(--body-text);
+.reveal .slides > section.gn-title {
+    padding-top: 10px;
+    padding-bottom: 0;
 }
 
-.reveal .slide-number {
-    font-size: 20px;
+.reveal .gn-title__logo {
+    display: block;
+    height: 64px;
+    width: auto;
+    border: 0;
+    margin: 10px 0 0 0;
+}
+
+.gn-title__grid {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 50px;
+}
+
+.gn-title__text {
+    flex: 1.1;
+}
+
+.gn-title__visual {
+    flex: 1;
+    text-align: right;
+}
+
+.reveal .gn-title__visual img {
+    border: 0;
     width: 100%;
-    text-align: center;
-    background: none;
-    color: var(--gray);
+    max-width: 460px;
+}
+
+.reveal .gn-kicker {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 14px 0;
+}
+
+.reveal .gn-title h1 {
+    position: relative;
+    font-size: 66px;
+    color: var(--gn-gray);
+    margin: 0 0 0.35em 0;
+    padding-bottom: 0.3em;
+}
+
+.reveal .gn-title h1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 140px;
+    height: 7px;
+    background: var(--gn-green);
+}
+
+.reveal .gn-subtitle {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--gn-blue);
+    margin: 0 0 28px 0;
+}
+
+.reveal .gn-tagline {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gn-green);
+    margin: 0;
+}
+
+/* Op de titeldia geen footerbalk */
+.gn-state-title .gn-footer {
+    display: none;
+}
+
+
+/* =========================
+   TUSSENDIA'S (Deel 1, Deel 2, ...) op Geonovum-blauw
+   ========================= */
+
+.reveal section.gn-divider,
+.reveal section.gn-divider p,
+.reveal section.gn-divider li,
+.reveal section.gn-divider b,
+.reveal section.gn-divider .gn-note,
+.reveal section.gn-divider h3 {
+    color: var(--white);
+}
+
+.reveal section.gn-divider li::marker {
+    color: var(--gn-green);
+}
+
+.reveal section.gn-divider .alert.notice {
+    background: rgba(255, 255, 255, .12);
+    border-left-color: var(--gn-green);
+}
+
+.reveal section.gn-divider .alert.notice,
+.reveal section.gn-divider .alert.notice b:first-child {
+    color: var(--white);
+}
+
+.reveal section.gn-divider a {
+    color: var(--white);
+    border-bottom-color: rgba(255, 255, 255, .5);
+}
+
+.reveal section.gn-divider code:not(pre code) {
+    background: rgba(255, 255, 255, .18);
+    color: var(--white);
+}
+
+.gn-state-divider .reveal .controls {
+    color: var(--white);
+}
+
+
+/* =========================
+   SCROLLEN BINNEN EEN DIA
+   ========================= */
+
+/* Scrollen binnen een slide als de inhoud niet op één pagina past
+   (niet bij PDF-export, dan moet alles gewoon doorlopen) */
+html:not(.print-pdf) .reveal .slides > section {
+    height: 100%;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    /* scrollbalk boven de navigatiepijltjes (--scroll-extra wordt in index.html berekend) */
+    width: calc(100% + var(--scroll-extra, 120px));
+    padding-right: var(--scroll-extra, 120px);
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gn-blue) transparent;
 }
