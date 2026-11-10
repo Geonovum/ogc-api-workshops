@@ -36,8 +36,33 @@
                 </div>
             </section>
 
+            <!-- Keuze tutorial -->
+            <section class="center" id="kies-tutorial">
+                <h3>Welke tutorial wil je doen?</h3>
+                <div class="gn-choice">
+                    <a class="gn-choice__card" href="#/tutorial-1-0">
+                        <h4>3D Tiles 1.0</h4>
+                        <p>Casus Proefpolderdijk bij Andijk</p>
+                        <ul>
+                            <li>DTB (Rijkswaterstaat) via PostGIS</li>
+                            <li>pg2b3dm en i3dm.export</li>
+                            <li>.b3dm en .i3dm, Batch Table</li>
+                        </ul>
+                    </a>
+                    <a class="gn-choice__card gn-choice__card--green" href="#/tutorial-1-1">
+                        <h4>3D Tiles 1.1</h4>
+                        <p>Casus 3DBAG-panden in Andijk</p>
+                        <ul>
+                            <li>3DBAG (CityJSON), geen database nodig</li>
+                            <li>tyler (3DGI)</li>
+                            <li>.glb, metadata met schema, implicit tiling</li>
+                        </ul>
+                    </a>
+                </div>
+            </section>
+
             <!-- Introductie slide -->
-            <section class="center">
+            <section class="center" id="tutorial-1-0">
                 <h3>3D Tiles 1.0</h3>
                 <div class="container">
                     <div class="col flex flex-center flex-col">
@@ -91,6 +116,7 @@
                             <li>3D Tiles in QGIS inladen</li>
                         </ul>
                     </li>
+                    <li>Deel 3: 3D Tiles 1.1 met tyler (3DBAG)</li>
                 </ol>
             </section>
 
@@ -519,7 +545,7 @@ WHERE omschr = 'Boom';
                 <pre><code class="language-bash wrap">i3dm.export -c "Host=postgis;Username=postgres;Password=postgres;Database=postgres;Port=5432" -t public.v_dtb_punt_andijk -o ./output/dtb_punten --use_i3dm true</code></pre>
                 <p class="gn-note">We verbinden met de database in de
                     <i>postgis</i>-container (-c) en lezen de view <i>v_dtb_punt_andijk</i> (-t), die je op
-                    <a href="#/data-voorbereiden">sheet 14</a> hebt gemaakt. Die levert per boom
+                    <a href="#/data-voorbereiden">sheet 15</a> hebt gemaakt. Die levert per boom
                     de locatie (<i>geom</i>), het model (tree.glb), een rotatie, een schaal en de attributen (tags).<br>
                     Het model (tree.glb) komt niet uit het commando, maar uit de view. De view is in de database
                     opgeslagen als query. i3dm.export voert hem uit en krijgt per boom in de kolom <i>model</i>
@@ -581,10 +607,10 @@ WHERE omschr = 'Boom';
                             <i>--reportFile rapport.json</i> schrijf je het rapport naar een bestand.</p>
                     <p class="alert notice"><b>Tip:</b>Bij valideren van dtb_punten verschijnen 'info' meldingen. Reden is dat model 'tree.glb' niet helemaal
                         voldoet aan de glTF specificatie. Voor nu negeren we deze waarschuwing.</b></p>
-                    <p class="alert notice"><b>Klaar met deel 1?</b> Blijf in de workspace-container: op sheet 20 start
+                    <p class="alert notice"><b>Klaar met deel 1?</b> Blijf in de workspace-container: op <a href="#/server-opzetten">sheet 21</a> start
                         je daar de webserver voor deel 2. Ben je er toch uit (je prompt begint met <i>PS</i> of
                         <i>C:\</i>), ga dan terug met <code>docker exec -it workspace sh</code>. Stop de containers
-                        niet met <code>docker compose down</code>; dat doe je pas bij de cleanup op sheet 32.</p>
+                        niet met <code>docker compose down</code>; dat doe je pas bij de cleanup op <a href="#/cleanup">sheet 45</a>.</p>
                      </p>
                     </div>
                 </div>
@@ -605,7 +631,7 @@ WHERE omschr = 'Boom';
             </section>
 
             <!-- Server opzetten -->
-            <section>
+            <section id="server-opzetten">
                 <h3>Server opzetten</h3>
 
                 <p>Er is een npm http server geïnstalleerd in de docker container. Die serveert alle files uit de
@@ -618,6 +644,8 @@ WHERE omschr = 'Boom';
                         target="_blank">http://localhost:8080</a></p>
 
                 <p>Je ziet nu de directory structuur van <code>/workspace</code>.</p>
+                <p class="alert notice"><b>Tip:</b> de server blijft draaien en houdt de terminal bezet. Stoppen doe je
+                    met <b>Ctrl+C</b>. Wil je ondertussen andere commando's uitvoeren, open dan een tweede terminal.</p>
                 <img src="images/http-server.png" alt="HTTP Server result">
             </section>
 
@@ -801,6 +829,8 @@ viewer.scene.primitives.add(tileset3DGebouwen);</code></pre>
                         <p class="small-text">Wat valt er op aan de 3D View in QGIS?</p>
                     </div>
                 </div>
+                <p class="alert notice"><b>Klaar?</b> Hierna volgen de optionele opdrachten. Wil je stoppen, ga dan
+                    direct naar de <a href="#/cleanup">cleanup op sheet 45</a> om de Docker-containers op te ruimen.</p>
             </section>
 
 
@@ -961,8 +991,511 @@ ifc_naar_lod.py PKZ_IMD_TO_MOD_COM_CON_A_02.ifc --model Constructie --toevoegen 
             </section>
 
 
-            <!-- Cleanup na de workshop -->
+            <!-- Deel 3: 3D Tiles 1.1 met tyler - Introductie -->
+            <section class="center gn-divider" id="tutorial-1-1" data-background-color="#207AB3" data-state="gn-state-divider">
+                <h3>Deel 3: 3D Tiles 1.1 met tyler</h3>
+                <div class="left">
+                    <p>In dit deel gaan we:</p>
+                    <ol>
+                        <li>Een Docker-omgeving opzetten met <i>tyler</i></li>
+                        <li>3DBAG-data van Andijk downloaden (CityJSON)</li>
+                        <li>3D Tiles 1.1 maken met tyler</li>
+                        <li>De tileset valideren</li>
+                        <li>De tileset bekijken in CesiumJS, met de metadata</li>
+                        <li>1.0 en 1.1 vergelijken</li>
+                    </ol>
+                    <p>Deel 3 staat los van deel 1 en 2: je hebt geen database nodig.</p>
+                </div>
+            </section>
+
+            <!-- Wat is er anders in 1.1 -->
             <section>
+                <h3>Wat is er anders in 3D Tiles 1.1?</h3>
+                <table class="small-text">
+                    <thead>
+                        <tr><th></th><th>3D Tiles 1.0 (deel 1)</th><th>3D Tiles 1.1 (deel 3)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><b>Tile-content</b></td><td>.b3dm, .i3dm, .pnts (glTF verpakt in een eigen formaat)</td>
+                            <td>.glb (glTF) direct als content</td></tr>
+                        <tr><td><b>Metadata per object</b></td><td>Batch Table: attributen als JSON, zonder vaste datatypes</td>
+                            <td>EXT_mesh_features + EXT_structural_metadata: schema met klassen en datatypes</td></tr>
+                        <tr><td><b>Metadata op andere niveaus</b></td><td>Nee (alleen min/max per attribuut)</td>
+                            <td>Ja: tileset, tile, content en groepen</td></tr>
+                        <tr><td><b>Tiling</b></td><td>Expliciet: elke tile staat in tileset.json</td>
+                            <td>Ook implicit tiling: een sjabloon plus <i>subtrees</i></td></tr>
+                    </tbody>
+                </table>
+                <p class="alert notice"><b>Good to know:</b> elke 1.0-tileset is ook een geldige 1.1-tileset.
+                    Een viewer die 1.1 leest, kan dus ook 1.0 aan.</p>
+                <p class="alert notice"><b>Praktijkvoorbeeld:</b> de 3DBAG publiceert zelf alle gebouwen van
+                    Nederland als 3D Tiles 1.1: <i>"Our 3D Tiles are generated with Tyler."</i>
+                    (<a href="https://docs.3dbag.nl/en/delivery/webservices/" target="_blank">3DBAG documentatie</a>).
+                    In dit deel doe je hetzelfde voor Andijk.</p>
+            </section>
+
+            <!-- Docker omgeving 1.1 -->
+            <section>
+                <h3>Docker-omgeving voor 3D Tiles 1.1</h3>
+                <p class="left m-0">Voor deze tutorial is er een aparte Docker-omgeving. Je hebt twee bestanden
+                    nodig uit de map <i>data Tiles(1_1) tutorial</i>:
+                    <a href="data%20Tiles(1_1)%20tutorial/docker-compose.yml">docker-compose.yml</a> en
+                    <a href="data%20Tiles(1_1)%20tutorial/Dockerfile">Dockerfile</a>.</p>
+                <p class="left m-0">Kopieer ze naar een <b>andere</b> lege directory dan die van deel 1, bijvoorbeeld
+                    <code>c:\3dtiles-workshop-1_1</code>, en start de omgeving vanuit die directory:</p>
+                <pre><code class="language-bash">docker compose up -d</code></pre>
+                <p class="left m-0">Er worden 2 containers gestart:</p>
+                <ul class="left">
+                    <li><code>tyler</code>: het officiële image van tyler (<i>3dgi/tyler:0.4.1</i>), waarmee je
+                        3D Tiles 1.1 maakt</li>
+                    <li><code>workspace11</code>: een Linux-container met de 3d-tiles-validator en een webserver
+                        (poort <code>8081</code>)</li>
+                </ul>
+                <p class="gn-note left">Beide containers delen de map <code>./container</code> op je host als
+                    <code>/workspace</code>. Wat tyler daar schrijft, kan de webserver dus meteen serveren. De webserver
+                    gebruikt poort 8081, zodat deze omgeving naast die van deel 1 (poort 8080) kan draaien.</p>
+            </section>
+
+            <!-- 3DBAG data downloaden en klaarzetten -->
+            <section>
+                <h3>Data downloaden en klaarzetten</h3>
+                <div class="container">
+                    <div class="col left mr-3">
+                        <ol class="small-text">
+                            <li>Ga naar de <a href="https://3dbag.nl/en/download" target="_blank">3DBAG downloadpagina</a>
+                                en klik op <i>Pick a tile</i>. Er opent een kaart met de tiles van de 3DBAG.</li>
+                            <li>Zoom in op Andijk (aan het IJsselmeer, tussen Medemblik en Enkhuizen). Klik op tile
+                                <b>8-512-888</b> en daarna op <i>Confirm selection</i>.</li>
+                            <li>Download in de tabel het bestand bij <b>CityJSON</b>: <i>8-512-888.city.json.gz</i>.
+                                Klik op <i>Pick another tile</i> en doe hetzelfde voor <b>8-520-888</b>,
+                                <b>8-512-880</b> en <b>8-520-880</b>.</li>
+                            <li>Plaats de vier .gz-bestanden in <code>./container/input</code>
+                                <p class="gn-note">De map ./container staat naast je docker-compose.yml van deel 3
+                                    (bijv. c:\3dtiles-workshop-1_1\container). Maak de submap input zelf aan. In de
+                                    container is dit /workspace/input.</p></li>
+                            <li>Maak een shell-verbinding met de tyler-container:
+                                <pre><code class="language-bash">docker exec -it tyler sh</code></pre>
+                                <p class="gn-note">Je komt uit in <i>/workspace</i> (je prompt is <i>#</i>). Blijf in
+                                    deze map: alle commando's hieronder en op de volgende sheet starten hier.</p></li>
+                            <li>Pak de bestanden uit:
+                                <pre><code class="language-bash wrap">for f in input/*.gz; do gunzip "$f" 2>/dev/null || mv "$f" "${f%.gz}"; done</code></pre>
+                                <p class="gn-note">Waarom geen gewone <i>gunzip</i>? De 3DBAG-server stuurt de bestanden
+                                    gecomprimeerd mee, en de meeste browsers pakken ze tijdens het downloaden al uit. Het
+                                    bestand heet dan nog <i>.city.json.gz</i>, maar is al gewone JSON, en <i>gunzip</i>
+                                    meldt <i>not in gzip format</i>. Deze regel pakt elk bestand uit, of hernoemt het naar
+                                    <i>.city.json</i> als het al uitgepakt is.</p></li>
+                            <li>Controleer de bestanden:
+                                <pre><code class="language-bash">ls input</code></pre>
+                                <p class="gn-note">Je ziet vier bestanden die eindigen op <i>.city.json</i>. Eindigt een
+                                    bestand nog op .gz of alleen op .json, dan herkent tyler het niet.</p></li>
+                            <li>Tel de panden in één tile:
+                                <pre><code class="language-bash wrap">grep -o '"Building"' input/8-512-888.city.json | wc -l</code></pre>
+                                <p class="gn-note">Uitkomst: 989. De vier tiles beslaan samen Andijk en de
+                                    proefpolderdijk: 3.790 panden. Elk pand is een <i>Building</i> met de attributen
+                                    (zoals <i>oorspronkelijkbouwjaar</i>) en een <i>BuildingPart</i> met de geometrie in
+                                    drie detailniveaus: LoD 1.2 (blok), LoD 1.3 (blokken met dakhoogtes) en LoD 2.2 (met
+                                    dakvormen).</p></li>
+                        </ol>
+                        <p class="alert notice"><b>Tip:</b> lukt downloaden niet? De vier bestanden staan ook in
+                            <i>data_bronnen/3dbag_andijk</i> in de map <i>data Tiles(1_1) tutorial</i>.</p>
+                        <p class="alert notice">Vraag: wat is de projectie van de bestanden?</p>
+                        <p class="gn-note"><b>Hint:</b> zoek in het bestand naar <i>referenceSystem</i>, bijvoorbeeld
+                            met <code>grep -o '"referenceSystem":"[^"]*"' input/8-512-888.city.json</code>.</p>
+                    </div>
+                    <div class="col">
+                        <img src="images/3dbag_tiles_andijk.png" alt="Tile-kiezer van de 3DBAG met de vier tiles rond Andijk gemarkeerd: 8-512-888, 8-520-888, 8-512-880 en 8-520-880">
+                        <img src="images/3dbag_download_tabel.png" alt="Downloadtabel van de 3DBAG voor tile 8-512-888, met het CityJSON-bestand gemarkeerd">
+                        <p class="gn-note">Bron: <a href="https://3dbag.nl/en/download" target="_blank">3dbag.nl</a>,
+                            versie v2025.09.03, licentie CC BY 4.0.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3D Tiles 1.1 maken met tyler -->
+            <section>
+                <h3>3D Tiles 1.1 maken met tyler</h3>
+                <p>We gebruiken <code>tyler</code> om van de 3DBAG-panden 3D Tiles 1.1 te maken.</p>
+                <div class="left">
+                    <ol class="small-text">
+                        <li>Controleer dat je in de tyler-container in de map <i>/workspace</i> staat:
+                            <pre><code class="language-bash">pwd</code></pre>
+                            <p class="gn-note">De uitkomst moet <i>/workspace</i> zijn. Staat er iets anders, zoals
+                                <i>/workspace/input</i>, ga dan terug met <code>cd /workspace</code> (mét de slash ervoor;
+                                <i>cd workspace</i> werkt niet). Ben je uit de container, dan kom je met
+                                <code>docker exec -it tyler sh</code> vanzelf weer in /workspace. Dit is nodig omdat het
+                                tyler-commando de invoer zoekt in <i>./input</i>, gezien vanuit de map waar je staat.</p></li>
+                        <li>Check of tyler werkt:
+                            <pre><code class="language-bash">tyler --version</code></pre></li>
+                        <li>Bekijk de opties:
+                            <pre><code class="language-bash">tyler --help</code></pre>
+                            <p class="gn-note">tyler leest een map met CityJSON-bestanden en maakt er 3D Tiles 1.1
+                                van. De opties vallen in groepen:<br>
+                                <b>Invoer en uitvoer:</b> de invoermap (eerste argument), -o / --output (map).<br>
+                                <b>Selectie:</b> --object-type (welke CityObjects), --lod-&lt;type&gt; (welk
+                                detailniveau; standaard het hoogste).<br>
+                                <b>Metadata:</b> --object-attributes (naam:type), --3dtiles-metadata-class (naam van de
+                                klasse), --include-parent-attributes.<br>
+                                <b>Uiterlijk:</b> --color-&lt;type&gt;, --smooth-normals.<br>
+                                <b>Tiling:</b> --3dtiles-implicit, --qtree-capacity (standaard 42000 vertices per tile),
+                                --3dtiles-geometric-error-factor.</p></li>
+                        <li>Maak de 3D Tiles (één commando, kopieer het in zijn geheel):
+                            <pre><code class="language-bash wrap">tyler ./input --output ./output/panden --object-type Building --object-type BuildingPart --include-parent-attributes --lod-building-part 2.2 --object-attributes identificatie:string,oorspronkelijkbouwjaar:int,status:string,b3_dak_type:string,b3_bouwlagen:int,b3_h_dak_max:float --3dtiles-metadata-class pand --3dtiles-implicit</code></pre>
+                            <p class="gn-note">Dit duurt een paar seconden. De laatste regel van de uitvoer is
+                                <i>Writing 3D Tiles tileset</i>. Wat doen de onderdelen?</p>
+                            <ul class="small-text">
+                                <li><b>./input --output ./output/panden</b>: lees de CityJSON-bestanden in ./input en
+                                    schrijf de tileset naar ./output/panden.</li>
+                                <li><b>--object-type Building --object-type BuildingPart</b>: neem de panden en hun
+                                    onderdelen mee.</li>
+                                <li><b>--include-parent-attributes</b>: in de 3DBAG staan de attributen op het Building en
+                                    de geometrie op het BuildingPart. Deze optie kopieert de attributen naar het BuildingPart.</li>
+                                <li><b>--lod-building-part 2.2</b>: gebruik LoD 2.2, met dakvormen.</li>
+                                <li><b>--object-attributes naam:type,...</b>: welke attributen meegaan, en met welk
+                                    datatype. Dit wordt het schema van de metadata.</li>
+                                <li><b>--3dtiles-metadata-class pand</b>: de naam van de klasse in dat schema.</li>
+                                <li><b>--3dtiles-implicit</b>: maak implicit tiling (tileset.json met een sjabloon plus
+                                    subtrees).</li>
+                            </ul>
+                            <p class="alert notice"><b>Foutmelding</b> <i>could not resolve the path "./input"</i>?
+                                Dan sta je niet in /workspace: zie stap 1.</p></li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Resultaat tyler -->
+            <section>
+                <h3>Resultaat: een 3D Tiles 1.1-tileset</h3>
+                <div class="container">
+                    <div class="col left mr-3">
+                        <p class="small-text">Wat doet tyler met de panden?</p>
+                        <ol class="small-text">
+                            <li>Leest de CityJSON-bestanden en kiest per pand de LoD 2.2-geometrie.</li>
+                            <li>Rekent de coördinaten om van RD New + NAP naar ECEF. NAP-hoogtes worden hoogtes boven
+                                de ellipsoïde, dus de panden staan zonder correctie op het terrein.</li>
+                            <li>Verdeelt het gebied in een quadtree met maximaal 42.000 vertices per tile (12 tiles).</li>
+                            <li>Schrijft elke tile als .glb in de map <i>t</i>, gecomprimeerd (meshopt en quantization),
+                                met de metadata per pand erin.</li>
+                            <li>Schrijft in <i>subtrees</i> welke tiles er bestaan, en in <i>tileset.json</i> het
+                                sjabloon voor de bestandsnamen.</li>
+                        </ol>
+                        <pre><code class="language-plaintext">output/panden/
+├── tileset.json
+├── t/{level}/{x}/{y}.glb
+├── subtrees/0/0/0.subtree
+└── metadata/</code></pre>
+                    </div>
+                    <div class="col left">
+                        <p class="small-text">Uit <i>tileset.json</i> (ingekort):</p>
+                        <pre><code class="language-json code-full">"asset": { "version": "1.1" },
+"root": {
+  "refine": "ADD",
+  "content": { "uri": "t/{level}/{x}/{y}.glb" },
+  "implicitTiling": {
+    "subdivisionScheme": "QUADTREE",
+    "subtreeLevels": 3,
+    "subtrees": {
+      "uri": "subtrees/{level}/{x}/{y}.subtree"
+    }
+  }
+}</code></pre>
+                        <p class="small-text">Het metadata-schema in elke .glb (ingekort):</p>
+                        <pre><code class="language-json code-full">"pand": { "properties": {
+  "identificatie": { "type": "STRING" },
+  "oorspronkelijkbouwjaar": {
+    "type": "SCALAR", "componentType": "INT32" },
+  "b3_h_dak_max": {
+    "type": "SCALAR", "componentType": "FLOAT32" }
+} }</code></pre>
+                    </div>
+                </div>
+                <div class="alert notice">
+                    <p class="m-0"><b>Good to know:</b> vergelijk dit met de tileset van deel 1:</p>
+                    <ul>
+                        <li><b>Geen lijst met tiles:</b> tileset.json bevat geen <i>children</i>, alleen een sjabloon.
+                            Welke tiles er bestaan, staat binair in de subtree. Bij heel veel tiles blijft tileset.json zo klein.</li>
+                        <li><b>.glb in plaats van .b3dm:</b> je kunt een tile direct openen in een glTF-viewer.</li>
+                        <li><b>Metadata met datatypes:</b> het bouwjaar is een INT32, niet zomaar een waarde in JSON.
+                            Een viewer weet dus dat je ermee kunt rekenen en vergelijken.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Implicit tiling en subtree -->
+            <section id="implicit-tiling">
+                <h3>Implicit tiling: wat doet de subtree?</h3>
+                <div class="container">
+                    <div class="col left mr-3">
+                        <p class="small-text">Bij implicit tiling staat er in tileset.json <b>geen lijst met tiles</b>,
+                            alleen een sjabloon. De viewer rekent zelf uit waar elke tile ligt: elk niveau deelt een tile in
+                            vier, en de bounding volume en de geometric error halveren. Wat de viewer niet kan uitrekenen,
+                            is welke tiles <b>echt bestaan</b>. Dat staat in de subtree. Kijk zelf, in de tyler-container
+                            vanuit <i>/workspace</i>:</p>
+                        <ol class="small-text">
+                            <li>Het sjabloon in tileset.json:
+                                <pre><code class="language-bash">cat output/panden/tileset.json</code></pre>
+                                <p class="gn-note">Zoek <i>"uri":"t/{level}/{x}/{y}.glb"</i> en <i>implicitTiling</i>:
+                                    een QUADTREE met 3 niveaus (<i>availableLevels</i>), die allemaal in één subtree staan
+                                    (<i>subtreeLevels</i>).</p>
+                                <p class="alert notice"><b>Tip:</b> tyler schrijft tileset.json op één lange regel. Zo
+                                    bekijk je hem netjes ingesprongen (pretty print), zonder commando:
+                                    <br>&bull; <b>Browser:</b> sleep <i>./container/output/panden/tileset.json</i> van je
+                                    host naar Firefox (tab <i>Raw Data</i> &rarr; <i>Pretty Print</i>) of Chrome/Edge (vink
+                                    <i>Pretty-print</i> aan).
+                                    <br>&bull; <b>VS Code:</b> open het bestand en kies <i>Format Document</i>
+                                    (Shift+Alt+F).</p></li>
+                            <li>De tiles die er echt zijn:
+                                <pre><code class="language-bash">find output/panden/t -name "*.glb" | sort</code></pre>
+                                <p class="gn-note">12 bestanden, met de naam <i>t/niveau/x/y.glb</i>. Met 3 niveaus zijn er
+                                    1 + 4 + 16 = 21 mogelijke tiles.</p></li>
+                            <li>Het leesbare deel van de subtree (na een header van 24 bytes):
+                                <pre><code class="language-bash wrap">head -c 320 output/panden/subtrees/0/0/0.subtree | tail -c +25</code></pre>
+                                <p class="gn-note"><i>tileAvailability</i>: 13 tiles bestaan.
+                                    <i>contentAvailability</i>: 12 daarvan hebben een .glb.
+                                    <i>childSubtreeAvailability: 0</i>: er zijn geen diepere subtrees.</p></li>
+                            <li>De bits zelf (de laatste 16 bytes):
+                                <pre><code class="language-bash wrap">tail -c 16 output/panden/subtrees/0/0/0.subtree | od -A n -t x1</code></pre>
+                                <p class="gn-note">Uitkomst: <i>9f e0 0f 00 00 00 00 00 9e e0 0f 00 00 00 00 00</i>. Zie
+                                    rechts hoe je dat leest.</p></li>
+                        </ol>
+                    </div>
+                    <div class="col left">
+                        <p class="small-text">Zo ziet de quadtree van Andijk eruit (noorden boven):</p>
+                        <pre><code class="language-plaintext">niveau 0   niveau 1   niveau 2
+                      C C C .  noord
+   t         C C      C C C C
+             C C      C . . .
+                      . . . .  zuid
+
+C = tile met .glb   t = tile zonder .glb
+. = tile bestaat niet</code></pre>
+                        <p class="small-text">Elke mogelijke tile krijgt één bit, in een vaste volgorde: eerst de root,
+                            dan de 4 tiles van niveau 1, dan de 16 van niveau 2.</p>
+                        <pre><code class="language-plaintext">tiles   9f e0 0f  → 13 enen = 13 tiles
+content 9e e0 0f  → 12 enen = 12 .glb</code></pre>
+                        <p class="gn-note">9f en 9e verschillen alleen in het eerste bit: dat is de root. Die bestaat wel,
+                            maar heeft geen eigen .glb. Lege plekken: rechtsboven ligt het IJsselmeer, en de onderste rij
+                            valt buiten de vier 3DBAG-tiles (tyler maakt de root vierkant). Ook de tiles op niveau 1
+                            hebben een .glb: tyler verdeelt de panden over beide niveaus. Door <i>refine: ADD</i> tekent de
+                            viewer eerst niveau 1 en voegt bij inzoomen de tiles van niveau 2 toe.</p>
+                    </div>
+                </div>
+                <div class="alert notice">
+                    <p class="m-0"><b>Good to know:</b></p>
+                    <ul>
+                        <li><b>Klein blijven:</b> tileset.json blijft even klein, hoe groot de dataset ook wordt. Bij een
+                            grote dataset komen er meer subtrees, die de viewer pas laadt als je naar dat gebied kijkt.</li>
+                        <li><b>Versie:</b> implicit tiling hoort sinds 1.1 bij de standaard. Voor 1.0 bestond het alleen als
+                            extensie (<i>3DTILES_implicit_tiling</i>).</li>
+                        <li><b>Ook in deel 1:</b> i3dm.export gebruikt al implicit tiling. De bomen-tileset uit deel 1
+                            heeft dus ook een map <i>subtrees</i>: 1.0-tiles (.i3dm) in een 1.1-structuur.</li>
+                    </ul>
+                </div>
+                <div class="alert notice">
+                    <p class="m-0"><b>En in elke .glb?</b> De subtree zegt wélke .glb er zijn. Wat erin staat, regelen
+                        glTF-extensies:</p>
+                    <ul>
+                        <li><b>EXT_mesh_features:</b> elke vertex krijgt een feature-ID (<i>_FEATURE_ID_0</i>): het nummer
+                            van het pand waar die vertex bij hoort. Daardoor kun je in Cesium één pand aanwijzen en kleuren.</li>
+                        <li><b>EXT_structural_metadata:</b> het schema (klasse <i>pand</i> met datatypes) en een tabel met
+                            per feature-ID de waarden, zoals het bouwjaar. Samen met EXT_mesh_features vervangt dit de
+                            Batch Table uit 1.0.</li>
+                        <li><b>EXT_meshopt_compression</b> en <b>KHR_mesh_quantization:</b> comprimeren de geometrie, zodat
+                            de tiles klein blijven.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Valideren 1.1 -->
+            <section>
+                <h3>Tileset valideren</h3>
+                <div class="left">
+                    <p>De 3d-tiles-validator zit niet in de tyler-container, maar in <i>workspace11</i>. Wissel daarom
+                        eerst van container:</p>
+                    <ol class="small-text">
+                        <li>Verlaat de tyler-container:
+                            <pre><code class="language-bash">exit</code></pre>
+                            <p class="gn-note">Je staat weer in de terminal van je eigen computer (je prompt begint met
+                                <i>PS</i> of <i>C:\</i>).</p></li>
+                        <li>Maak een shell-verbinding met de workspace11-container:
+                            <pre><code class="language-bash">docker exec -it workspace11 sh</code></pre>
+                            <p class="gn-note">Je komt uit in <i>/workspace</i>. Dit is dezelfde map ./container als in de
+                                tyler-container, dus de tileset staat hier al klaar.</p></li>
+                        <li>Valideer de tileset:
+                            <pre><code class="language-bash wrap">3d-tiles-validator --tilesetFile ./output/panden/tileset.json</code></pre></li>
+                    </ol>
+                    <p class="alert notice"><b>Foutmelding</b> <i>3d-tiles-validator: not found</i>? Dan zit je nog in de
+                        tyler-container: begin bij stap 1.</p>
+                    <p class="gn-note">Verwacht resultaat: <i>numErrors: 0</i>, <i>numWarnings: 0</i> en
+                        <i>numInfos: 12</i>, één per .glb. Die meldingen zijn:</p>
+                    <ul class="small-text">
+                        <li><i>Cannot validate an extension as it is not supported by the validator:
+                            'EXT_meshopt_compression'</i> (en hetzelfde voor <i>EXT_mesh_features</i> en
+                            <i>EXT_structural_metadata</i>)</li>
+                        <li><i>This object may be unused.</i></li>
+                    </ul>
+                    <p class="alert notice"><b>Tip:</b> de validator (versie 0.6.1) kan de inhoud van deze
+                        glTF-extensies niet controleren en meldt dat als info. Het zijn geen fouten: de tileset is geldig.</p>
+                </div>
+            </section>
+
+            <!-- Bekijken in Cesium 1.1 -->
+            <section>
+                <h3>3D Tiles 1.1 bekijken in CesiumJS</h3>
+                <div class="container">
+                    <div class="col left mr-3">
+                        <ol class="small-text">
+                            <li>Kopieer <a href="data%20Tiles(1_1)%20tutorial/cesium-viewer.html">cesium-viewer.html</a>
+                                uit de map <i>data Tiles(1_1) tutorial</i> naar <code>./container</code>.</li>
+                            <li>Start de webserver in de <i>workspace11</i>-container:
+                                <pre><code class="language-bash">http-server</code></pre>
+                                <p class="gn-note">De server blijft draaien en houdt deze terminal bezet. Stoppen doe je
+                                    met <b>Ctrl+C</b>.</p></li>
+                            <li>Open <a href="http://localhost:8081/cesium-viewer.html"
+                                    target="_blank">http://localhost:8081/cesium-viewer.html</a></li>
+                            <li>Klik op een pand: de infobox toont de metadata uit de .glb.</li>
+                        </ol>
+                        <p class="gn-note">De viewer kleurt de panden op bouwjaar. Het styling-script is hetzelfde
+                            als bij 1.0, maar de waarde komt nu uit EXT_structural_metadata:</p>
+                        <pre><code class="language-javascript code-full">tilesetPanden.style = new Cesium.Cesium3DTileStyle({
+  color: {
+    conditions: [
+      ["${oorspronkelijkbouwjaar} < 1945", "color('#8c2d04')"],
+      ["${oorspronkelijkbouwjaar} < 1975", "color('#ec7014')"],
+      ["${oorspronkelijkbouwjaar} < 2000", "color('#fec44f')"],
+      ["true", "color('#fff7bc')"]
+    ]
+  }
+});</code></pre>
+                    </div>
+                    <div class="col">
+                        <img src="images/cesium-viewer-tyler.png" alt="CesiumJS met de 3DBAG-panden van Andijk als 3D Tiles 1.1, gekleurd op bouwjaar">
+                    </div>
+                </div>
+                <p class="alert notice"><b>Vraag:</b> kleur de panden eens op dakvorm (<i>b3_dak_type</i>:
+                    <i>slanted</i>, <i>horizontal</i>, <i>multiple horizontal</i> of <i>unknown</i>). Gebruik
+                    hiervoor een vergelijking met tekst, zoals <code>${b3_dak_type} === 'slanted'</code>.</p>
+            </section>
+
+            <!-- Opdrachten 1.1 -->
+            <section>
+                <h3>Opdrachten: 1.0 en 1.1 vergelijken</h3>
+                <ol class="left small-text">
+                    <li><b>Een tile openen.</b> Sleep een .glb uit <i>./container/output/panden/t</i> naar de
+                        <a href="https://gltf-viewer.donmccurdy.com/" target="_blank">glTF Viewer</a>. Wat zie je? Probeer
+                        hetzelfde met een .b3dm uit deel 1.</li>
+                    <li><b>Implicit of expliciet.</b> Maak dezelfde tileset zonder implicit tiling, in de tyler-container.
+                        De webserver draait nog in workspace11, dus open een <b>nieuwe terminal</b> en ga met
+                        <code>docker exec -it tyler sh</code> naar de tyler-container:
+                        <pre><code class="language-bash wrap">tyler ./input --output ./output/panden_expliciet --object-type Building --object-type BuildingPart --include-parent-attributes --lod-building-part 2.2 --object-attributes identificatie:string,oorspronkelijkbouwjaar:int,status:string,b3_dak_type:string,b3_bouwlagen:int,b3_h_dak_max:float --3dtiles-metadata-class pand</code></pre>
+                        Vergelijk de twee tileset.json-bestanden. Laad daarna beide in QGIS (zie de QGIS-slides van deel 2).
+                        Welke werkt, en waarom?</li>
+                    <li><b>Detailniveau.</b> Maak de tileset ook met <i>--lod-building-part 1.2</i>. Hoe groot is de map
+                        <i>t</i> nu, vergeleken met LoD 2.2? Wat zie je in de viewer?</li>
+                    <li><b>Geometric error.</b> Probeer <i>--3dtiles-geometric-error-factor 0.1</i>. Wat verandert er in
+                        tileset.json en bij het in- en uitzoomen?</li>
+                </ol>
+                <p class="alert notice"><b>Vraag:</b> deel 1 had een database en twee tools nodig, deel 3 één tool en
+                    geen database. Wanneer kies je voor welke aanpak?</p>
+                <p class="alert notice"><b>Meer?</b> In de <a href="#/extra-lod">extra opdracht</a> maak je een
+                    1.1-tileset met drie detailniveaus (LoD 1.2, 1.3 en 2.2) die elkaar vervangen als je inzoomt.</p>
+            </section>
+
+            <!-- Extra opdracht 1.1: LOD's met pg2b3dm (data) -->
+            <section class="center gn-divider" id="extra-lod" data-background-color="#207AB3" data-state="gn-state-divider">
+                <h3>Extra opdracht: 3D Tiles 1.1 met detailniveaus (LOD)</h3>
+                <p class="left">Maak één tileset waarin de 3DBAG-panden van Andijk meer detail krijgen als je inzoomt: ver
+                    weg LoD 1.2 (blokken), dichterbij LoD 1.3 (blokken met dakhoogtes), dichtbij LoD 2.2 (met dakvormen).
+                    Een fijner niveau <i>vervangt</i> het grovere (<i>refine: REPLACE</i>).</p>
+                <p class="gn-note left">Waarom niet met tyler? tyler kiest één LoD per objecttype en verdeelt de panden
+                    alleen over de ruimte (<i>refine: ADD</i>). pg2b3dm kan wel meerdere LoD's boven elkaar zetten, met een
+                    LOD-kolom, en schrijft standaard .glb: ook dit wordt 3D Tiles 1.1. Je gebruikt hiervoor de
+                    Docker-omgeving van <b>deel 1</b> (database, GDAL en pg2b3dm).</p>
+                <ol class="left small-text">
+                    <li>Download op de <a href="https://3dbag.nl/en/download" target="_blank">3DBAG downloadpagina</a>
+                        voor dezelfde vier tiles (8-512-888, 8-520-888, 8-512-880 en 8-520-880) het bestand bij
+                        <b>GPKG</b>, bijvoorbeeld <i>8-512-888.gpkg.gz</i>. Zet ze in <code>./container/data/3dbag</code>
+                        van deel 1 (maak de map zelf aan).
+                        <p class="gn-note">Lukt downloaden niet? De bestanden staan ook in <i>data_bronnen/3dbag_andijk</i>
+                            in de map <i>data Tiles(1_1) tutorial</i>.</p></li>
+                    <li>Ga naar de workspace-container van deel 1 en pak de bestanden uit:
+                        <pre><code class="language-bash">docker exec -it workspace sh</code></pre>
+                        <pre><code class="language-bash wrap">for f in data/3dbag/*.gz; do gunzip "$f" 2>/dev/null || mv "$f" "${f%.gz}"; done</code></pre></li>
+                    <li>Bekijk de lagen in een GeoPackage:
+                        <pre><code class="language-bash">ogrinfo -so data/3dbag/8-512-888.gpkg</code></pre>
+                        <p class="gn-note">Elke LoD heeft een eigen laag: <i>lod12_3d</i>, <i>lod13_3d</i> en
+                            <i>lod22_3d</i>, met per pand-deel de geometrie en de <i>identificatie</i>. De attributen,
+                            zoals het bouwjaar, staan in de laag <i>pand</i>.</p></li>
+                    <li>Laad de drie LoD-lagen en de laag pand van alle vier de bestanden in de database:
+                        <pre><code class="language-bash wrap">for f in data/3dbag/*.gpkg; do for l in lod12_3d lod13_3d lod22_3d pand; do ogr2ogr -f "PostgreSQL" PG:"host=postgis port=5432 user=postgres dbname=postgres password=postgres" "$f" $l -nln public.bag_$l -append -t_srs epsg:4979 -lco GEOMETRY_NAME=geom; done; done</code></pre>
+                        <p class="gn-note">Twee lussen: voor elk bestand, voor elke laag. <i>-append</i> voegt de vier tiles
+                            samen in één tabel per laag (bag_lod12_3d, bag_lod13_3d, bag_lod22_3d en bag_pand).
+                            <i>-t_srs epsg:4979</i> rekent RD + NAP om naar WGS84 met hoogtes boven de ellipsoïde, zodat de
+                            panden op het terrein staan. De meldingen <i>Layer creation options ignored</i> zijn onschuldig:
+                            ze verschijnen omdat bestand 2 tot en met 4 aan een bestaande tabel worden toegevoegd.</p></li>
+                    <li>Controleer: <code>psql -c "SELECT count(*) FROM public.bag_lod22_3d;"</code> geeft 3794.</li>
+                </ol>
+                <p class="alert notice"><b>Let op:</b> draai je de import nog een keer, dan staan alle panden er dubbel
+                    in (door <i>-append</i>). Verwijder dan eerst de tabellen, bijvoorbeeld met
+                    <code>DROP TABLE public.bag_lod12_3d;</code> en hetzelfde voor de andere drie.</p>
+            </section>
+
+            <!-- Extra opdracht 1.1: LOD's met pg2b3dm (tiles en viewer) -->
+            <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
+                <h3>Extra opdracht (vervolg): LOD-tileset maken en bekijken</h3>
+                <ol class="left small-text">
+                    <li>Maak in een database client (zie <a href="#/data-voorbereiden">sheet 15</a>) één tabel met alle
+                        drie de LoD's en een kolom <i>lod</i> (0, 1 en 2):
+                        <pre><code class="language-sql code-full">CREATE TABLE public.pand_lod AS
+SELECT l.identificatie, p.oorspronkelijkbouwjaar::int AS oorspronkelijkbouwjaar, 0 AS lod, l.geom
+FROM public.bag_lod12_3d l JOIN public.bag_pand p USING (identificatie)
+UNION ALL
+SELECT l.identificatie, p.oorspronkelijkbouwjaar::int AS oorspronkelijkbouwjaar, 1 AS lod, l.geom
+FROM public.bag_lod13_3d l JOIN public.bag_pand p USING (identificatie)
+UNION ALL
+SELECT l.identificatie, p.oorspronkelijkbouwjaar::int AS oorspronkelijkbouwjaar, 2 AS lod, l.geom
+FROM public.bag_lod22_3d l JOIN public.bag_pand p USING (identificatie);
+
+CREATE INDEX ON public.pand_lod USING gist(st_centroid(st_envelope(geom)));</code></pre>
+                        <p class="gn-note">Elk pand staat er drie keer in: één keer per LoD. Het bouwjaar komt uit de laag
+                            pand (via <i>identificatie</i>). <i>::int</i> maakt er een geheel getal van: als kommagetal
+                            schrijft pg2b3dm het bouwjaar zo weg dat de validator een fout geeft.</p></li>
+                    <li>Maak de tileset in de workspace-container:
+                        <pre><code class="language-bash wrap">pg2b3dm -U postgres -h postgis -p 5432 -d postgres -t public.pand_lod -c geom -l lod -r REPLACE -a identificatie,oorspronkelijkbouwjaar,lod --use_implicit_tiling false -g 160 -o ./output/panden_lod</code></pre>
+                        <p class="gn-note"><i>-l lod</i>: de LOD-kolom. pg2b3dm maakt per gebied een keten van drie tiles:
+                            lod 0, daaronder lod 1, daaronder lod 2. <i>-r REPLACE</i>: een fijner niveau vervangt het
+                            grovere. <i>-g 160</i> bepaalt de geometric error en daarmee wanneer de viewer wisselt: bij een
+                            scherm van ongeveer 900 pixels hoog op zo'n 1 km (LoD 1.2 &rarr; 1.3) en 500 m (1.3 &rarr; 2.2).
+                            Zonder <i>--create_gltf false</i> schrijft pg2b3dm .glb: kijk maar naar <i>"version": "1.1"</i>
+                            in tileset.json. Valideer daarna met
+                            <code>3d-tiles-validator --tilesetFile ./output/panden_lod/tileset.json</code> (0 errors).</p></li>
+                    <li>Voeg de tileset toe aan <i>cesium-viewer.html</i> van deel 1, met een kleur per LoD:
+                        <pre><code class="language-javascript code-full">const tilesetLod = await Cesium.Cesium3DTileset.fromUrl(
+  "./output/panden_lod/tileset.json"
+);
+viewer.scene.primitives.add(tilesetLod);
+tilesetLod.style = new Cesium.Cesium3DTileStyle({
+  color: {
+    conditions: [
+      ["${lod} === 0", "color('#E8A33D')"],
+      ["${lod} === 1", "color('#3D8BE8')"],
+      ["true", "color('#8DB63F')"]
+    ]
+  }
+});</code></pre>
+                        <p class="gn-note">Ga naar <a href="http://localhost:8080/cesium-viewer.html"
+                                target="_blank">http://localhost:8080/cesium-viewer.html</a> en zoom langzaam in op Andijk:
+                            oranje (LoD 1.2) wordt blauw (LoD 1.3) en daarna groen (LoD 2.2).</p></li>
+                </ol>
+                <img src="images/lod_replace_andijk.png" alt="Dezelfde LOD-tileset op drie afstanden: op 2,5 km LoD 1.2 in oranje, op 900 m dichtbij LoD 2.2 in groen en verder weg LoD 1.2, op 350 m alleen LoD 2.2">
+                <p class="alert notice"><b>Vraag:</b> vergelijk de map <i>output/panden_lod</i> (ongeveer 40 MB) met de
+                    tyler-tileset uit deel 3 (3,5 MB). Waar komt het verschil vandaan? Denk aan de drie LoD's en aan
+                    compressie (meshopt).</p>
+                <p class="alert notice"><b>Vraag:</b> probeer <i>-g 80</i> en <i>-g 320</i>. Wat gebeurt er met de afstand
+                    waarop het detail wisselt?</p>
+            </section>
+
+            <!-- Cleanup na de workshop -->
+            <section id="cleanup">
                 <h3>Cleanup na de workshop</h3>
                 <p>Voer de volgende commando's uit om de Docker containers te stoppen en te verwijderen:</p>
                 <pre><code class="language-bash">docker compose down</code></pre>
@@ -970,6 +1503,10 @@ ifc_naar_lod.py PKZ_IMD_TO_MOD_COM_CON_A_02.ifc --model Constructie --toevoegen 
                 <p>Optioneel: je kunt de gemaakte docker images verwijderen met het volgende commando:</p>
                 <pre><code class="language-bash">docker rmi 3dtiles_workshop-workspace</code></pre>
                 <pre><code class="language-bash">docker rmi postgis/postgis</code></pre>
+                <p>Heb je deel 3 (3D Tiles 1.1) gedaan? Voer dan ook in de directory van die omgeving uit:</p>
+                <pre><code class="language-bash">docker compose down</code></pre>
+                <p>Optioneel: verwijder de images van deel 3:</p>
+                <pre><code class="language-bash">docker rmi 3dgi/tyler:0.4.1</code></pre>
             </section>
 
             <!-- Afsluiting -->
@@ -998,6 +1535,10 @@ ifc_naar_lod.py PKZ_IMD_TO_MOD_COM_CON_A_02.ifc --model Constructie --toevoegen 
                         maken van i3dm tilesets</li>
                     <li><a href="https://github.com/CesiumGS/3d-tiles-validator" target="_blank">3D Tiles Validator</a>
                     </li>
+                    <li><a href="https://github.com/3DGI/tyler" target="_blank">tyler</a> - Tool voor het maken van
+                        3D Tiles 1.1 van CityJSON</li>
+                    <li><a href="https://docs.3dbag.nl/en/" target="_blank">3DBAG documentatie</a> - CityJSON-tiles en
+                        3D Tiles van alle gebouwen in Nederland</li>
                     <li><a href="https://cesium.com/platform/cesiumjs/" target="_blank">CesiumJS</a></li>
                     <li><a href="https://api.pdok.nl/kadaster/3d-basisvoorziening/ogc/v1_0/collections"
                             target="_blank">PDOK 3D Basisvoorziening</a></li>
