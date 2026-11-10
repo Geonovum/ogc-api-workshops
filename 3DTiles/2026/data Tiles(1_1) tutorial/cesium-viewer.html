@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="utf-8">
+  <title>3D Tiles 1.1 - 3DBAG Andijk</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cesium/1.118.2/Cesium.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/cesium/1.118.2/Widgets/widgets.min.css" rel="stylesheet">
+
+  <style>
+    html,
+    body,
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #legenda {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 6px 10px;
+      font: 13px sans-serif;
+      border-radius: 4px;
+    }
+
+    #legenda span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cesiumContainer"></div>
+  <div id="legenda">
+    <b>Bouwjaar</b><br>
+    <span style="background:#8c2d04"></span>voor 1945<br>
+    <span style="background:#ec7014"></span>1945 - 1974<br>
+    <span style="background:#fec44f"></span>1975 - 1999<br>
+    <span style="background:#fff7bc"></span>2000 en later
+  </div>
+  <script type="module">
+    const viewer = new Cesium.Viewer('cesiumContainer', {
+      animation: false,
+      baseLayerPicker: false,
+      fullscreenButton: true,
+      vrButton: false,
+      homeButton: false,
+      infoBox: true,
+      selectionIndicator: true,
+      timeline: false,
+      shadows: false,
+      navigationHelpButton: false,
+      scene3DOnly: true,
+      geocoder: false,
+      baseLayer: new Cesium.ImageryLayer(new Cesium.UrlTemplateImageryProvider({
+        url: "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/grijs/EPSG:3857/{z}/{x}/{y}.png",
+        maximumLevel: 19,
+      }))
+    });
+
+    viewer.scene.globe.baseColor = Cesium.Color.WHITE;
+
+    // PDOK terreinmodel (3D Basisvoorziening)
+    const terrainProvider = await Cesium.CesiumTerrainProvider.fromUrl('https://api.pdok.nl/kadaster/3d-basisvoorziening/ogc/v1_0/collections/digitaalterreinmodel/quantized-mesh');
+    viewer.scene.terrainProvider = terrainProvider;
+    viewer.scene.globe.depthTestAgainstTerrain = true;
+
+    // 3DBAG panden als 3D Tiles 1.1, gemaakt met tyler
+    const tilesetPanden = await Cesium.Cesium3DTileset.fromUrl(
+      "./output/panden/tileset.json"
+    );
+    viewer.scene.primitives.add(tilesetPanden);
+
+    // Kleur op bouwjaar. De waarde komt uit de metadata in de glb (EXT_structural_metadata).
+    tilesetPanden.style = new Cesium.Cesium3DTileStyle({
+      color: {
+        conditions: [
+          ["${oorspronkelijkbouwjaar} < 1945", "color('#8c2d04')"],
+          ["${oorspronkelijkbouwjaar} < 1975", "color('#ec7014')"],
+          ["${oorspronkelijkbouwjaar} < 2000", "color('#fec44f')"],
+          ["true", "color('#fff7bc')"]
+        ]
+      }
+    });
+
+    // todo: voeg hier code toe
+
+    viewer.scene.globe.enableLighting = false;
+    viewer.scene.highDynamicRange = false;
+
+    // Schuin kijken op Andijk
+    viewer.camera.setView({
+      destination: Cesium.Cartesian3.fromDegrees(5.2160, 52.7395, 250),
+      orientation: { heading: Cesium.Math.toRadians(20), pitch: Cesium.Math.toRadians(-25) }
+    });
+
+    // Pand geel kleuren onder de muis
+    const highlighted = {
+      feature: undefined,
+      originalColor: new Cesium.Color(),
+    };
+
+    viewer.screenSpaceEventHandler.setInputAction(function onMouseMove(movement) {
+      if (Cesium.defined(highlighted.feature)) {
+        highlighted.feature.color = highlighted.originalColor;
+        highlighted.feature = undefined;
+      }
+      const pickedFeature = viewer.scene.pick(movement.endPosition);
+      if (pickedFeature instanceof Cesium.Cesium3DTileFeature) {
+        highlighted.feature = pickedFeature;
+        Cesium.Color.clone(pickedFeature.color, highlighted.originalColor);
+        pickedFeature.color = Cesium.Color.YELLOW;
+      }
+    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+  </script>
+</body>
+
+</html>

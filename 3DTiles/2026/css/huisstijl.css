@@ -446,6 +446,50 @@ body {
 
 
 /* =========================
+   KEUZE TUTORIAL (twee klikbare kaarten)
+   ========================= */
+
+.reveal .gn-choice {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.reveal .gn-choice__card {
+    flex: 1;
+    max-width: 420px;
+    display: block;
+    padding: 20px 24px;
+    background-color: var(--surface);
+    border-top: 6px solid var(--gn-blue);
+    color: var(--text);
+    text-align: left;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.reveal .gn-choice__card--green {
+    border-top-color: var(--gn-green);
+}
+
+.reveal .gn-choice__card:hover {
+    border-top-color: var(--gn-green-dark);
+    transform: translateY(-3px);
+}
+
+.reveal .gn-choice__card h4 {
+    margin-top: 0;
+}
+
+.reveal .gn-choice__card p,
+.reveal .gn-choice__card li {
+    font-size: 18px;
+    color: var(--text);
+}
+
+
+/* =========================
    CODE
    ========================= */
 
@@ -494,6 +538,8 @@ pre.code-wrapper {
 .wrap {
     text-wrap: wrap !important;
     white-space: pre-wrap !important;
+    /* lange woorden zonder spaties (zoals een attributenlijst) ook afbreken; kopiëren blijft één regel */
+    overflow-wrap: anywhere;
 }
 
 

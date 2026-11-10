@@ -1,0 +1,26 @@
+services:
+  # tyler (3DGI): maakt 3D Tiles 1.1 van CityJSON.
+  # Werk erin met: docker exec -it tyler sh
+  tyler:
+    image: 3dgi/tyler:0.4.1
+    container_name: tyler
+    working_dir: /workspace
+    command: ["sleep", "infinity"]
+    environment:
+      RUST_LOG: info
+    volumes:
+      - ./container:/workspace
+    restart: unless-stopped
+
+  # Workspace met 3d-tiles-validator en http-server.
+  # Poort 8081 op je host, zodat hij naast de 1.0-workspace (poort 8080) kan draaien.
+  # Werk erin met: docker exec -it workspace11 sh
+  workspace11:
+    build:
+      context: .
+    container_name: workspace11
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./container:/workspace
+    restart: unless-stopped
