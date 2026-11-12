@@ -151,35 +151,40 @@
 
             <section>
                 <h3>Docker omgeving</h3>
-                <p class="left m-0">Om de Docker omgeving op te starten zijn er twee bestanden nodig: <a href= "docker-compose.yml">docker-compose.yml</a> en 
-                    <a href="Dockerfile">Dockerfile</a>. Deze bestanden staan in de repository van de workshop.</p>
+                <p class="left m-0">Om de Docker omgeving op te starten zijn de volgende bestanden nodig uit de map <i>data Tiles(1_0) tutorial</i>:
+                    <a href="data%20Tiles(1_0)%20tutorial/docker-compose.yml">docker-compose.yml</a>,
+                    <a href="data%20Tiles(1_0)%20tutorial/Dockerfile">Dockerfile</a>,
+                    <a href="data%20Tiles(1_0)%20tutorial/Dockerfile_ifc">Dockerfile_ifc</a> en de map
+                    <i>ifc-scripts</i> (met <a href="data%20Tiles(1_0)%20tutorial/ifc-scripts/ifc_naar_glb.py">ifc_naar_glb.py</a> en
+                    <a href="data%20Tiles(1_0)%20tutorial/ifc-scripts/ifc_naar_lod.py">ifc_naar_lod.py</a>). Deze bestanden staan in de repository van de workshop.</p>
 
-                <p class="left m-0">Kopieer deze bestanden naar een lege directory op je lokale machine, bijvoorbeeld <code>c:\3dtiles-workshop</code>. Een makkelijke
-                    manier om dit te doen is click rechtermuis op de link en kies 'Save link as...'</p>
+                <p class="left m-0">Kopieer deze bestanden naar een lege directory op je lokale machine, bijvoorbeeld <code>c:\3dtiles-workshop</code>, en zet de
+                    twee scripts in een submap <code>ifc-scripts</code>. Een makkelijke manier om dit te doen is click rechtermuis op de link en kies 'Save link as...'</p>
 
                 <p class="left m-0">Open een terminal (cmd, PowerShell of Git Bash) en ga naar de directory waar je de bestanden hebt opgeslagen</p>
 
                 <p class="alert notice"><b>Let op:</b> Zorg dat Docker is geïnstalleerd (via 'docker ps') en draait voordat je verder gaat.</p>
 
-                <p class="alert notice"><b>Tip:</b> Een alternatieve manier om de twee bestanden op te halen is de gehele repository te clonen via 'git clone'</p>
+                <p class="alert notice"><b>Tip:</b> Een alternatieve manier om de bestanden op te halen is de gehele repository te clonen via 'git clone'</p>
             </section>
 
             <!-- Workspace opzetten -->
             <section>
                 <h3>Workspace opzetten met Docker</h3>
                 <p class="left m-0">Voor het opzetten van de workspace run het volgende commando vanuit de
-                    directory waar de bestanden <code>docker-compose.yml</code> en <code>Dockerfile</code> staan:</p>
+                    directory waar <code>docker-compose.yml</code>, <code>Dockerfile</code> en <code>Dockerfile_ifc</code> staan:</p>
                 </p>
                 <pre><code class="language-bash">docker compose up -d</code></pre>
                 <p class="left m-0">
-                    Er worden 2 containers gestart:
+                    Er worden 3 containers gestart:
                     <ul>
                         <li><code>postgis</code>: een PostgreSQL database met PostGIS extensie</li>
                         <li><code>workspace</code>: een Linux container (GDAL op Alpine) met daarin alle benodigde tools geïnstalleerd</li>
-                    </ul> 
+                        <li><code>ifc</code>: een Python container met IfcOpenShell en de IFC-scripts, voor de optionele IFC-opdrachten</li>
+                    </ul>
                 </p>
 
-                <p class="left m-0">De twee containers draaien in een apart netwerk en kunnen met elkaar communiceren. De database is vanaf de host machine 
+                <p class="left m-0">De containers draaien in een apart netwerk en kunnen met elkaar communiceren. De database is vanaf de host machine 
                     bereikbaar via poort <code>5439</code>, de workspace container is bereikbaar via poort <code>8080</code> (voor de webserver die we later gaan gebruiken).
                 </p>
 
