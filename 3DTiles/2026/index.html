@@ -271,7 +271,7 @@
                             <li>Zoek via de <a
                                     href="https://geoweb.rijkswaterstaat.nl/ModuleViewer/?app=1c8c833022c04e63a0f74533c19a6a27"
                                     target="_blank">RWS DTB Bladindeling viewer</a> het Andijk kaartblad (DTB kaartblad
-                                d15cz)</li>
+                                d15cz) en kies bij het downloaden het formaat <b>Shape</b></li>
                             <li>Download de data (d15cz.zip) en plaats de ZIP in <code>./container/data/dtb</code>
                                 <p class="gn-note">De map ./container staat naast je
                                     docker-compose.yml (bijv. c:\3dtiles-workshop\container). Maak de submappen data\dtb zelf aan.
@@ -852,8 +852,9 @@ viewer.scene.primitives.add(tileset3DGebouwen);</code></pre>
             <!-- Optionele opdracht 2: voeg IFC model toe -->
             <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
                 <h3>Optionele opdracht 2: Voeg IFC model toe</h3>
-                <p class="left m-0">IFC model (download raw): <a href = "https://github.com/Geonovum/temp_geobim/blob/main/data/Kievitsweg_R25_ILS%20Spaces%2020250815_LoGeoRef.ifc">https://github.com/Geonovum/temp_geobim/blob/main/data/Kievitsweg_R25_ILS%20Spaces%2020250815_LoGeoRef.ifc</a></p>
-                <p class="left m-0">Plaats de IFC in <code>./container</code> en exporteer naar GLB met
+                <p class="left m-0">IFC model: <i>Kievitsweg_R25_ILS Spaces 20250815_LoGeoRef50.ifc</i> (uit
+                    <i>data_bronnen</i>). Kopieer het naar <code>./container</code> en <b>hernoem het naar
+                    <i>Kievitsweg.ifc</i></b>, anders vindt het script het bestand niet. Exporteer daarna naar GLB met
                     <a href="https://docs.ifcopenshell.org/introduction.html">IfcOpenShell</a> in de <i>ifc</i>-container:</p>
                 <pre><code class="language-bash">docker exec -it ifc sh
 ifc_naar_glb.py Kievitsweg.ifc -o model.glb</code></pre>
