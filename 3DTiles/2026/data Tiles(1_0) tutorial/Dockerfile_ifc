@@ -10,8 +10,9 @@ RUN pip install --no-cache-dir \
     "psycopg[binary]==3.3.8"
 
 # Scripts: ifc_naar_lod.py (opdracht 3) en ifc_naar_glb.py (opdracht 2)
-COPY ifc/*.py /usr/local/bin/
-RUN chmod +x /usr/local/bin/*.py
+COPY ifc-scripts/*.py /usr/local/bin/
+# Windows-regeleinden (CRLF) weghalen, anders faalt de shebang met "python3\r: No such file"
+RUN sed -i 's/\r$//' /usr/local/bin/*.py && chmod +x /usr/local/bin/*.py
 
 WORKDIR /workspace
 

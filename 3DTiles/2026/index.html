@@ -151,35 +151,40 @@
 
             <section>
                 <h3>Docker omgeving</h3>
-                <p class="left m-0">Om de Docker omgeving op te starten zijn er twee bestanden nodig: <a href= "docker-compose.yml">docker-compose.yml</a> en 
-                    <a href="Dockerfile">Dockerfile</a>. Deze bestanden staan in de repository van de workshop.</p>
+                <p class="left m-0">Om de Docker omgeving op te starten zijn de volgende bestanden nodig uit de map <i>data Tiles(1_0) tutorial</i>:
+                    <a href="data%20Tiles(1_0)%20tutorial/docker-compose.yml">docker-compose.yml</a>,
+                    <a href="data%20Tiles(1_0)%20tutorial/Dockerfile">Dockerfile</a>,
+                    <a href="data%20Tiles(1_0)%20tutorial/Dockerfile_ifc">Dockerfile_ifc</a> en de map
+                    <i>ifc-scripts</i> (met <a href="data%20Tiles(1_0)%20tutorial/ifc-scripts/ifc_naar_glb.py">ifc_naar_glb.py</a> en
+                    <a href="data%20Tiles(1_0)%20tutorial/ifc-scripts/ifc_naar_lod.py">ifc_naar_lod.py</a>). Deze bestanden staan in de repository van de workshop.</p>
 
-                <p class="left m-0">Kopieer deze bestanden naar een lege directory op je lokale machine, bijvoorbeeld <code>c:\3dtiles-workshop</code>. Een makkelijke
-                    manier om dit te doen is click rechtermuis op de link en kies 'Save link as...'</p>
+                <p class="left m-0">Kopieer deze bestanden naar een lege directory op je lokale machine, bijvoorbeeld <code>c:\3dtiles-workshop</code>, en zet de
+                    twee scripts in een submap <code>ifc-scripts</code>. Een makkelijke manier om dit te doen is click rechtermuis op de link en kies 'Save link as...'</p>
 
                 <p class="left m-0">Open een terminal (cmd, PowerShell of Git Bash) en ga naar de directory waar je de bestanden hebt opgeslagen</p>
 
                 <p class="alert notice"><b>Let op:</b> Zorg dat Docker is geïnstalleerd (via 'docker ps') en draait voordat je verder gaat.</p>
 
-                <p class="alert notice"><b>Tip:</b> Een alternatieve manier om de twee bestanden op te halen is de gehele repository te clonen via 'git clone'</p>
+                <p class="alert notice"><b>Tip:</b> Een alternatieve manier om de bestanden op te halen is de gehele repository te clonen via 'git clone'</p>
             </section>
 
             <!-- Workspace opzetten -->
             <section>
                 <h3>Workspace opzetten met Docker</h3>
                 <p class="left m-0">Voor het opzetten van de workspace run het volgende commando vanuit de
-                    directory waar de bestanden <code>docker-compose.yml</code> en <code>Dockerfile</code> staan:</p>
+                    directory waar <code>docker-compose.yml</code>, <code>Dockerfile</code> en <code>Dockerfile_ifc</code> staan:</p>
                 </p>
                 <pre><code class="language-bash">docker compose up -d</code></pre>
                 <p class="left m-0">
-                    Er worden 2 containers gestart:
+                    Er worden 3 containers gestart:
                     <ul>
                         <li><code>postgis</code>: een PostgreSQL database met PostGIS extensie</li>
                         <li><code>workspace</code>: een Linux container (GDAL op Alpine) met daarin alle benodigde tools geïnstalleerd</li>
-                    </ul> 
+                        <li><code>ifc</code>: een Python container met IfcOpenShell en de IFC-scripts, voor de optionele IFC-opdrachten</li>
+                    </ul>
                 </p>
 
-                <p class="left m-0">De twee containers draaien in een apart netwerk en kunnen met elkaar communiceren. De database is vanaf de host machine 
+                <p class="left m-0">De containers draaien in een apart netwerk en kunnen met elkaar communiceren. De database is vanaf de host machine 
                     bereikbaar via poort <code>5439</code>, de workspace container is bereikbaar via poort <code>8080</code> (voor de webserver die we later gaan gebruiken).
                 </p>
 
@@ -271,7 +276,7 @@
                             <li>Zoek via de <a
                                     href="https://geoweb.rijkswaterstaat.nl/ModuleViewer/?app=1c8c833022c04e63a0f74533c19a6a27"
                                     target="_blank">RWS DTB Bladindeling viewer</a> het Andijk kaartblad (DTB kaartblad
-                                d15cz)</li>
+                                d15cz) en kies bij het downloaden het formaat <b>Shape</b></li>
                             <li>Download de data (d15cz.zip) en plaats de ZIP in <code>./container/data/dtb</code>
                                 <p class="gn-note">De map ./container staat naast je
                                     docker-compose.yml (bijv. c:\3dtiles-workshop\container). Maak de submappen data\dtb zelf aan.
@@ -852,12 +857,14 @@ viewer.scene.primitives.add(tileset3DGebouwen);</code></pre>
             <!-- Optionele opdracht 2: voeg IFC model toe -->
             <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
                 <h3>Optionele opdracht 2: Voeg IFC model toe</h3>
-                <p class="left m-0">IFC model (download raw): <a href = "https://github.com/Geonovum/temp_geobim/blob/main/data/Kievitsweg_R25_ILS%20Spaces%2020250815_LoGeoRef.ifc">https://github.com/Geonovum/temp_geobim/blob/main/data/Kievitsweg_R25_ILS%20Spaces%2020250815_LoGeoRef.ifc</a></p>
-                <p class="left m-0">Plaats de IFC in <code>./container</code> en exporteer naar GLB met
+                <p class="left m-0">IFC model: <i>Kievitsweg_R25_ILS Spaces 20250815_LoGeoRef50.ifc</i> (uit
+                    <i>data_bronnen</i>). Kopieer het naar <code>./container</code> en exporteer het naar GLB met
                     <a href="https://docs.ifcopenshell.org/introduction.html">IfcOpenShell</a> in de <i>ifc</i>-container:</p>
                 <pre><code class="language-bash">docker exec -it ifc sh
-ifc_naar_glb.py Kievitsweg.ifc -o model.glb</code></pre>
-                <p class="gn-note left">Het script laat ruimtes (IfcSpace) en sparingen weg en schrijft
+ifc_naar_glb.py -o model.glb</code></pre>
+                <p class="gn-note left">Het script zet alle .ifc-bestanden in <code>./container</code> om. Staan
+                    er meerdere, dan krijgt elk een eigen .glb met dezelfde naam (de <i>-o</i> geldt alleen bij één
+                    IFC). Staat er geen IFC, dan geeft het een foutmelding. Het script laat ruimtes (IfcSpace) en sparingen weg en schrijft
                     <i>model.glb</i> naar <code>/workspace</code> (<code>./container</code> op je host). Is de IFC
                     gegeorefereerd (IfcMapConversion), dan print het ook de Cesium-code met de juiste locatie en hoogte.</p>
                 <p class="left m-0">Voeg toe aan Cesium Viewer (zoek een handige lokatie):</p>
@@ -883,7 +890,11 @@ ifc_naar_glb.py Kievitsweg.ifc -o model.glb</code></pre>
                     IFC-model.</p>
                 <ol class="left small-text">
                     <li>Kopieer het architectuurmodel <i>PKZ_HPP_TO_MOD_COM_ARC_A_02.ifc</i> (uit
-                        <i>data_bronnen/Parkeergarage</i>) naar <code>./container</code>.</li>
+                        <i>data_bronnen/Parkeergarage</i>) naar <code>./container</code>.
+                        <p class="gn-note"><b>Let op:</b> heb je opdracht 2 gedaan? Verwijder dan eerst het
+                            Kievitsweg-IFC uit <code>./container</code>. <i>ifc_naar_glb.py</i> zet namelijk alle
+                            IFC-bestanden in de map om, dus ook de modellen van de parkeergarage als je dat script
+                            nog eens draait.</p></li>
                     <li>Maak de LOD's in de <i>ifc</i>-container (duurt ongeveer 1 minuut):
                         <pre><code class="language-bash wrap">docker exec -it ifc sh
 ifc_naar_lod.py PKZ_HPP_TO_MOD_COM_ARC_A_02.ifc --zonder IfcMember</code></pre>

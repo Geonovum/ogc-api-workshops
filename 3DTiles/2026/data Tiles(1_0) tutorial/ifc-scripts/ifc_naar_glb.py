@@ -8,7 +8,9 @@ gegeorefereerd (IfcMapConversion naar RD), dan print het script ook de
 Cesium-code met de juiste lengte- en breedtegraad en hoogte.
 
 Gebruik (in de ifc-container):
-  ifc_naar_glb.py model.ifc               -> model.glb
+  ifc_naar_glb.py                         -> alle .ifc-bestanden in de map, elk naar <naam>.glb
+  ifc_naar_glb.py -o model.glb            -> idem; bij precies een IFC heet het resultaat model.glb
+  ifc_naar_glb.py a.ifc b.ifc             -> alleen deze bestanden
   ifc_naar_glb.py model.ifc -o gebouw.glb
 """
 import argparse
@@ -53,15 +55,10 @@ def locatie(f):
     return res
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("ifc", help="IFC-bestand")
-    ap.add_argument("-o", "--output", help="GLB-bestand (standaard: naam van de IFC met .glb)")
-    args = ap.parse_args()
-    uit = args.output or os.path.splitext(args.ifc)[0] + ".glb"
-
-    log(f"IFC openen: {args.ifc}")
-    f = ifcopenshell.open(args.ifc)
+def omzetten(ifc, uit):
+    """Zet een IFC-bestand om naar GLB en print de georeferentie."""
+    log(f"IFC openen: {ifc}")
+    f = ifcopenshell.open(ifc)
 
     settings = ifcopenshell.geom.settings()
     settings.set("use-world-coords", True)   # alle elementen in een assenstelsel
@@ -104,6 +101,32 @@ def main():
         print("  },")
         print("});")
         print(f"\nDe hoogte {loc['hell']:.2f} m is NAP {loc['h']:.2f} m omgerekend naar hoogte boven de ellipsoide.")
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("ifc", nargs="*",
+                    help="IFC-bestand(en) (weggelaten: alle .ifc-bestanden in de huidige map)")
+    ap.add_argument("-o", "--output",
+                    help="GLB-bestand, alleen bij een IFC (standaard: naam van de IFC met .glb)")
+    args = ap.parse_args()
+
+    bestanden = args.ifc or sorted(n for n in os.listdir(".") if n.lower().endswith(".ifc"))
+    if not bestanden:
+        sys.exit(f"Fout: geen .ifc-bestand gevonden in {os.getcwd()}. Zet er een IFC neer of geef de naam op.")
+    ontbrekend = [b for b in bestanden if not os.path.isfile(b)]
+    if ontbrekend:
+        sys.exit("Fout: bestand niet gevonden: " + ", ".join(ontbrekend)
+                 + " (zet de naam tussen aanhalingstekens als er spaties in staan)")
+    if args.output and len(bestanden) > 1:
+        log(f"Let op: {len(bestanden)} IFC-bestanden, -o {args.output} wordt genegeerd; "
+            "elk bestand krijgt een eigen .glb.")
+        args.output = None
+
+    for i, ifc in enumerate(bestanden, 1):
+        if len(bestanden) > 1:
+            print(f"\n=== [{i}/{len(bestanden)}] {ifc}")
+        omzetten(ifc, args.output or os.path.splitext(ifc)[0] + ".glb")
 
 
 if __name__ == "__main__":
