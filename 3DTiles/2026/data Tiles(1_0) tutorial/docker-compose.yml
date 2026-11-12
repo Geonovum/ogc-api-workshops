@@ -41,7 +41,7 @@ services:
   ifc:
     build:
       context: .
-      dockerfile: Dockerfile.ifc
+      dockerfile: Dockerfile_ifc
     container_name: ifc
     environment:
       PGHOST: postgis
