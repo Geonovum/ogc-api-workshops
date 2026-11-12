@@ -853,12 +853,13 @@ viewer.scene.primitives.add(tileset3DGebouwen);</code></pre>
             <section class="center gn-divider" data-background-color="#207AB3" data-state="gn-state-divider">
                 <h3>Optionele opdracht 2: Voeg IFC model toe</h3>
                 <p class="left m-0">IFC model: <i>Kievitsweg_R25_ILS Spaces 20250815_LoGeoRef50.ifc</i> (uit
-                    <i>data_bronnen</i>). Kopieer het naar <code>./container</code> en <b>hernoem het naar
-                    <i>Kievitsweg.ifc</i></b>, anders vindt het script het bestand niet. Exporteer daarna naar GLB met
+                    <i>data_bronnen</i>). Kopieer het naar <code>./container</code> en exporteer het naar GLB met
                     <a href="https://docs.ifcopenshell.org/introduction.html">IfcOpenShell</a> in de <i>ifc</i>-container:</p>
                 <pre><code class="language-bash">docker exec -it ifc sh
-ifc_naar_glb.py Kievitsweg.ifc -o model.glb</code></pre>
-                <p class="gn-note left">Het script laat ruimtes (IfcSpace) en sparingen weg en schrijft
+ifc_naar_glb.py -o model.glb</code></pre>
+                <p class="gn-note left">Zonder bestandsnaam zet het script het (enige) .ifc-bestand in
+                    <code>./container</code> om. Staan er meerdere, geef dan de naam op tussen aanhalingstekens,
+                    bijv. <code>ifc_naar_glb.py "mijn model.ifc" -o model.glb</code>. Het script laat ruimtes (IfcSpace) en sparingen weg en schrijft
                     <i>model.glb</i> naar <code>/workspace</code> (<code>./container</code> op je host). Is de IFC
                     gegeorefereerd (IfcMapConversion), dan print het ook de Cesium-code met de juiste locatie en hoogte.</p>
                 <p class="left m-0">Voeg toe aan Cesium Viewer (zoek een handige lokatie):</p>

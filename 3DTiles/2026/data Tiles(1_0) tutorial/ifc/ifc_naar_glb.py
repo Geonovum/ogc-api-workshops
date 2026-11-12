@@ -8,6 +8,7 @@ gegeorefereerd (IfcMapConversion naar RD), dan print het script ook de
 Cesium-code met de juiste lengte- en breedtegraad en hoogte.
 
 Gebruik (in de ifc-container):
+  ifc_naar_glb.py -o model.glb            -> het enige .ifc-bestand in de map
   ifc_naar_glb.py model.ifc               -> model.glb
   ifc_naar_glb.py model.ifc -o gebouw.glb
 """
@@ -55,9 +56,20 @@ def locatie(f):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("ifc", help="IFC-bestand")
+    ap.add_argument("ifc", nargs="?",
+                    help="IFC-bestand (weggelaten: het enige .ifc-bestand in de huidige map)")
     ap.add_argument("-o", "--output", help="GLB-bestand (standaard: naam van de IFC met .glb)")
     args = ap.parse_args()
+    if args.ifc is None:
+        gevonden = sorted(n for n in os.listdir(".") if n.lower().endswith(".ifc"))
+        if not gevonden:
+            sys.exit(f"Geen .ifc-bestand gevonden in {os.getcwd()}. Zet er een IFC neer of geef de naam op.")
+        if len(gevonden) > 1:
+            sys.exit("Meerdere .ifc-bestanden gevonden; geef aan welke je wilt omzetten:\n"
+                     + "\n".join(f'  ifc_naar_glb.py "{n}"' for n in gevonden))
+        args.ifc = gevonden[0]
+    elif not os.path.isfile(args.ifc):
+        sys.exit(f"Bestand niet gevonden: {args.ifc} (zet de naam tussen aanhalingstekens als er spaties in staan)")
     uit = args.output or os.path.splitext(args.ifc)[0] + ".glb"
 
     log(f"IFC openen: {args.ifc}")
