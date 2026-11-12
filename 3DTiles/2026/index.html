@@ -885,7 +885,11 @@ ifc_naar_glb.py -o model.glb</code></pre>
                     IFC-model.</p>
                 <ol class="left small-text">
                     <li>Kopieer het architectuurmodel <i>PKZ_HPP_TO_MOD_COM_ARC_A_02.ifc</i> (uit
-                        <i>data_bronnen/Parkeergarage</i>) naar <code>./container</code>.</li>
+                        <i>data_bronnen/Parkeergarage</i>) naar <code>./container</code>.
+                        <p class="gn-note"><b>Let op:</b> heb je opdracht 2 gedaan? Verwijder dan eerst het
+                            Kievitsweg-IFC uit <code>./container</code>. <i>ifc_naar_glb.py</i> zet namelijk alle
+                            IFC-bestanden in de map om, dus ook de modellen van de parkeergarage als je dat script
+                            nog eens draait.</p></li>
                     <li>Maak de LOD's in de <i>ifc</i>-container (duurt ongeveer 1 minuut):
                         <pre><code class="language-bash wrap">docker exec -it ifc sh
 ifc_naar_lod.py PKZ_HPP_TO_MOD_COM_ARC_A_02.ifc --zonder IfcMember</code></pre>
